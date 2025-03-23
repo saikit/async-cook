@@ -22,11 +22,10 @@
 
 ### Optional toppings
 - 120g raw shrimp
-    baking soda
-    salt
+    - baking soda
+    - salt
 - 120g mozzarella
 - basil
-- red pepper flakes
 
 ## Step 1
 Wash and cut cherry tomatoes in half. Toss tomatoes in bowl with olive oil, salt, and pepper. Place tomatoes on a parchment-lined baking sheet flesh side up and in a single layer if possible. Roast 450F for 25-30 minutes
@@ -44,7 +43,7 @@ Boil pasta in salted water for 1-2 minutes before instructions for al dente. Set
 Fry shrimp in a pan in high heat for less than 1 minute until slightly brown. Remove from heat.
 
 ## Step 3
-Remove peel from garlic. Pour roasted tomato and garlic into pan. Add basil and red pepper flakes to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry.  Remove pan from heat and add grated cheese. Return to heat and add black pepper and olive oil and cook for another 30 seconds and/or add cooked pasta water until desired sauce consistancy.
+Remove peel from garlic. Pour roasted tomato and garlic into pan. Add basil and to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry.  Remove pan from heat and add grated cheese. Return to heat and add black pepper and olive oil and cook for another 30 seconds and/or add cooked pasta water until desired sauce consistancy.
 
 ## Step 4
 Serve pasta with extra grated cheese, olive oil, and/or black pepper
