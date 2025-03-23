@@ -11,10 +11,12 @@ This is a reimaging of the recipe page for the modern home cook
 - It's important to add prep and cleaning as part of the recipe process
 - For now, this is a tool for a solo cook with one or more cooking appliances.
 - Must be fully usable on a tablet or mobile device
-- Users can pick optional ingredients which be added to the steps 
+- Users can pick optional ingredients which be added to the steps
+- Users can also remove ingredients that are not required (MVP)
 
 ## Future features
 
 - Recipes for multiple cooks
 - Merges processes for cooks making more than one recipe 
 - Take an existing recipe and refactor it to fit a user's environment and goals
+- Customize existing recipes
