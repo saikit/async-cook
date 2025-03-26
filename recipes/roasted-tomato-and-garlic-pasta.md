@@ -49,13 +49,14 @@ Boil **pasta** in **salted** **water** for 1-2 minutes before instructions for a
 Fry shrimp in a pan in high heat for less than 1 minute until slightly brown. Remove from heat.
 
 ## Step 3
-- Remove peel from garlic. Pour roasted tomato and garlic into pan. Add basil and to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry.  
+- Remove peel from garlic. Pour roasted tomato and garlic into pan. Add basil to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry.  
 - Remove pan from heat and add grated cheese.
 - Return to heat and add black pepper and olive oil and cook for another 30 seconds.
 - (Pasta water) Add pasta water to emulsify sauce to preferred consistency
 - (Shrimp) add shrimp back into pan
 
 ## Step 4
+
 Serve pasta with extra grated cheese, olive oil, and/or black pepper
 
 (Mozzarella) Top pasta with mozzarella
