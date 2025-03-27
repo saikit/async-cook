@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
 import Ingredient from './components/Ingredient'
 import Instruction from './components/Instruction'
 import RecipeContext from './context/RecipeProvider'
@@ -18,46 +18,28 @@ export type RecipeType = {
 }
 
 function Recipe() {
-const context = useContext(RecipeContext)
+  const context = useContext(RecipeContext)
+  const { step, recipe } = context;
 
-const { step, setStep } = context;
-const [recipe, setRecipe] = useState<RecipeType>()
-
-useEffect(() => {
-  const fetchRecipe = async (): Promise<RecipeType> => {
-    const data = await fetch('http://localhost:5173/data/pasta.json').then(res => {
-      return res.json()
-    }).catch(err => {
-        if (err instanceof Error) console.log(err.message)
-    })
-    return data
+  if (!recipe) {
+    return <div>Loading...</div>;
   }
 
-    fetchRecipe().then(recipe => setRecipe(recipe))
-},[])
+  const { ingredients, instructions, title, description } = recipe;
+  const sortedIngredients : Ingredients = []
 
-
-if (!recipe) {
-  return <div>Loading...</div>;
-}
-
-const { ingredients, instructions, title, description } = recipe;
-const maxStep = instructions.length;
-const sortedIngredients : Ingredients = []
-
-ingredients.map((group, index) => {
-  const status = step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready"
-  group.map(ingredient => {
-    ingredient.status = status
+  ingredients.map((group, index) => {
+    const status = step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready"
+    group.map(ingredient => {
+      ingredient.status = status
+    })
+    if(status === 'active') 
+      sortedIngredients.unshift(group)
+    else if(status === 'complete')
+      sortedIngredients.push(group)
+    else
+      sortedIngredients.splice(sortedIngredients.length, 0, group)
   })
-  if(status === 'active') 
-    sortedIngredients.unshift(group)
-  else if(status === 'complete')
-    sortedIngredients.push(group)
-  else
-    sortedIngredients.splice(sortedIngredients.length, 0, group)
-})
-
   const content = (
     <div className='grid p-4'>
     <h1 className="text-4xl font-bold text-center m-2">
@@ -69,9 +51,9 @@ ingredients.map((group, index) => {
     {sortedIngredients.map((group, key) => {
       return group.map((ingredient) => {
         if (Array.isArray(ingredient.description)) {
-          return ingredient.description.map((ing: string) => (
-            <Ingredient status={ingredient.status} name={ing} key={`${key}-${ing}`}>{ing}</Ingredient>
-          ));
+          return (<ul>{ingredient.description.map((ing: string) => (
+            <Ingredient status={ingredient.status} name={ing} key={`${key}-${ing}`}>{ing}</Ingredient>)
+          )}</ul>);
         } else {
           return <Ingredient status={ingredient.status} key={`${key}-${ingredient.description}`} name={ingredient.name}>{ingredient.description}</Ingredient>;
         }
@@ -87,23 +69,6 @@ ingredients.map((group, index) => {
       <Instruction key={step - 1}><Markdown>{instructions[step - 1]}</Markdown></Instruction>
     }
 
-    <div className='flex justify-center p-2 gap-2'>
-      {step === 0
-      ?
-      <button className='w-50 border p-2 rounded-2xl' onClick={() => setStep(step + 1)}>Start</button>
-      :
-      <>
-      <button className='border p-2 rounded-2xl disabled:opacity-80' 
-      onClick={() => setStep(step - 1)}
-      >Previous Step</button>
-      <button className='border p-2 rounded-2xl' onClick={() => setStep(0)}>Reset</button>
-      <button className='border p-2 rounded-2xl disabled:opacity-50'
-      onClick={() => setStep(step + 1)}
-      disabled={maxStep === step ? true : false}
-        >Next Step</button>
-      </>
-      }
-    </div>
 
     </div>
   )
