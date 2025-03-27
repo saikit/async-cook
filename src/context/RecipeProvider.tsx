@@ -7,7 +7,7 @@ type RecipeContextType = {
 
 type ChildrenType = { children?: ReactElement | ReactElement[] }
 
-const RecipeContext = createContext<RecipeContextType | null>(null);
+const RecipeContext = createContext<RecipeContextType>({} as RecipeContextType);
 
 export const RecipeProvider = ({ children } : ChildrenType) => {
     const [step, setStep] = useState<RecipeContextType['step']>(0);

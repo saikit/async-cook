@@ -14,14 +14,11 @@ export type RecipeType = {
   ingredients: Ingredients,
   instructions: string[],
   title: string,
+  description?: string,
 }
 
 function Recipe() {
 const context = useContext(RecipeContext)
-
-if (!context) {
-  throw new Error("RecipeContext must be used within a RecipeProvider");
-}
 
 const { step, setStep } = context;
 const [recipe, setRecipe] = useState<RecipeType>()
@@ -44,7 +41,7 @@ if (!recipe) {
   return <div>Loading...</div>;
 }
 
-const { ingredients, instructions, title } = recipe;
+const { ingredients, instructions, title, description } = recipe;
 const maxStep = instructions.length;
 const sortedIngredients : Ingredients = []
 
@@ -58,16 +55,17 @@ ingredients.map((group, index) => {
   else if(status === 'complete')
     sortedIngredients.push(group)
   else
-    sortedIngredients.splice(1, 0, group)
+    sortedIngredients.splice(sortedIngredients.length, 0, group)
 })
 
   const content = (
-    <div className='grid min-h-screen place-content-center'>
-    <h1 className="text-3xl font-bold">
+    <div className='grid p-4'>
+    <h1 className="text-4xl font-bold text-center m-2">
       {title}
     </h1>
-    <h2>Ingredients</h2>
-    <ul className='list-disc'>
+    {description ? (<p className='my-2'>{description}</p>) : null}
+    <h2 className='text-3xl mb-2'>Ingredients</h2>
+    <ul>
     {sortedIngredients.map((group, key) => {
       return group.map((ingredient) => {
         if (Array.isArray(ingredient.description)) {
@@ -80,30 +78,32 @@ ingredients.map((group, index) => {
       });
     })}
     </ul>
-    <hr />
-    <h2>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
-    {step === 0 ? (
-      instructions.map((instruction, index) => (
-          <Instruction key={index}><Markdown>{instruction}</Markdown></Instruction>
-      ))
-    ) : (
-        <Instruction key={step - 1}><Markdown>{instructions[step - 1]}</Markdown></Instruction>
-    )}
-    {step === 0
-    ?
-    <button onClick={() => setStep(step + 1)}>Start</button>
+    <hr className='my-4' />
+    <h2 className='text-2xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
+    {step === 0 
+    ? 
+    <ol className='list-decimal list-outside pl-4'>{instructions.map((instruction, index) => (<li key={index}><Instruction ><Markdown>{instruction}</Markdown></Instruction></li> ))}</ol>    
     :
-    <>
-    <button 
-    onClick={() => setStep(step - 1)}
-    >Previous Step</button>
-    <button onClick={() => setStep(0)}>Reset</button>
-    <button 
-    onClick={() => setStep(step + 1)}
-    disabled={maxStep === step ? true : false}
-      >Next Step</button>
-    </>
+      <Instruction key={step - 1}><Markdown>{instructions[step - 1]}</Markdown></Instruction>
     }
+
+    <div className='flex justify-center p-2 gap-2'>
+      {step === 0
+      ?
+      <button className='w-50 border p-2 rounded-2xl' onClick={() => setStep(step + 1)}>Start</button>
+      :
+      <>
+      <button className='border p-2 rounded-2xl disabled:opacity-80' 
+      onClick={() => setStep(step - 1)}
+      >Previous Step</button>
+      <button className='border p-2 rounded-2xl' onClick={() => setStep(0)}>Reset</button>
+      <button className='border p-2 rounded-2xl disabled:opacity-50'
+      onClick={() => setStep(step + 1)}
+      disabled={maxStep === step ? true : false}
+        >Next Step</button>
+      </>
+      }
+    </div>
 
     </div>
   )

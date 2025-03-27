@@ -1,5 +1,6 @@
 {
     "title": "Roasted tomato pasta",
+    "description": "My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roasting the tomatoes in the over adds additional with less mess.",
     "ingredients":[
         [{
             "name": "cherry tomatoes",
@@ -24,11 +25,12 @@
         {
             "name": "grated cheese",
             "description": "20g grated cheese"
-        }],
-        [{
+        },
+        {
             "name": "black pepper",
             "description": "Black pepper"
-        },
+        }],
+        [
         {
             "name": "grated cheese",
             "description": "Grated cheese (for serving)"
@@ -37,9 +39,9 @@
         ]
     ],
     "instructions":[
-        "Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, salt, and pepper. Place tomatoes and garlic on a parchment-lined baking sheet flesh side up and in a single layer if possible. Roast 450F for 25-30 minutes",
+        "Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, salt, and pepper. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer if possible. Roast 450F for 25-30 minutes",
         "Boil **pasta** in **salted** **water** for 1-2 minutes before instructions for al dente. Set aside pasta and pasta cooking water.",
-        "  - Remove peel from garlic. Pour roasted tomato and garlic into pan. Add **basil** to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry.\n  - Remove pan from heat and add grated cheese.\n  - Return to heat and add black pepper and olive oil and cook for another 30 seconds.",
-        "Serve pasta with extra grated cheese, olive oil, and/or black pepper"
+        "  - Remove peel from garlic. Pour roasted tomato and garlic into pan. Add **basil** to sauce mixture. Add cooked pasta and some cooked pasta water to pan and stir fry on high heat.\n  - Remove pan from heat and add **grated cheese**.\n  - Return to heat and add **black pepper** and olive oil and cook for another 30 seconds.",
+        "Serve pasta with extra grated cheese"
     ]
 }
