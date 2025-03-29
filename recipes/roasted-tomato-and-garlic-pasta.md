@@ -30,10 +30,10 @@
 ## Step 1
 Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, salt, and pepper. Place tomatoes and garlic on a parchment-lined baking sheet flesh side up and in a single layer if possible. Roast 450F for 25-30 minutes (context: parchment is non-stick. putting tomatoes flesh side up prevents the skin from burning. single layer prevents crowding.)
 
-Optional Step (shrimp)
+## Optional Step (shrimp)
 Season raw shrimp with salt and a pinch of baking soda (context: small amount of baking soda prevents the shrimp from becoming mushy). If frozen, thaw under running water for 10 minutes.
 
-Optional Step (mozzarella)
+## Optional Step (mozzarella)
 Slice mozzarella
 
 (parmasan) grate cheese

@@ -2,7 +2,6 @@ import { useContext } from "react"
 import RecipeContext from "../context/RecipeProvider"
 
 function RecipeFooter () {
-
     const { step, setStep, maxStep } = useContext(RecipeContext)
 
     const content = (

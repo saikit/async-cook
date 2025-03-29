@@ -4,7 +4,7 @@ type Prop = {
     status: "ready" | "active" | "complete"
 }
 
-const Ingredient = ({name, status, children} : Prop) => {
+const Ingredient = ({name, status = "ready", children} : Prop) => {
 
   const content = (
     (status === "active") ?
