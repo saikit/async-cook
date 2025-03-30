@@ -1,54 +1,22 @@
-# React + TypeScript + Vite
+# Async Cook Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a reimaging of the recipe page for the modern home cook
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Recipes should fit with a single page app with as much or as little information as the user wants **done**
+- Ingredients will be in a tradional list but will also have statuses that change as users go through each step **done**
+- Each step is considered the active state with preceding steps shown on the background **done**
+- More information about each step will have different categories and are shown in a popup
+- It's important to add prep and cleaning as part of the recipe process **half done**
+- For now, this is a tool for a solo cook with one or more cooking appliances. **done**
+- Must be fully usable on a tablet or mobile device **done**
+- Users can pick optional ingredients which be added to the steps **done**
+- Users can also remove ingredients that are not required (MVP)
 
-## Expanding the ESLint configuration
+## Future features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Recipes for multiple cooks
+- Merges processes for cooks making more than one recipe 
+- Take an existing recipe and refactor it to fit a user's environment and goals
+- Customize existing recipes
