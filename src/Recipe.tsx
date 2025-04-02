@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import Ingredient from './components/Ingredient'
 import Instruction from './components/Instruction'
 import RecipeContext from './context/RecipeProvider'
-import Markdown from 'react-markdown'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 
 function Recipe() {
@@ -61,17 +60,13 @@ function Recipe() {
     <h2 className='text-2xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
     {step === 0 
     ? 
-    <ol className='list-decimal list-outside pl-4'>{filteredInstructions.map((group, index) => (
-      group.map((instruction, instructionIndex) => (
-        <li key={`${index}-${instructionIndex}`}>
-          <Instruction>
-            <Markdown>{instruction.step}</Markdown>
-          </Instruction>
+    <ol className='list-decimal list-outside pl-4'>{filteredInstructions.map((instructions, index) => (
+        <li key={index}>
+          <Instruction instructions={instructions} />
         </li>
-      ))
     ))}</ol>
     :
-    filteredInstructions[step - 1].map(instruction => (<Instruction key={step - 1}><Markdown>{instruction.step}</Markdown></Instruction>))
+   <Instruction key={step - 1} instructions={filteredInstructions[step - 1]}/>
     }
     </div>
   )

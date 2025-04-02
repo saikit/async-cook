@@ -15,19 +15,28 @@ type RecipeContextType = {
 
 type ChildrenType = { children?: ReactElement | ReactElement[] }
 
-export type IngredientsType = Array<
-{
+export type RecipeNoteIconType = {
+  category: string,
+  note: string,
+}
+
+export type InstructionType = {
+  step: string,
+  background?: string,
+  optional?: string,
+  context?: Array<RecipeNoteIconType>,
+}
+
+export type IngredientType = {
   name: string,
   description: string[] | string,
   status?: "ready" | "active" | "complete",
   optional?: boolean
-}>
+}
 
-export type InstructionsType = Array<{
-  step: string,
-  background?: string,
-  optional?: string
-}>
+export type IngredientsType = Array<IngredientType>
+
+export type InstructionsType = Array<InstructionType>
 
 export type RecipeType = {
   ingredients: Array<IngredientsType>,

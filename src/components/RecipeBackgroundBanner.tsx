@@ -1,9 +1,12 @@
 import { useContext } from "react"
 import RecipeContext from "../context/RecipeProvider"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
 
 function RecipeBackgroundBanner() {
     const context = useContext(RecipeContext)
     const { step, filteredInstructions } = context
+
 
     const background = step > 0 && filteredInstructions[step - 1][0]?.background ? filteredInstructions[step - 1][0].background : null
 
@@ -11,7 +14,12 @@ function RecipeBackgroundBanner() {
         return null
 
   const content = (
-    <p className="sticky top-0 p-2 bg-slate-300 opacity-80 text-center">{background}</p>
+    <Alert>
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+      {background}
+      </AlertDescription>
+    </Alert>
   )
 
   return content
