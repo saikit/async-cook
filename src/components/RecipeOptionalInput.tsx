@@ -7,7 +7,7 @@ function RecipeOptionalInput() {
 const { optionalIngredients, step, setOptional, optional } = useContext(RecipeContext)
 
 if(optionalIngredients.length === 0 || step > 0)
-    return <></>
+    return <hr className="my-4"/>
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
         setOptional(optional => ({
@@ -17,8 +17,8 @@ if(optionalIngredients.length === 0 || step > 0)
     }
 
     const content = (
-        <div>
-        <h3 className="text-2xl">Optional Ingredients</h3>
+        <div className="border rounded-xl p-2 my-2">
+        <h3 className="text-xl">Add Optional Ingredients</h3>
         {optionalIngredients.map((ingredient) => (
             <div key={ingredient.name}>
                 <input 
@@ -30,7 +30,7 @@ if(optionalIngredients.length === 0 || step > 0)
                 <label className="ml-1" htmlFor={ingredient.name}>{ingredient.name}</label>
             </div>
         ))}
-    </div>
+        </div>
     )
 
   return content

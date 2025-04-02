@@ -11,52 +11,50 @@ function Recipe() {
     return <div>Loading...</div>;
   }
 
-  const { title, description } = recipe;
+  const { title, intro } = recipe;
 
   const content = (
-    <div className='grid p-4'>
+    <div className='p-4'>
     <h1 className="text-4xl font-bold text-center m-2">
       {title}
     </h1>
-
     
-    
-    {description && step === 0 ? (<p className='my-2'>{description}</p>) : null}
+    {intro && step === 0 ? (<p className='my-2'>{intro}</p>) : null}
     
     <h2 className='text-3xl mb-2'>Ingredients</h2>
     <ul>
     {sortedIngredients.map((group, key) => {
       return group.map((ingredient) => {
-        if (Array.isArray(ingredient.description)) {
+        if (ingredient.description.length > 1) {
           return (
             <div key={ingredient.name} className='my-2'>
             <h3><em>For the {ingredient.name}</em></h3>
-            <ul key={key}>{ingredient.description.map((ing: string) => (
-            <Ingredient 
-              status={ingredient.status || "ready"} 
-              name={ing} 
-              key={`${key}-${ing}`}
-            >
-              {ing}
-            </Ingredient>)
-          )}</ul></div>);
-        } else {
-          return (
-            (!('cooked' in ingredient) || (('cooked' in ingredient) && step - 1 >= key)) ?
-            <Ingredient
-              status={ingredient.status || "ready"}
-              key={`${key}-${ingredient.description}`}
-              name={ingredient.name}
-            >
-              {ingredient.description}
-            </Ingredient> : null
+            <ul key={key}>
+              {ingredient.description.map((ing) => (
+              <Ingredient 
+                status={ingredient.status || "ready"} 
+                description={ing}
+                key={`${key}-${ing.name}`}
+              />
+              ))}
+            </ul></div>
           );
+        } else {
+          if (!('cooked' in ingredient) || (('cooked' in ingredient) && step - 1 >= key)) {
+            return ingredient.description.map((ing) => (
+              <Ingredient
+                status={ingredient.status || "ready"}
+                key={`${key}-${ing.name}`}
+                description={ing}
+              />
+            ));
+          }
+          return null;
         }
       });
     })}
     </ul>
     <RecipeOptionalInput/>
-    <hr className='my-4' />
     <h2 className='text-2xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
     {step === 0 
     ? 

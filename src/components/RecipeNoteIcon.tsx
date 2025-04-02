@@ -11,7 +11,7 @@ import {
 function RecipeNoteIcon({ note } : { note : RecipeNoteIconType }) {
     return (
         <Popover>
-            <PopoverTrigger><ChefHat size={18}/></PopoverTrigger>
+            <PopoverTrigger><ChefHat size={18} color="#ff7b00"/></PopoverTrigger>
             <PopoverContent><p>{note.note}</p></PopoverContent>
         </Popover>
     )

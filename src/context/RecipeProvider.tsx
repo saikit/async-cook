@@ -29,7 +29,10 @@ export type InstructionType = {
 
 export type IngredientType = {
   name: string,
-  description: string[] | string,
+  description: Array<{
+    name: string,
+    context?: Array<RecipeNoteIconType>
+  }>,
   status?: "ready" | "active" | "complete",
   optional?: boolean
 }
@@ -42,7 +45,7 @@ export type RecipeType = {
   ingredients: Array<IngredientsType>,
   instructions: Array<InstructionsType>,
   title: string,
-  description?: string,
+  intro?: string,
 }
 
 type OptionalType = { [key: string]: boolean } 

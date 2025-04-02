@@ -1,61 +1,83 @@
 {
     "title": "Roasted Tomato Pasta",
-    "description": "My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roasting the tomatoes in the over adds additional with less mess.",
+    "intro": "My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roasting the tomatoes in the over adds additional with less mess.",
     "ingredients":[
         [{
             "name": "Roasted tomatoes",
-            "description": ["360g-600g Cherry tomatoes", "3-4 Cloves of garlic end trimmed and peel on", "30g Extra virgin olive oil"]
+            "description": [
+                {"name": "360g-600g Cherry tomatoes"},
+                {"name": "3-4 Cloves of garlic end trimmed and peel on", "context": [{
+                    "category": "explanation",
+                    "note": "The peel prevents the garlic from burning"
+                }]}, 
+                {"name": "30g Extra virgin olive oil"}]
         }],
         [{
             "name": "Shrimp",
-            "description": ["120g Raw shrimp", "2g Salt", "1g Baking soda"],
+            "description": [
+                {"name": "120g Raw shrimp"}, 
+                {"name": "2g Salt"}, 
+                {"name": "1g Baking soda"}
+            ],
             "optional": true
         }],
         [{
             "name": "Mozzarella",
-            "description": "120g Mozzarella cheese",
+            "description": 
+                [{"name": "120g Mozzarella cheese"}],
             "optional": true
         }],
         [{
             "name": "Pasta",
-            "description": ["150g dried pasta", "600ml water", "3g salt"]
+            "description": [
+                {"name": "150g dried pasta"}, 
+                {"name": "600ml water"}, 
+                {"name": "3g salt"}
+            ]
         }],
         [{
             "name": "marinated shrimp",
-            "description": "Marinated shrimp",
+            "description": [{"name": "Marinated shrimp"}],
             "cooked": true,
             "optional": "Shrimp"
         }],
         [{
             "name": "pasta",
-            "description": "Cooked pasta",
+            "description": [{"name": "Cooked pasta"}],
             "cooked": true
         },
         {
             "name": "pasta water",
-            "description": "Cooked pasta water",
+            "description": [{"name": "Cooked pasta water"}],
             "cooked": true
         },
         {
             "name": "basil",
-            "description": "1g dried basil"
+            "description": [{"name": "1g dried basil"}]
         },
         {
             "name": "grated cheese",
-            "description": "20g grated cheese"
+            "description": [{"name": "20g grated cheese"}]
+        },
+        {
+            "name": "salt",
+            "description": [{"name": "Salt or fish sauce", "context": [{
+                "category": "explanation",
+                "note": "Fish sauce pairs well with tomato-based sauces"
+            }]}]
         },
         {
             "name": "black pepper",
-            "description": "Black pepper"
+            "description": [{"name": "Black pepper"}]
         }],
         [
         {
             "name": "grated cheese",
-            "description": "Grated cheese (for serving)"
+            "description": [{"name": "Grated cheese (for serving)"}]
         },
         {
             "name": "sliced mozzerlla",
-            "description": "Sliced Mozzarella",
+            "description": [{"name": "Sliced Mozzarella"}],
             "cooked": true,
             "optional": "Mozzarella"
         }

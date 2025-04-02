@@ -1,19 +1,22 @@
-type Prop = {
-    name: string,
-    children: React.ReactNode,
-    status: "ready" | "active" | "complete"
-}
+import { IngredientType } from "@/context/RecipeProvider"
+import RecipeNoteIcon from "./RecipeNoteIcon"
 
-const Ingredient = ({name, status = "ready", children} : Prop) => {
 
+const Ingredient = ({ description, status }: { description: IngredientType['description'][0], status: IngredientType['status'] }) => {
+  const { name, context } = description
+  const icon = (
+    (context) ?
+      (context.map((note, key) => <RecipeNoteIcon note={note} key={key}/>)) 
+    : null
+  )
   const content = (
     (status === "active") ?
-      <li key={name} className={status}><b>{children}</b></li>
+      <li className={status}><b>{name}</b>{icon}</li>
     :
     (status === "complete") ?
-      <li key={name} className={status}><s>{children}</s></li>
+      <li className={status}><s>{name}</s></li>
     :
-      <li key={name} className={status}>{children}</li>
+      <li className={status}>{name}{icon}</li>
   )
 
   return content
