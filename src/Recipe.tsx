@@ -8,7 +8,7 @@ function Recipe() {
   const {step, recipe, sortedIngredients, filteredInstructions} = useContext(RecipeContext)
 
   if (!recipe) {
-    return <div>Loading...</div>;
+    return <div className='h-screen text-center'>Loading...</div>;
   }
 
   const { title, intro } = recipe;
@@ -21,6 +21,7 @@ function Recipe() {
     
     {intro && step === 0 ? (<p className='my-2'>{intro}</p>) : null}
     
+    <RecipeOptionalInput/>
     <h2 className='text-3xl mb-2'>Ingredients</h2>
     <ul>
     {sortedIngredients.map((group, key) => {
@@ -54,8 +55,8 @@ function Recipe() {
       });
     })}
     </ul>
-    <RecipeOptionalInput/>
-    <h2 className='text-2xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
+    <hr className='my-4'/>
+    <h2 className='text-3xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
     {step === 0 
     ? 
     <ol className='list-decimal list-outside pl-4'>{filteredInstructions.map((instructions, index) => (

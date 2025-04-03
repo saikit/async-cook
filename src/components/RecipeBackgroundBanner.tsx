@@ -15,9 +15,9 @@ function RecipeBackgroundBanner() {
 
   const content = (
     <Alert>
-      <AlertTitle>Heads up!</AlertTitle>
+      <AlertTitle><div className="text-xl">Heads up!</div></AlertTitle>
       <AlertDescription>
-      {background}
+      <p>{background}</p>
       </AlertDescription>
     </Alert>
   )
