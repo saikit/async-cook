@@ -15,8 +15,12 @@ function Instruction({ instructions }: { instructions: InstructionType[] }) {
             <Markdown components={{
               p(props) {
                 const {children, ...rest} = props;
-                return <p {...rest}>{children}{icons}</p>;
-              }
+                return <p className="mb-2" {...rest}>{children}{icons}</p>;
+              },
+              li(props) {
+                const {children, ...rest} = props;
+                return <li {...rest} className="mb-2">{children}</li>;
+              },
             }}>
               {instruction.step}
             </Markdown>

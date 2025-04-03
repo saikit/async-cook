@@ -52,6 +52,12 @@
             "cooked": true
         },
         {
+            "name": "marinated shrimp",
+            "description": [{"name": "Cooked shrimp"}],
+            "cooked": true,
+            "optional": "Shrimp"
+        },
+        {
             "name": "basil",
             "description": [{"name": "1g dried basil"}]
         },
@@ -118,9 +124,9 @@
             "step": "Fry **marinated shrimp** in a pan in high heat for less than 1 minute until slightly brown. Remove from heat.",
             "optional": "Shrimp"
         }],
-        [{
-            "step":"  - Remove peel from garlic. Pour roasted tomato and garlic into pan. Add **basil** to sauce mixture. Add **cooked pasta** and some **cooked pasta water** to pan and stir fry on high heat.\n  - Remove pan from heat and add **grated cheese**.\n  - Return to heat and add **black pepper** and olive oil and cook for another 30 seconds."
-        }],
+        [
+            {"step":"  - Remove peel from garlic. Pour roasted tomato and garlic into pan. Add **basil** to sauce mixture. Add **cooked pasta** to pan and stir fry on high heat.\n  - Remove pan from heat and add **grated cheese**.\n  - Return to heat and add **black pepper** and olive oil and cook for another 30 seconds.\n  - Add **salt** to taste. Add more **pasta water** to adjust consistency."},
+            {"step": "Add **cooked shrimp** to pasta and toss to combine", "optional": "Shrimp"}],
         [
             {"step":"Serve pasta with extra **grated cheese**"},
             {"step": "Top pasta with **sliced mozzarella**", "optional": "Mozzarella"}

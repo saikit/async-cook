@@ -1,5 +1,17 @@
 import { useContext } from "react"
 import RecipeContext from "../context/RecipeProvider"
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+  } from "./ui/drawer"
+import { Button } from "./ui/button"
+  
 
 
 function RecipeOptionalInput() {
@@ -17,10 +29,15 @@ if(optionalIngredients.length === 0 || step > 0)
     }
 
     const content = (
-        <div className="border rounded-xl p-2 my-2">
-        <h3 className="text-xl">Select optional ingredients</h3>
-        {optionalIngredients.map((ingredient) => (
-            <div key={ingredient.name}>
+        <Drawer>
+        <DrawerTrigger><Button variant="outline">Select optional ingredients</Button></DrawerTrigger>
+        <DrawerContent>
+            <DrawerHeader>
+            <DrawerTitle>Select optional ingredients</DrawerTitle>
+            </DrawerHeader>
+            <DrawerDescription>
+            {optionalIngredients.map((ingredient) => (
+            <div className="px-4" key={ingredient.name}>
                 <input 
                     id={ingredient.name} 
                     checked={ingredient.name in optional ? optional[ingredient.name] : false} 
@@ -29,8 +46,15 @@ if(optionalIngredients.length === 0 || step > 0)
                      />
                 <label className="ml-1" htmlFor={ingredient.name}>{ingredient.name}</label>
             </div>
-        ))}
-        </div>
+            ))}
+            </DrawerDescription>
+            <DrawerFooter>
+            <DrawerClose>
+                <Button variant="outline">Close</Button>
+            </DrawerClose>
+            </DrawerFooter>
+        </DrawerContent>
+        </Drawer>
     )
 
   return content

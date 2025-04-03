@@ -6,8 +6,8 @@ function RecipeFooter () {
     const { step, setStep, maxStep } = useContext(RecipeContext)
 
     const content = (
-        <div className=" py-2 w-full sticky bottom-0 gap-2 bg-slate-200">
-            <div className='flex justify-center'>
+        <div className=" p-4 w-full sticky bottom-0 bg-slate-200">
+            <div className='flex justify-center gap-2'>
                 {step === 0
                 ?
                 <Button className='w-50S' onClick={() => setStep(step + 1)}>Start</Button>
@@ -24,7 +24,7 @@ function RecipeFooter () {
                 </>
                 }
             </div>
-            <p className="text-center text-sm">This recipe and app is hand-crafted by Sai-Kit Hui</p>
+            <p className="text-center text-sm py-2">This recipe and app is hand-crafted by Sai-Kit Hui</p>
         </div>
     )
 
