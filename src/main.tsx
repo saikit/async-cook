@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <Routes>
-            <Route path='cooking'>
+            <Route path='/'>
                 <Route index element={<Index />} />
                 <Route path=':param' element={<App />} />
             </Route>
