@@ -1,5 +1,6 @@
-import React, { createContext, useState, ReactElement, useEffect, useMemo } from "react";
-import data from "../data/pasta.json"
+import React, { createContext, useState, useCallback, ReactElement, useEffect, useMemo } from "react";
+import { useParams } from "react-router";
+
 
 type RecipeContextType = {
     step: number,
@@ -57,10 +58,23 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     const [recipe, setRecipe] = useState<RecipeType>()
     const [optional, setOptional] = useState<OptionalType>({})
     const [maxStep, setMaxStep] = useState<number>(0)
+    const { param } = useParams<{ param: string }>()
 
+    const fetchJSONDataFrom = useCallback(async (path : string) => {
+      const response = await fetch(path, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      });
+      const data = await response.json();
+      setRecipe(data);
+    }, []);
+  
     useEffect(() => {
-      setRecipe(data as RecipeType)
-    },[optional])
+      fetchJSONDataFrom(`data/${param}.json`);
+    }, [fetchJSONDataFrom, param]);
+    
 
     const { instructions = [], ingredients = [] } = recipe || {}
 

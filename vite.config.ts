@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/async-cook/',
+  base: '/cooking/',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

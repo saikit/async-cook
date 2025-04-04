@@ -3,7 +3,7 @@ import Instruction from './components/Instruction'
 import RecipeContext from './context/RecipeProvider'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
-import { ScrollArea } from './components/ui/scroll-area'
+import { ScrollArea } from './components/ui/scrollarea'
 
 
 function Recipe() {

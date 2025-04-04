@@ -30,14 +30,15 @@ if(optionalIngredients.length === 0 || step > 0)
 
     const content = (
         <Drawer>
-        <DrawerTrigger><Button variant="outline">Select optional ingredients</Button></DrawerTrigger>
+        <DrawerTrigger asChild><Button variant="outline">Select optional ingredients</Button></DrawerTrigger>
         <DrawerContent>
             <DrawerHeader>
             <DrawerTitle>Select optional ingredients</DrawerTitle>
             </DrawerHeader>
-            <DrawerDescription>
+            <DrawerDescription asChild>
+            <div className="px-4" >
             {optionalIngredients.map((ingredient) => (
-            <div className="px-4" key={ingredient.name}>
+                <div key={ingredient.name}>
                 <input 
                     id={ingredient.name} 
                     checked={ingredient.name in optional ? optional[ingredient.name] : false} 
@@ -45,11 +46,12 @@ if(optionalIngredients.length === 0 || step > 0)
                     type="checkbox" 
                      />
                 <label className="ml-1" htmlFor={ingredient.name}>{ingredient.name}</label>
-            </div>
+                </div>
             ))}
+            </div>
             </DrawerDescription>
             <DrawerFooter>
-            <DrawerClose>
+            <DrawerClose asChild>
                 <Button variant="outline">Close</Button>
             </DrawerClose>
             </DrawerFooter>
