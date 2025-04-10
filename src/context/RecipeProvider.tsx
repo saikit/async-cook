@@ -47,6 +47,7 @@ export type RecipeType = {
   instructions: Array<InstructionsType>,
   title: string,
   intro?: string,
+  reference?: string,
 }
 
 type OptionalType = { [key: string]: boolean } 

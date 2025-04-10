@@ -9,6 +9,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path='/'>
                 <Route index element={<Index />} />
+                <Route path="schema" element={<Index />} />
                 <Route path=':param' element={<App />} />
             </Route>
         </Routes>

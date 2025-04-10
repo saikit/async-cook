@@ -1,0 +1,152 @@
+{
+    "title": "Boiled Lettuce with Garlic and Oyster Sauce",
+    "reference": "https://food52.com/recipes/90179-chinese-style-lettuce-with-garlic-and-oyster-sauce",
+    "intro": "Based on Lucas Sin's recipe of the same name, I added can of tuna in order to make the dish a more complete meal and to help thicken the sauce. Serve with white rice.",
+    "ingredients": [
+        [
+            {
+                "name": "lettuce",
+                "description": [
+                    {
+                        "name": "300g Lettuce",
+                        "context": [
+                            {
+                                "category": "recommendation",
+                                "note": "Any leafy green will work for this dish"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "garlic",
+                "description": [
+                    {
+                        "name": "3 cloves garlic"
+                    }
+                ]
+            },
+            {
+                "name": "scallion",
+                "description": [
+                    {
+                        "name": "1 scallion"
+                    }
+                ]
+            }
+        ],
+        [{
+            "name": "sauce",
+            "description": [
+                {
+                    "name": "30g oyster sauce"
+                },
+                {
+                    "name": "15ml soy sauce"
+                },
+                {
+                    "name": "5g sugar"
+                }
+            ]
+        }],
+        [
+        {
+            "name": "cooking oil",
+            "description": [
+                {
+                    "name": "15g neutral cooking oil"
+                }
+            ]
+        },
+        {
+            "name": "garlic",
+            "description": [
+                {
+                    "name": "minced garlic"
+                }
+            ],
+            "cooked": true
+        },
+        {
+            "name": "scallion",
+            "description": [
+                {
+                    "name": "chopped scallion"
+                }
+            ],
+            "cooked": true
+        },
+        {
+            "name": "pepper",
+            "description": [
+                {
+                    "name": "1g red pepper flakes"
+                }
+            ]
+        },
+        {
+            "name": "water",
+            "description": [
+                {
+                    "name": "50ml water"
+                }
+            ]
+        }
+        ],
+        [
+            {
+                "name": "lettuce",
+                "description": [
+                    {
+                        "name": "Chopped lettuce"
+                    }
+                ],
+                "cooked": true
+            }
+            
+        ],
+        [
+            {
+                "name": "lettuce",
+                "description": [
+                    {
+                        "name": "Cooked lettuce"
+                    }
+                ],
+                "cooked": true
+            },
+            {
+                "name": "sauce",
+                "description": [
+                    {
+                        "name": "Finished sauce"
+                    }
+                ],
+                "cooked": true
+            }
+            
+        ]
+    ],
+    "instructions": [
+        [{
+            "step": "Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**.",
+            "context": [
+                {
+                    "category": "recommendation",
+                    "note": "If serving with rice, wash and cook rice first. Keep rice warm until ready to serve"
+                }
+            ]
+        }],
+        [{
+            "step": "Combine **oyster sauce**, **soy sauce**, and **sugar** in a bowl. Mix well"
+        }],
+        [{
+            "step": "- In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.\n  - Add **combined sauce** to pan. Add **water** to deglaze pan and to adjust for consistency. Cook until sauce is thickened. Pour sauce out and set aside."
+        }],
+        [{
+            "step": "In the same pan, boil slightly salted water. Once boiled, add **chopped lettuce** and cook until leaves turn bright green. Remove from pan and strain."
+        }],
+        [{
+            "step": "Serve **lettuce** with **sauce** drizzled on top."
+        }]
+    ]}

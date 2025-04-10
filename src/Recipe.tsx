@@ -4,6 +4,7 @@ import RecipeContext from './context/RecipeProvider'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
 import { ScrollArea } from './components/ui/scrollarea'
+import { Link } from 'react-router'
 
 
 function Recipe() {
@@ -13,7 +14,7 @@ function Recipe() {
     return <div className='h-screen text-center'>Loading...</div>;
   }
 
-  const { title, intro } = recipe;
+  const { title, intro, reference } = recipe;
 
   const content = (
     <div className='p-4'>
@@ -21,13 +22,23 @@ function Recipe() {
       {title}
     </h1>
     
-    {intro && step === 0 ? (<p className='my-2'>{intro}</p>) : null}
+    {intro && step === 0 ?
+    <div>
+      <p className='my-2'>
+        {intro}&nbsp;
+        {reference && (
+          <Link className='text-blue-500 underline' to={reference} target='_blank'>See original recipe</Link>
+        )}
+      </p>
+    </div> 
+    : null
+    }
     
     <div className='flex justify-center'><RecipeOptionalInput/></div>
     <h2 className='text-3xl mb-2'>Ingredients</h2>
     
     {step > 0 ?
-    <ScrollArea className='h-[40vh]'>
+    <ScrollArea className='h-[35vh]'>
       <RecipeIngredientsList/>
     </ScrollArea>
     : <RecipeIngredientsList/>}
