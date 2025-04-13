@@ -11,7 +11,7 @@ Based on Lucas Sin's recipe of the same name (https://food52.com/recipes/90179-c
 *For the sauce*
 30g oyster sauce
 15ml soy sauce
-5g sugar
+2g sugar
 
 15g neutral cooking oil
 1 can chunk light, undrained (context: if using larger cuts of canned tuna, break up tuna into smaller pieces)

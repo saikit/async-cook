@@ -12,7 +12,6 @@ This is a reimaging of the recipe page for the modern home cook
 - For now, this is a tool for a solo cook with one or more cooking appliances. **done**
 - Must be fully usable on a tablet or mobile device **done**
 - Users can pick optional ingredients which be added to the steps **done**
-- Users can also remove ingredients that are not required (MVP)
 
 ## Future features
 
@@ -20,3 +19,6 @@ This is a reimaging of the recipe page for the modern home cook
 - Merges processes for cooks making more than one recipe 
 - Take an existing recipe and refactor it to fit a user's environment and goals
 - Customize existing recipes
+- Recipe Templates, using a single template to create a variety of dishes
+- Add substitute ingredients if it significantly changes the steps
+- Linking ingredients on the ingredients list with the ingredients written in the instructions
