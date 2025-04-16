@@ -1,39 +1,47 @@
 {
-    "title": "Roasted Tomato Pasta",
+    "title": "Roasted Tomato and Garlic Pasta",
     "intro": "My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roasting the tomatoes in the over adds additional with less mess.",
     "reference": "https://www.seriouseats.com/fast-easy-pasta-blistered-cherry-tomato-sauce-recipe",
     "ingredients":[
         [{
             "name": "Roasted tomatoes",
             "description": [
-                {"name": "360g-600g Cherry tomatoes"},
-                {"name": "3-4 Cloves of garlic end trimmed and peel on", "context": [{
+                {"name": "340g-450g cherry tomatoes"},
+                {"name": "3-4 unpeeled cloves of garlic", "context": [{
                     "category": "explanation",
-                    "note": "The peel prevents the garlic from burning"
+                    "note": "The peel will prevent the garlic from burning"
                 }]}, 
-                {"name": "30g Extra virgin olive oil"}]
+                {"name": "30g extra virgin olive oil"},
+                {"name": "Salt"},
+                {"name": "Black pepper"}]
         }],
         [{
             "name": "Shrimp",
             "description": [
-                {"name": "120g Raw shrimp"}, 
-                {"name": "2g Salt"}, 
-                {"name": "1g Baking soda"}
+                {"name": "120g raw shrimp"}, 
+                {"name": "Salt"}, 
+                {"name": "Baking soda","context": [{
+                    "category": "recommendation",
+                    "note": "Use only a small amount of baking soda to prevent the shrimp from becoming mushy"
+                }]}
             ],
             "optional": true
         }],
         [{
             "name": "Mozzarella",
             "description": 
-                [{"name": "120g Mozzarella cheese"}],
+                [{"name": "120g mozzarella cheese"}],
             "optional": true
         }],
         [{
             "name": "Pasta",
             "description": [
-                {"name": "150g dried pasta"}, 
+                {"name": "150g dried pasta","context": [{
+                "category": "recommendation",
+                "note": "Most types of dried pasta will work, but be sure to use a pan that will fit your dried pasta of choice easily"
+            }]}, 
                 {"name": "600ml water"}, 
-                {"name": "3g salt"}
+                {"name": "Salt"}
             ]
         }],
         [{
@@ -60,7 +68,11 @@
         },
         {
             "name": "basil",
-            "description": [{"name": "1g dried basil"}]
+            "description": [{"name": "Dried basil"}]
+        },
+        {
+            "name": "red pepper flakes",
+            "description": [{"name": "Red pepper flakes"}]
         },
         {
             "name": "grated cheese",
@@ -76,14 +88,19 @@
         {
             "name": "black pepper",
             "description": [{"name": "Black pepper"}]
+        },
+        {
+            "name": "olive oid",
+            "description": [{"name": "Extra virgin olive oil"}]
         }],
         [
         {
             "name": "grated cheese",
-            "description": [{"name": "Grated cheese (for serving)"}]
+            "description": [{"name": "Extra Grated cheese (for serving)"}],
+            "cooked":true
         },
         {
-            "name": "sliced mozzerlla",
+            "name": "sliced mozzarlla",
             "description": [{"name": "Sliced Mozzarella"}],
             "cooked": true,
             "optional": "Mozzarella"
@@ -93,7 +110,7 @@
     ],
     "instructions":[
         [{
-            "step":"Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, salt, and pepper. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer if possible. Roast 450F for 25-30 minutes",
+            "step":"Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast at **450&deg;F** for **25-30 minutes**",
             "context": [{
                 "category": "explanation",
                 "note": "Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding"
@@ -114,7 +131,7 @@
             "optional": "Mozzarella"
         }],
         [{
-            "step": "Boil **pasta** in **salted** **water** for 1-2 minutes before instructions for al dente. Set aside pasta and pasta cooking water.",
+            "step": "Boil **pasta** in **salted** **water** for **1-2 minutes** before instructions for al dente. Set aside pasta and pasta cooking water.",
             "background": "Tomatoes and garlic are in the oven",
             "context": [{
                 "note":"Pasta will finish cooking in during the next step",
@@ -122,14 +139,14 @@
             }]
         }],
         [{
-            "step": "Fry **marinated shrimp** in a pan in high heat for less than 1 minute until slightly brown. Remove from heat.",
+            "step": "Fry **marinated shrimp** in a pan in high heat for **1 minute** until slightly brown. Remove from heat.",
             "optional": "Shrimp"
         }],
         [
-            {"step":"  - Remove peel from garlic. Pour roasted tomato and garlic into pan. Add **basil** to sauce mixture. Add **cooked pasta** to pan and stir fry on high heat.\n  - Remove pan from heat and add **grated cheese**.\n  - Return to heat and add **black pepper** and olive oil and cook for another 30 seconds.\n  - Add **salt** to taste. Add more **pasta water** to adjust consistency."},
+            {"step":"  - Remove peel from garlic. Pour roasted tomatoes and garlic into pan. Add **basil** and **red pepper flakes** to sauce mixture. Add **cooked pasta** and some of the **cooked pasta water** to pan and stir on high heat.\n  - Remove pan from heat and add most or all of the **grated cheese**.\n  - Return pan to heat and add **black pepper** and **olive oil** and stir for another **30 seconds**.\n  - Add **salt** to taste. Add more pasta water to adjust consistency."},
             {"step": "Add **cooked shrimp** to pasta and toss to combine", "optional": "Shrimp"}],
         [
-            {"step":"Serve pasta with extra **grated cheese**"},
+            {"step":"Serve pasta with extra **grated cheese** and **extra virgin olive oil**"},
             {"step": "Top pasta with **sliced mozzarella**", "optional": "Mozzarella"}
         ]
     ]
