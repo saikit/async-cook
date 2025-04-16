@@ -20,10 +20,7 @@
             "description": [
                 {"name": "120g raw shrimp"}, 
                 {"name": "Salt"}, 
-                {"name": "Baking soda","context": [{
-                    "category": "recommendation",
-                    "note": "Use only a small amount of baking soda to prevent the shrimp from becoming mushy"
-                }]}
+                {"name": "Baking soda"}
             ],
             "optional": true
         }],
@@ -37,7 +34,7 @@
             "name": "Pasta",
             "description": [
                 {"name": "150g dried pasta","context": [{
-                "category": "recommendation",
+                "category": "alert",
                 "note": "Most types of dried pasta will work, but be sure to use a pan that will fit your dried pasta of choice easily"
             }]}, 
                 {"name": "600ml water"}, 
@@ -81,7 +78,7 @@
         {
             "name": "salt",
             "description": [{"name": "Salt or fish sauce", "context": [{
-                "category": "explanation",
+                "category": "recommendation",
                 "note": "Fish sauce pairs well with tomato-based sauces"
             }]}]
         },
@@ -90,7 +87,7 @@
             "description": [{"name": "Black pepper"}]
         },
         {
-            "name": "olive oid",
+            "name": "olive oil",
             "description": [{"name": "Extra virgin olive oil"}]
         }],
         [
@@ -121,8 +118,8 @@
             "background": "Tomatoes and garlic are in the oven",
             "optional": "Shrimp",
             "context": [{
-                "note":"Small amount of baking soda prevents the shrimp from becoming mushy",
-                "category": "explanation"
+                "note":"Use a small amount of baking soda prevents the shrimp from becoming mushy",
+                "category": "alert"
             }]
         }],
         [{
