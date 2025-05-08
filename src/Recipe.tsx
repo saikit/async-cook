@@ -16,6 +16,7 @@ function Recipe() {
 
   const { title, intro, reference } = recipe;
 
+
   const content = (
     <div className='p-4'>
     <h1 className="text-4xl font-bold text-center m-2">
@@ -39,7 +40,7 @@ function Recipe() {
     
     {step > 0 ?
     <ScrollArea className='h-[35vh]'>
-      <RecipeIngredientsList/>
+        <RecipeIngredientsList/>
     </ScrollArea>
     : <RecipeIngredientsList/>}
     <hr className='my-4'/>
@@ -52,7 +53,7 @@ function Recipe() {
         </li>
     ))}</ol>
     :
-   <Instruction key={step - 1} instructions={filteredInstructions[step - 1]}/>
+    <Instruction key={step - 1} instructions={filteredInstructions[step - 1]}/>
     }
 
     </div>

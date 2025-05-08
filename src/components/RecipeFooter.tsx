@@ -15,6 +15,7 @@ function RecipeFooter () {
                 <>
                 <Button className='border disabled:opacity-80' 
                 onClick={() => setStep(step - 1)}
+                disabled={step > 1 ? false : true}
                 >Previous Step</Button>
                 <Button className='border' onClick={() => setStep(0)}>Reset</Button>
                 <Button className='border disabled:opacity-50'

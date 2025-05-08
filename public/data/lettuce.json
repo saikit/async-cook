@@ -8,7 +8,7 @@
                 "name": "lettuce",
                 "description": [
                     {
-                        "name": "300g Lettuce",
+                        "name": "200g Lettuce",
                         "context": [
                             {
                                 "category": "recommendation",
@@ -39,13 +39,55 @@
             "name": "sauce",
             "description": [
                 {
-                    "name": "30g oyster sauce"
+                    "name": "20g oyster sauce"
                 },
                 {
-                    "name": "15ml soy sauce"
+                    "name": "10ml soy sauce",
+                    "context": [
+                        {
+                            "category": "recommendation",
+                            "note": "If using seasoned soy sauce, reduce or omit the sugar"
+                        }
+                    ]
                 },
                 {
                     "name": "2g sugar"
+                },
+                {
+                    "name": "2g dark soy sauce"
+                },
+                {
+                    "name": "A sprinkle of MSG (optional)"
+                },
+                {
+                    "name": "1 can of chunk light tuna",
+                    "context": [
+                        {
+                            "category": "recommendation",
+                            "note": "For larger cuts of tuna, chop into smaller pieces"
+                        }
+                    ]
+                },
+                {
+                    "name": "1g cornstarch"
+                },
+                {
+                    "name": "20 ml water"
+                }
+            ]
+        }],
+        [{
+            "name": "water",
+            "description": [
+                {
+                    "name": "500 ml water"
+                }
+            ]
+        },{
+            "name": "salt",
+            "description": [
+                {
+                    "name": "10 g salt"
                 }
             ]
         }],
@@ -54,7 +96,7 @@
             "name": "cooking oil",
             "description": [
                 {
-                    "name": "15g neutral cooking oil"
+                    "name": "10g neutral cooking oil"
                 }
             ]
         },
@@ -62,7 +104,7 @@
             "name": "garlic",
             "description": [
                 {
-                    "name": "minced garlic"
+                    "name": "Minced garlic"
                 }
             ],
             "cooked": true
@@ -71,7 +113,7 @@
             "name": "scallion",
             "description": [
                 {
-                    "name": "chopped scallion"
+                    "name": "Chopped scallion"
                 }
             ],
             "cooked": true
@@ -80,15 +122,7 @@
             "name": "pepper",
             "description": [
                 {
-                    "name": "1g red pepper flakes"
-                }
-            ]
-        },
-        {
-            "name": "water",
-            "description": [
-                {
-                    "name": "50ml water"
+                    "name": "Red pepper flakes"
                 }
             ]
         }
@@ -138,13 +172,23 @@
             ]
         }],
         [{
-            "step": "Combine **oyster sauce**, **soy sauce**, and **sugar** in a bowl. Mix well"
+            "step": "Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, and **sugar**, and **MSG** in a bowl. Mix well. Combine **cornstarch** and **water** in a separate bowl. Mix well."
         }],
         [{
-            "step": "- In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.\n  - Add **combined sauce** to pan. Add **water** to deglaze pan and to adjust for consistency. Cook until sauce is thickened. Pour sauce out and set aside."
+            "step": "Heat a pot of salted water to a boil.",
+            "context": [
+                {
+                    "category": "recommendation",
+                    "note": "Water for blanching should very salty"
+                }
+            ]
         }],
         [{
-            "step": "In the same pan, boil slightly salted water. Once boiled, add **chopped lettuce** and cook until leaves turn bright green. Remove from pan and strain."
+            "step": "- In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.\n  - Add **combined sauce** to pan. Cook briefly then set flame to low and add **cornstarch slurry**. Cook until sauce is thickened.",
+            "background": "Water is boiling"
+        }],
+        [{
+            "step": "Add **chopped lettuce** to the boiling water and cook until leaves turn bright green. Remove lettuce from pan and drain."
         }],
         [{
             "step": "Serve **lettuce** with **sauce** drizzled on top."

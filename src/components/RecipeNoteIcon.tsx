@@ -1,5 +1,5 @@
 import { RecipeNoteIconType } from "../context/RecipeProvider"
-import { ChefHat, CircleAlert, CircleHelp } from 'lucide-react'
+import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react'
 import {
     Popover,
     PopoverContent,
@@ -10,7 +10,7 @@ import {
 
 function RecipeNoteIcon({ note } : { note : RecipeNoteIconType }) {
 
-    let Icon;
+    let Icon : LucideIcon;
     switch (note.category) {
         case 'alert':
             Icon = CircleAlert
