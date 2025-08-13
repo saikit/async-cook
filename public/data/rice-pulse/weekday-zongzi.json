@@ -1,0 +1,68 @@
+{
+    "title": "Weekday Zongzi",
+    "intro": "This is a reimagined version of a Cantonese zongzi. This version highlights the benefits of eating pulses like mung beans to reach macronutrient goals.",
+    "reference": "https://www.madewithlau.com/recipes/bamboo-sticky-rice",
+    "ingredients": [
+        [{
+            "name": "Rice and mung beans",
+            "description": [
+                {"name": "150g split mung beans"},
+                {"name": "150g rice", "context": [{
+                    "category": "recommendation",
+                    "note": "traditionally glutonous rice is used, but any rice will work"
+                }]}, 
+                {"name": "485g water", "context": [{
+                    "category": "alert",
+                    "note": "replace with liquid from soaking dried shittake mushrooms if using"
+                }]}, 
+                {"name": "15g soy sauce"}
+            ]
+        }],
+        [{
+            "name": "Mushrooms",
+            "description": [
+                {"name": "80g mushrooms", "context": [{
+                    "category": "recommendation",
+                    "note": "dried shiitake mushrooms are traditional, but any mushrooms will work"
+                }]}
+            ],
+            "optional": true
+        }],
+        [{
+            "name": "Chinese sausage",
+            "description": [
+                {"name": "80g chinese sausage", "context": [{
+                    "category": "recommendation",
+                    "note": "other cured meats such as bacon works as well"
+                }]}
+            ],
+            "optional": true
+        }],
+        [{
+            "name": "Oils",
+            "description": [
+                {"name": "15g lard or butter"}
+            ],
+            "optional": true
+        }]
+    ],
+    "instructions": [
+        [{
+            "step":"Rinse and combine **mung beans** and **rice**. Add **mixture** to rice cooker or pressure cooker"
+        }],
+        [{
+            "step": "Wash **mushrooms** and dice into small pieces. Add to mixture",
+            "optional": "Mushrooms"
+        }],
+        [{
+            "step": "Dice **Chinese sausage** into small pieces. Add to mixture",
+            "optional": "Chinese sausage"
+        }],
+        [{
+            "step":"Cook **mixture** in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Use natural release if using pressure cooker"
+        }],
+        [{
+            "step": "mix cooked rice and beans with **lard or butter** before serving",
+            "optional": "Oils"
+        }]
+    ]}

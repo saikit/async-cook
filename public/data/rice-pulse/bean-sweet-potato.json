@@ -1,0 +1,35 @@
+{
+    "title": "string",
+    "intro": "string",
+    "reference": "string",
+    "ingredients": [
+        [{
+            "name": "string",
+            "description": [
+                {
+                    "name": "string",
+                    "context": [
+                        {
+                            "category": "string",
+                            "note": "string"
+                        }
+                    ]
+                }
+            ],
+            "optional?": "boolean",
+            "cooked?": "boolean"
+        }]
+    ],
+    "instructions": [
+        [{
+            "step": "string",
+            "background?": "string",
+            "optional?": "string",
+            "context": [
+                {
+                    "category": "string",
+                    "note": "string"
+                }
+            ]
+        }]
+    ]}

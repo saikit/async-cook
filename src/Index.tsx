@@ -8,6 +8,7 @@ function Index() {
         <ul className='list-disc list-outside pl-4'>
           <li><Link to="pasta" className='underline'>Roasted Tomato and Garlic Pasta</Link></li>
           <li><Link to="lettuce" className='underline'>Boiled Lettuce in Oyster and Garlic Sauce</Link></li>
+          <li><Link to="rice-pulse/weekday-zongzi" className='underline'>Weekday Zongzi</Link></li>
         </ul>
     </div>
   )

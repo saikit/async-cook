@@ -54,12 +54,17 @@ type OptionalType = { [key: string]: boolean }
 
 const RecipeContext = createContext<RecipeContextType>({} as RecipeContextType);
 
+type routerParams = {
+    section?: string,
+    id: string
+}
+
 export const RecipeProvider = ({ children } : ChildrenType) => {
     const [step, setStep] = useState<RecipeContextType['step']>(0);
     const [recipe, setRecipe] = useState<RecipeType>()
     const [optional, setOptional] = useState<OptionalType>({})
     const [maxStep, setMaxStep] = useState<number>(0)
-    const { param } = useParams<{ param: string }>()
+    const { section, id } = useParams<routerParams>();
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
       const response = await fetch(path, {
@@ -73,8 +78,14 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, []);
   
     useEffect(() => {
-      fetchJSONDataFrom(`data/${param}.json`);
-    }, [fetchJSONDataFrom, param]);
+      if (!id) {
+        console.error("No recipe ID provided in the URL.");
+        return;
+      }
+      const path = section ? `/data/${section}/${id}.json` : `/data/${id}.json`;
+      fetchJSONDataFrom(path);
+
+    }, [fetchJSONDataFrom, section, id]);
     
 
     const { instructions = [], ingredients = [] } = recipe || {}
