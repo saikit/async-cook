@@ -3,7 +3,7 @@
 ## ingredients
 
 - 150g split mung beans
-- 150g rice (traditionally glutonous rice, but any rice will work)
+- 150g rice (traditionally glutonous rice is used, but any rice will work)
 - 485g water (replace with liquid from soaking dried shittake mushrooms if using)
 - 15g soy sauce
 

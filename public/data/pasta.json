@@ -107,7 +107,7 @@
     ],
     "instructions":[
         [{
-            "step":"Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast at **450&deg;F** for **25-30 minutes**",
+            "step":"Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast in an oven at **450&deg;F** for **25-30 minutes**",
             "context": [{
                 "category": "explanation",
                 "note": "Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding"

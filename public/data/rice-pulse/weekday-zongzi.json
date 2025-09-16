@@ -14,8 +14,11 @@
                 {"name": "485g water", "context": [{
                     "category": "alert",
                     "note": "replace with liquid from soaking dried shittake mushrooms if using"
+                },{
+                    "category": "recommendation",
+                    "note": "you can adjust water amount based on prefered texture"
                 }]}, 
-                {"name": "15g soy sauce"}
+                {"name": "15g soy sauce", "optional" : true}
             ]
         }],
         [{
