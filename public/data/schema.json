@@ -2,34 +2,40 @@
     "title": "string",
     "intro": "string",
     "reference": "string",
-    "ingredients": [
-        [{
-            "name": "string",
-            "description": [
+    "id": "number",
+    "optional?": [{"name": "string"}],
+    "steps": [{
+        "step": {
+            "recipe_id":"number",
+            "step_number": "number",
+            "background?": "string",
+            "ingredients": [
                 {
                     "name": "string",
+                    "description": [
+                        {
+                            "name": "string",
+                            "context": [
+                                {
+                                    "category": "string",
+                                    "note": "string"
+                                }
+                            ]
+                        }
+                    ],
+                    "optional?": "string",
+                    "cooked?": "boolean"
+                }
+            ],
+            "instructions": [{
+                    "optional?": "string",
                     "context": [
                         {
                             "category": "string",
                             "note": "string"
                         }
                     ]
-                }
-            ],
-            "optional?": "boolean",
-            "cooked?": "boolean"
-        }]
-    ],
-    "instructions": [
-        [{
-            "step": "string",
-            "background?": "string",
-            "optional?": "string",
-            "context": [
-                {
-                    "category": "string",
-                    "note": "string"
-                }
-            ]
-        }]
-    ]}
+                }]
+        }
+    }]
+}

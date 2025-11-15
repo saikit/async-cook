@@ -97,7 +97,7 @@
             "cooked":true
         },
         {
-            "name": "sliced mozzarlla",
+            "name": "sliced mozzarella",
             "description": [{"name": "Sliced Mozzarella"}],
             "cooked": true,
             "optional": "Mozzarella"

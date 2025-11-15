@@ -15,7 +15,7 @@ function RecipeNoteIcon({ note } : { note : RecipeNoteIconType }) {
         case 'alert':
             Icon = CircleAlert
             break
-        case 'explaination':
+        case 'explanation':
             Icon = CircleHelp
             break
         case 'recommendation':
