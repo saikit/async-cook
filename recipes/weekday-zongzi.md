@@ -25,7 +25,7 @@ Wash **mushrooms** and dice into small pieces. Add to mung bean and rice mixture
 
 ## optional step (cured meats)
 
-Dice chinese sausage into small pieces. Add to mung bean and rice mixture
+Dice **chinese sausage** into small pieces. Add to mung bean and rice mixture
 
 ## Step 2
 
@@ -33,4 +33,4 @@ Cook **mixture** in electric pressure cooker for 15 minutes on high pressure or 
 
 ## Optional step (fats)
 
-Mix cooked rice and beans with lard or butter before serving
+Mix cooked rice and beans with **lard or butter** before serving

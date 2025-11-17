@@ -2,12 +2,9 @@
     "title": "string",
     "intro": "string",
     "reference": "string",
-    "id": "number",
-    "optional?": [{"name": "string"}],
-    "steps": [{
-        "step": {
-            "recipe_id":"number",
-            "step_number": "number",
+    "optional_ingredients": [{"name": "string"}],
+    "steps": [
+        {
             "background?": "string",
             "ingredients": [
                 {
@@ -28,14 +25,15 @@
                 }
             ],
             "instructions": [{
-                    "optional?": "string",
-                    "context": [
-                        {
-                            "category": "string",
-                            "note": "string"
-                        }
-                    ]
-                }]
+                "text": "string",
+                "optional?": "string",
+                "context": [
+                    {
+                        "category": "string",
+                        "note": "string"
+                    }
+                ]
+            }]
         }
-    }]
+    ]
 }

@@ -5,10 +5,10 @@ import { useContext } from "react";
 function RecipeIngredientsList() {
     const { step, sortedIngredients } = useContext(RecipeContext)
   return (
-    <ul>
-    {sortedIngredients.map((group, key) => {
-      return group.map((ingredient) => {
-        if (ingredient.description.length > 1) {
+    <>
+    {sortedIngredients.map((group) => {
+      return group.map((ingredient, key) => {
+        if ('name' in ingredient && !('cooked' in ingredient)) {
           return (
             <div key={ingredient.name} className='my-2'>
             <h3><em>For the {ingredient.name}</em></h3>
@@ -24,19 +24,27 @@ function RecipeIngredientsList() {
           );
         } else {
           if (!('cooked' in ingredient) || (('cooked' in ingredient) && step - 1 >= key)) {
-            return ingredient.description.map((ing) => (
-              <Ingredient
+            return ( 
+            <div className="my-2">
+              <ul key={key}>
+              {ingredient.description.map((ing) => {
+               if (!('cooked' in ing) || (('cooked' in ing) && step - 1 >= key)) {
+              return <Ingredient
                 status={ingredient.status || "ready"}
                 key={`${key}-${ing.name}`}
                 description={ing}
               />
-            ));
+              }
+              })}
+              </ul>
+              </div>
+            );
           }
           return null;
         }
       });
     })}
-    </ul>
+    </>
   )
 }
 export default RecipeIngredientsList

@@ -11,18 +11,14 @@ function Instruction({ instructions }: { instructions: InstructionType[] }) {
             <RecipeNoteIcon key={key} note={note} />
           ));
         return (
-          <div key={index}>
+          <div key={index} className="mb-2">
             <Markdown components={{
               p(props) {
                 const {children, ...rest} = props;
-                return <p className="mb-2" {...rest}>{children}{icons}</p>;
-              },
-              li(props) {
-                const {children, ...rest} = props;
-                return <li {...rest} className="mb-2">{children}</li>;
+                return <p className="" {...rest}>{children}{icons}</p>;
               },
             }}>
-              {instruction.step}
+              {instruction.text}
             </Markdown>
           </div>
         );

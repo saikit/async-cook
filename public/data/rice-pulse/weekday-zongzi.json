@@ -2,70 +2,86 @@
     "title": "Weekday Zongzi",
     "intro": "This is a reimagined version of a Cantonese zongzi. This version highlights the benefits of eating pulses like mung beans to reach macronutrient goals.",
     "reference": "https://www.madewithlau.com/recipes/bamboo-sticky-rice",
-    "ingredients": [
-        [{
-            "name": "Rice and mung beans",
-            "description": [
-                {"name": "150g split mung beans"},
-                {"name": "150g rice", "context": [{
-                    "category": "recommendation",
-                    "note": "traditionally glutonous rice is used, but any rice will work"
-                }]}, 
-                {"name": "485g water", "context": [{
-                    "category": "alert",
-                    "note": "replace with liquid from soaking dried shittake mushrooms if using"
-                },{
-                    "category": "recommendation",
-                    "note": "you can adjust water amount based on prefered texture"
-                }]}, 
-                {"name": "15g soy sauce", "optional" : true}
-            ]
-        }],
-        [{
-            "name": "Mushrooms",
-            "description": [
-                {"name": "80g mushrooms", "context": [{
-                    "category": "recommendation",
-                    "note": "dried shiitake mushrooms are traditional, but any mushrooms will work"
-                }]}
-            ],
-            "optional": true
-        }],
-        [{
-            "name": "Chinese sausage",
-            "description": [
-                {"name": "80g chinese sausage", "context": [{
-                    "category": "recommendation",
-                    "note": "other cured meats such as bacon works as well"
-                }]}
-            ],
-            "optional": true
-        }],
-        [{
-            "name": "Oils",
-            "description": [
-                {"name": "15g lard or butter"}
-            ],
-            "optional": true
-        }]
+    "optional_ingredients": [
+        {"name": "Mushrooms"},
+        {"name": "Chinese sausage"},
+        {"name": "Fats"}
     ],
-    "instructions": [
-        [{
-            "step":"Rinse and combine **mung beans** and **rice**. Add **mixture** to rice cooker or pressure cooker"
-        }],
-        [{
-            "step": "Wash **mushrooms** and dice into small pieces. Add to mixture",
-            "optional": "Mushrooms"
-        }],
-        [{
-            "step": "Dice **Chinese sausage** into small pieces. Add to mixture",
-            "optional": "Chinese sausage"
-        }],
-        [{
-            "step":"Cook **mixture** in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Use natural release if using pressure cooker"
-        }],
-        [{
-            "step": "mix cooked rice and beans with **lard or butter** before serving",
-            "optional": "Oils"
-        }]
+    "steps":  [
+        {
+            "ingredients": [{
+                "name": "Rice and mung beans",
+                "description": [
+                    {"name": "150g split mung beans"},
+                    {"name": "150g rice", "context": [{
+                        "category": "recommendation",
+                        "note": "traditionally glutonous rice is used, but any rice will work"
+                    }]}, 
+                    {"name": "485g water", "context": [{
+                        "category": "alert",
+                        "note": "replace with liquid from soaking dried shittake mushrooms if using"
+                    },{
+                        "category": "recommendation",
+                        "note": "you can adjust water amount based on prefered texture"
+                    }]}, 
+                    {"name": "15g soy sauce (optional)", "optional" : true}
+                ]
+            }],
+            "instructions": [{
+                "text":"Rinse and drain **mung beans** and **rice** and the ingredients to a rice cooker or pressure cooker with **water**."
+            }]
+        },
+        {
+            "ingredients": [{
+                "optional": "Mushrooms",
+                "description": [
+                    {"name": "80g mushrooms", "context": [{
+                        "category": "recommendation",
+                        "note": "dried shiitake mushrooms are traditional, but any mushrooms will work"
+                    }]}
+                ]
+            }],
+            "instructions": [{
+                "text": "Wash **mushrooms** and dice into small pieces. Add to mixture",
+                "optional": "Mushrooms"
+            }]
+        },
+        {
+            "ingredients": [{
+                "optional":"Chinese sausage",
+                "description": [
+                    {"name": "80g chinese sausage", "context": [{
+                        "category": "recommendation",
+                        "note": "other cured meats such as bacon works as well"
+                    }]}
+                ]
+            }],
+            "instructions": [{
+                "text": "Dice **Chinese sausage** into small pieces. Add to mixture",
+                "optional": "Chinese sausage"
+            }]
+        },
+        {
+            "ingredients": [{
+               
+                "description": [
+                    {"name": "Rice and mung beans mixture", "cooked": true}
+                ]
+            }],
+            "instructions": [{
+                "text":"Cook **mixture** in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Use natural release if using pressure cooker."
+            }]
+        },
+        {
+            "ingredients": [{
+                "optional": "Fats",
+                "description": [
+                    {"name": "15g lard or butter"}
+                ]
+            }],
+            "instructions": [{
+                "optional": "Fats",
+                "text": "Mix cooked rice and beans with **lard or butter** before serving"
+            }]
+        }
     ]}

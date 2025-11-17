@@ -5,10 +5,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 function RecipeBackgroundBanner() {
     const context = useContext(RecipeContext)
-    const { step, filteredInstructions } = context
+    const { step, steps } = context
 
 
-    const background = step > 0 && filteredInstructions[step - 1][0]?.background ? filteredInstructions[step - 1][0].background : null
+    const background = step > 0 && steps[step - 1]?.background ? steps[step - 1].background : null
 
     if(!background)
         return null

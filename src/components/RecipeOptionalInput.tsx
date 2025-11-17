@@ -16,9 +16,9 @@ import { Button } from "./ui/button"
 
 function RecipeOptionalInput() {
 
-const { optionalIngredients, step, setOptional, optional } = useContext(RecipeContext)
+const { recipe, step, setOptional, optional } = useContext(RecipeContext)
 
-if(optionalIngredients.length === 0 || step > 0)
+if(recipe?.optional_ingredients?.length === 0 || step > 0)
     return <></>
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ if(optionalIngredients.length === 0 || step > 0)
             </DrawerHeader>
             <DrawerDescription asChild>
             <div className="px-4" >
-            {optionalIngredients.map((ingredient) => (
+            {recipe?.optional_ingredients?.map((ingredient) => (
                 <div key={ingredient.name}>
                 <input 
                     id={ingredient.name} 

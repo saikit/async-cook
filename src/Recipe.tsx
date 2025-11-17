@@ -14,7 +14,7 @@ function Recipe() {
     return <div className='h-screen text-center'>Loading...</div>;
   }
 
-  const { title, intro, reference } = recipe;
+  const { title, intro, reference, optional_ingredients } = recipe;
 
 
   const content = (
@@ -35,7 +35,9 @@ function Recipe() {
     : null
     }
     
+    { optional_ingredients && step === 0 ?
     <div className='flex justify-center'><RecipeOptionalInput/></div>
+    : null}
     <h2 className='text-3xl mb-2'>Ingredients</h2>
     
     {step > 0 ?

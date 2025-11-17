@@ -38,17 +38,17 @@ Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, an
 
 ## Step 3
 
-Heat a pot of salted water to a boil. (Recommendation: Water for blanching should very salty)
+Heat a pot of **salted water** to a boil. (Recommendation: Water for blanching should very salty)
 
 ## Step 4
 
-In a pan, heat up neutral oil over high heat until slightly smoking. Add minced garlic, chopped scallion, and red pepper flakes and fry until aromatic.
-Add combined sauce to pan. Cook briefly then set flame to low and add cornstarch slurry. Cook until sauce is thickened.
+In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flake**s and fry until aromatic.
+Add **combined sauce** to pan. Cook briefly then set flame to low and add **cornstarch slurry**. Cook until sauce is thickened.
 
 ## Step 5
 
-Add chopped lettuce to the salted boiling water and cook until leaves turn bright green. Remove lettuce from pan and drain well.
+Add **chopped lettuce** to the salted boiling water and cook until leaves turn bright green. Remove lettuce from pan and drain well.
 
 ## Step 6
 
-Serve lettuce with sauce drizzled on top.
+Serve **lettuce** with **sauce** drizzled on top.
