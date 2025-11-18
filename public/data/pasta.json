@@ -33,6 +33,7 @@
             ]
         },
         {
+            "background": "Tomatoes and garlic are in the oven",
             "ingredients":[
                 {
                     "name": "Shrimp",
@@ -47,7 +48,6 @@
             "instructions":[
                 {
                     "text": "Season **raw shrimp** with **salt** and a pinch of **baking soda**",
-                    "background": "Tomatoes and garlic are in the oven",
                     "optional": "Shrimp",
                     "context": [{
                         "note":"Use a small amount of baking soda prevents the shrimp from becoming mushy",
@@ -56,6 +56,7 @@
                 }
             ]},
         {
+            "background": "Tomatoes and garlic are in the oven",
             "ingredients":[
                 {
                     "description": 
@@ -66,12 +67,12 @@
             "instructions":[
                 {
                     "text": "Slice **mozzarella**",
-                    "background": "Tomatoes and garlic are in the oven",
                     "optional": "Mozzarella"
                 }
             ]
         },
         {
+            "background": "Tomatoes and garlic are in the oven",
             "ingredients":[
                 {
                     "name": "Pasta",
@@ -79,7 +80,7 @@
                         {"name": "150g dried pasta","context": [{
                         "category": "alert",
                         "note": "Most types of dried pasta will work, but be sure to use a pan that will fit your dried pasta of choice easily"
-                    }]}, 
+                        }]}, 
                         {"name": "600ml water"}, 
                         {"name": "Salt"}
                     ]
@@ -88,7 +89,6 @@
             "instructions":[
                 {
                     "text": "Boil **pasta** in **salted** **water** for **1-2 minutes** before instructions for al dente. Set aside pasta and pasta cooking water.",
-                    "background": "Tomatoes and garlic are in the oven",
                     "context": [{
                         "note":"Pasta will finish cooking in during the next step",
                         "category": "explanation"
@@ -99,15 +99,13 @@
         {
             "ingredients":[
                 {
-                    "name": "marinated shrimp",
-                    "description": [{"name": "Marinated shrimp"}],
-                    "cooked": true,
+                    "description": [{"name": "Seasoned shrimp", "cooked": true}],
                     "optional": "Shrimp"
                 }
             ],
             "instructions":[
                 {
-                    "text": "Fry **marinated shrimp** in a pan in high heat for **1 minute** until slightly brown. Remove from heat.",
+                    "text": "Fry **seasoned shrimp** in a pan in high heat for **1 minute** until slightly brown. Remove from heat.",
                     "optional": "Shrimp"
                 }
             ]
@@ -116,17 +114,18 @@
             "ingredients":[
                 {
                     "description": [
+                        {"name": "Dried basil"},
+                        {"name": "Red pepper flakes"},
                         {"name": "Cooked pasta", "cooked": true},
                         {"name": "Cooked pasta water", "cooked": true},
-                        {"name": "Cooked shrimp", "cooked": true, "optional": "Shrimp"},
-                        {"name": "Dried basil"},{"name": "Red pepper flakes"},
                         {"name": "20g grated cheese"},
+                        {"name": "Black pepper"},
+                        {"name": "Extra virgin olive oil"},
                         {"name": "Salt or fish sauce", "context": [{
                             "category": "recommendation",
                             "note": "Fish sauce pairs well with tomato-based sauces"
                         }]},
-                        {"name": "Black pepper"},
-                        {"name": "Extra virgin olive oil"}
+                        {"name": "Cooked shrimp", "cooked": true, "optional": "Shrimp"}
                     ]
                 }
             ],  

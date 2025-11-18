@@ -8,7 +8,7 @@
                 {
                     "description": [
                         {
-                            "name": "200g Lettuce", 
+                            "name": "200-300g Lettuce", 
                             "context": [
                                 {"category": "recommendation", "note": "Any leafy green will work for this dish"}
                             ]
@@ -106,9 +106,8 @@
         {
             "ingredients": [
                 {
-                    "cooked": true,
                     "description": [
-                        {"name": "Chopped lettuce"}
+                        {"name": "Chopped lettuce", "cooked": true}
                     ]
                 }
             ],
@@ -121,15 +120,13 @@
         {
             "ingredients": [
                 {
-                    "cooked": true,
                     "description": [
-                        {"name": "Cooked lettuce"}
+                        {"name": "Cooked lettuce", "cooked": true}
                     ]
                 },
                 {
-                    "cooked": true,
                     "description": [
-                        {"name": "Finished sauce"}
+                        {"name": "Finished sauce", "cooked": true}
                     ]
                 }
             ],

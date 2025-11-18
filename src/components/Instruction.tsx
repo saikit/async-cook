@@ -17,6 +17,10 @@ function Instruction({ instructions }: { instructions: InstructionType[] }) {
                 const {children, ...rest} = props;
                 return <p className="" {...rest}>{children}{icons}</p>;
               },
+              strong(props) {
+                const {children, ...rest} = props;
+                return <strong className="font-bold" {...rest}>{children}</strong>;
+              }
             }}>
               {instruction.text}
             </Markdown>

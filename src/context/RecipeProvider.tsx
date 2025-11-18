@@ -150,6 +150,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
           }
         })
       })
+
       return result.filter(value => Object.keys(value).length !== 0)
     }, [optional, steps])
 
