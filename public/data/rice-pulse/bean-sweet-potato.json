@@ -1,35 +1,120 @@
 {
-    "title": "string",
-    "intro": "string",
-    "reference": "string",
-    "ingredients": [
-        [{
-            "name": "string",
-            "description": [
+    "title": "Sweet Potato and Bean bowl",
+    "intro": "Combining two long cooking ingredients to form a base of a high protein and highly customizable meal.",
+    "optional_ingredients": [{"name": "Avocado"}],
+    "steps": [
+        {
+            "ingredients": [
                 {
-                    "name": "string",
-                    "context": [
+                    "name": "Beans",
+                    "description": [
                         {
-                            "category": "string",
-                            "note": "string"
+                            "name": "225g dried pinto beans",
+                            "context": [
+                                {
+                                    "category": "Recommendation",
+                                    "note": "Any larger long-cooking bean will work"
+                                }
+                            ]
+                        },
+                        {"name": "900g water"},
+                        {"name": "5g salt"},
+                        {"name": "1g baking soda"}
+                    ]
+                }
+            ],
+            "instructions": [{
+                "text": "Rinse **beans** and then combine with **salt**, **baking soda**, **water** in an electric pressure cooker. Set pressure cooker to 50 minutes. Allow for natural release."
+            }]
+        },
+        {
+            "ingredients":[
+                {
+                    "description": [
+                        {
+                            "name": "300-400g sweet potato",
+                            "context": [
+                                {
+                                    "category": "Recommendation",
+                                    "note": "Freeze sweet pototoes overnight before cooking to improve its texture"
+                                }
+                            ]
                         }
                     ]
                 }
             ],
-            "optional?": "boolean",
-            "cooked?": "boolean"
-        }]
-    ],
-    "instructions": [
-        [{
-            "step": "string",
-            "background?": "string",
-            "optional?": "string",
-            "context": [
+            "instructions":[
                 {
-                    "category": "string",
-                    "note": "string"
+                    "text": "On a baking sheet covered with foil, place **sweet potatoes** in **450°F** oven for **50 minutes** or until interior is soft."
                 }
             ]
-        }]
-    ]}
+        },
+        {
+            "background": "Sweet potatoes are in the oven",
+            "ingredients":[
+                {
+                    "optional": "Avocado",
+                    "description": [
+                        {
+                            "name": "1 Avocado"
+                        }
+                    ]
+                }
+            ],
+            "instructions":[
+                {
+                    "text": "Open and slice avocado.",
+                    "optional": "Avocado"
+                }
+            ]
+        },
+        {
+            "ingredients":[
+                {
+                    "description": [
+                        {
+                            "name": "Cooked beans",
+                            "cooked?": true
+                        },
+                        {
+                            "name": "Extra virgin olive oil"
+                        },
+                        {
+                            "name": "Red wine vinegar"
+                        },
+                        {
+                            "name": "Black pepper"
+                        },
+                        {
+                            "name": "Tajin seasoning (optional)"
+                        }
+                    ]
+                }
+            ],
+            "instructions":[
+                {
+                    "text": "Drain **cooked beans** and place in mixing bowl. Peel **cooked sweet potatoes** and to bowl. Combine with **olive oil**, **vinegar**, and **black pepper** and serve. Top with **Tajin seasoning** if using."
+                }
+            ]
+        },
+        {
+            "ingredients":[
+                {
+                    "optional": "Avocado",
+                    "description": [
+                        {
+                            "name": "Sliced avocado",
+                            "cooked": true
+                        }
+                    ]
+                }
+            ],
+            "instructions":[
+                {
+                    "optional": "Avocado",
+                    "text": "Top bowl with **sliced avocado**. Add more olive oil, black pepper, or Tajin seasoning if using."
+                }
+            ]
+        }
+    ]
+}

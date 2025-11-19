@@ -17,11 +17,11 @@
                                     "category": "string",
                                     "note": "string"
                                 }
-                            ]
+                            ],
+                            "optional?": "string",
+                            "cooked?": "boolean"
                         }
-                    ],
-                    "optional?": "string",
-                    "cooked?": "boolean"
+                    ]
                 }
             ],
             "instructions": [{
