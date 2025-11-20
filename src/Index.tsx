@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { useEffect, useState } from 'react'
 
+
 type RecipeListType = {
   id: number,
   title: string,
@@ -11,10 +12,10 @@ function Index() {
   const [recipes, setRecipes] = useState<Array<RecipeListType>>([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/recipes/')
+    fetch('http://localhost/api/recipes/')
       .then(response => response.json())
       .then(data => {
-        setRecipes(data.recipes[0]);
+        setRecipes(data.recipes);
       })
       .catch(error => {
         console.error('Error fetching recipes:', error);

@@ -3,7 +3,7 @@ import appRouter from './routes.js';
 import { connectToDatabase } from './db.js';
 import cors from 'cors';
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://localhost:5174' }));
 
 // Middleware to parse JSON bodies
 

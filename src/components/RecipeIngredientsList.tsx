@@ -9,11 +9,11 @@ function RecipeIngredientsList() {
     {sortedIngredients.map((group) => {
       return group.map((ingredient, key) => {
           return (
-            <div key={ingredient.name} className='my-2'>
+            <div key={`${key}-${ingredient.name}`} className='my-2'>
             {'name' in ingredient && (
               <h3><em>For the {ingredient.name}</em></h3>
             )}
-            <ul key={key}>
+            <ul className='list-disc list-outside pl-4'>
               {ingredient.description.map((ing) => {
               if (
                 (!('cooked' in ing) || 
