@@ -8,23 +8,28 @@ type RecipeListType = {
   slug: string
 }
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Index() {
   const [recipes, setRecipes] = useState<Array<RecipeListType>>([])
 
   useEffect(() => {
-    fetch('http://localhost/api/recipes/')
+    fetch(`${API_URL}/recipes`)
       .then(response => response.json())
       .then(data => {
-        setRecipes(data.recipes);
+        setRecipes(data);
       })
       .catch(error => {
         console.error('Error fetching recipes:', error);
       });
   }, [])
 
-  return (
+    if (recipes.length < 1) {
+      return <div className='h-screen text-center'>Loading...</div>;
+    }
+    const content = (
     <div className='p-4'>
-        <h1 className='font-bold text-2xl mb-4'>Welcome to Async Cook, an App for mobile devices and tablets that display easy-to-follow recipes for home cooks. App and recipes developed by <Link className='underline text-blue-500' to="http://saikithui.com">Sai-Kit Hui</Link></h1>
+        <h1 className='font-bold text-2xl mb-4'>Welcome to Async Cook, an App and cookbook for mobile devices and tablets that display easy-to-follow recipes for home cooks. App and recipes developed by <Link className='underline text-blue-500' to="http://saikithui.com">Sai-Kit Hui</Link></h1>
         <h2 className='text-xl mb-2'>Recipe List</h2>
         <ul className='list-disc list-outside pl-4'>
           {recipes.map(recipe => <li className='underline' key={recipe.id}>
@@ -36,6 +41,8 @@ function Index() {
           <li><Link to="rice-pulse/bean-sweet-potato" className='underline'>Sweet Potato and Bean bowl</Link></li> */}
         </ul>
     </div>
-  )
+    )
+
+    return content
 }
 export default Index
