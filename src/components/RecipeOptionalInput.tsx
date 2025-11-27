@@ -23,7 +23,7 @@ if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
     return <></>
 
     let optionalArray : string[] = []
-    optionalArray = recipe.optional_ingredients.split(',')
+    optionalArray = (recipe.optional_ingredients as string).split(',').map(s => s.trim())
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
         setOptional(optional => ({
