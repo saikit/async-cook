@@ -2,17 +2,17 @@ import { InstructionsType } from "../context/RecipeProvider"
 import RecipeNoteIcon from "./RecipeNoteIcon"
 import Markdown from "react-markdown"
 
-function Instruction({ list }: { list: InstructionsType }) {
+function Instruction({ list, index }: { list: InstructionsType, index: number }) {
   const { instructions } = list
   const content = (
-    <>
-    {instructions.map((instruction) => {
+    <div key={`div-${index}`}>
+    {instructions.map((instruction, key) => {
         const icons = instruction.context &&
-          instruction.context.map((note, key) => (
-            <RecipeNoteIcon key={key} note={note} />
+          instruction.context.map((note, notekey) => (
+            <RecipeNoteIcon key={notekey} note={note} />
           ));
         return <>
-          <Markdown components={{
+          <Markdown key={`md-${key}`} components={{
             p(props) {
               const {children, ...rest} = props;
               return <p className="mb-2" {...rest}>{children}{icons}</p>;
@@ -26,7 +26,7 @@ function Instruction({ list }: { list: InstructionsType }) {
           </Markdown>
         </>
     })}
-    </>
+    </div>
   )
 
   return content

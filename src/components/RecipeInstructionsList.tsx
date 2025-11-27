@@ -11,13 +11,13 @@ function RecipeInstructionsList() {
         ? 
         <ol className='list-decimal list-outside pl-4'>
             {filteredInstructions.map((instruction, index) => (
-                <li>
-                <Instruction key={index} list={instruction} />
+                <li key={`list-${index}`}>
+                <Instruction index={index} list={instruction} />
                 </li>
             ))}
         </ol>
         :
-        <Instruction key={step - 1} list={filteredInstructions[step - 1]}/>
+        <Instruction index={step - 1} list={filteredInstructions[step - 1]}/>
         }
         </>
     )

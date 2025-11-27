@@ -6,38 +6,36 @@ My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roas
 
 ### Roasted tomatoes and garlic
 
-- **340g-450g cherry tomatoes**
+- 340g-450g cherry tomatoes
 - 3-4 unpeeled cloves of garlic (explaination: peel prevents garlic from burning)
-- **30g extra virgin olive oil**
-- salt
-- pepper
+- 30g extra virgin olive oil
+- Salt
+- Black pepper
+
+### Shrimp (optional)
+
+- 120g raw shrimp
+- Salt
+- Baking soda
+
+### Mozzarella (optional)
+
+- 120g mozzarella
 
 ### Pasta
 
-- **150g dried pasta** (recommendation: Most types of dried pasta will work, but be sure to use a pan that will fit your dried pasta of choice easily)
+- 150g dried pasta (recommendation: Most types of dried pasta will work, but be sure to use a pan that will fit your dried pasta of choice easily)
 - 600ml water
-- salt (recommendation: just enough to season pasta, especially if you use pasta water)
+- Salt (recommendation: Use just enough to season pasta if you plan to use the pasta water)
 
-### Seasoning
+- Dried basil (recommendation: If using fresh basil chop into small pieces)
+- Red pepper flakes
+- 20g Grated Parmasan cheese
+- Black pepper
+- Extra virgin olive oil
+- Salt or fish sauce (recommendation: Fish sauce pairs well with tomatoes)
 
-- olive oil
-- salt or fish sauce (context: fish sauce pairs well with tomatoes)
-- black pepper
-- 20g parmasan cheese
-
-## Optional Ingredients
-
-### Shrimp
-
-- 120g raw shrimp
-- baking soda
-- salt
-- neutral cooking oil
-
-### Mozzarella
-
-- 120g mozzarella
-- basil
+- Extra Grated cheese (for serving)
 
 ## Step 1
 
@@ -54,8 +52,6 @@ Slice **mozzarella**
 (parmasan) grate cheese
 
 (basil) chop if using fresh leaves
-
-(cleaning) clean knives and cutting board (context: depending on pasta type, you should have time before starting cooking pasta)
 
 ## Step 2
 

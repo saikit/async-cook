@@ -4,7 +4,7 @@ import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
 //import { ScrollArea } from './components/ui/scrollarea'
 import { Link } from 'react-router'
-import LoadingIcon from './components/loadingIcon'
+import LoadingIcon from '@/components/LoadingIcon'
 import RecipeInstructionsList from './components/RecipeInstructionsList'
 
 function Recipe() {
