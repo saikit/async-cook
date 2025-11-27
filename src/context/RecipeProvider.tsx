@@ -1,25 +1,22 @@
 import React, { createContext, useState, useCallback, ReactElement, useEffect, useMemo } from "react";
 import { useParams } from "react-router";
 
-
 type RecipeContextType = {
-    steps: Array<stepType>,
     step: number,
     setStep: React.Dispatch<React.SetStateAction<RecipeContextType['step']>>,
     maxStep: number,
     recipe: RecipeType | undefined,
-    sortedIngredients: Array<IngredientsType>,
-    filteredInstructions: Array<InstructionsType>,
+    sortedIngredients: IngredientsType,
+    filteredInstructions: FilteredInstructionsType,
     optional: OptionalType,
     setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>
 }
 
 type ChildrenType = { children?: ReactElement | ReactElement[] }
-
 type statusType = "ready" | "active" | "complete";
 
-export type  stepType = {
-  ingredients: IngredientsType,
+export type stepType = {
+  ingredients: IngredientType,
   instructions: InstructionsType,
   background?: string,
 }
@@ -30,33 +27,38 @@ export type RecipeNoteIconType = {
 }
 
 export type InstructionType = {
+  background?: string,
   text: string,
   optional?: string,
-  background?: string,
+  context?: Array<RecipeNoteIconType>
+}
+
+export type InstructionsType = {
+  instructions: Array<InstructionType>
+}
+
+export type DescriptionType = {
+  name: string,
   context?: Array<RecipeNoteIconType>,
+  cooked?: boolean,
+  status?: statusType
 }
 
 export type IngredientType = {
-  name?: string,
-  description: Array<{
-    name: string,
-    context?: Array<RecipeNoteIconType>,
-    cooked?: boolean
-  }>,
-  status?: statusType,
-  optional?: boolean
+  text?: string,
+  description: Array<DescriptionType>,
+  optional?: string
 }
 
 export type IngredientsType = Array<IngredientType>
-
-export type InstructionsType = Array<InstructionType>
+export type FilteredInstructionsType = Array<InstructionsType>
 
 export type RecipeType = {
   steps: Array<stepType>,
   title: string,
   intro?: string,
   reference?: string,
-  optional_ingredients?: Array<{name: string}>,
+  optional_ingredients?: string
 }
 
 type OptionalType = { [key: string]: boolean } 
@@ -67,6 +69,8 @@ type routerParams = {
     section?: string,
     id: string
 }
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const RecipeProvider = ({ children } : ChildrenType) => {
     const [step, setStep] = useState<RecipeContextType['step']>(0);
@@ -83,7 +87,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
         }
       });
       const data = await response.json();
-      setRecipe(data);
+      setRecipe(data.data);
     }, []);
   
     useEffect(() => {
@@ -91,67 +95,72 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
         console.error("No recipe ID provided in the URL.");
         return;
       }
-      const path = section ? `/data/${section}/${id}.json` : `/data/${id}.json`;
+      const path = `${API_URL}/recipes/${id}`;
       fetchJSONDataFrom(path);
 
     }, [fetchJSONDataFrom, section, id]);
     
+    const { steps = [] } = recipe ?? { steps: [] };
 
-    const { steps = [] } = recipe || {}
-
-    const filteredIngredients : Array<IngredientsType> = useMemo(() => {
-      const result : Array<IngredientsType> = []
+    const filteredIngredients : IngredientsType = useMemo(() => {
+      const result : IngredientsType = [];
       steps.forEach((step) => {
-        step.ingredients.forEach((ingredient, index) => {
-          result.push([])
-          if(
-              (!('optional' in ingredient)) || 
-              (typeof ingredient.optional === 'string' && optional[ingredient.optional])
-            ) {
-              result[index].push(ingredient)
-            }
-        })
+        const { ingredients } : { ingredients : IngredientType } = step
+        const filtered : IngredientType = {
+          ...ingredients,
+          description: ingredients.description.filter((ingredient : DescriptionType) => {
+              return (!('optional' in ingredient ) || typeof ingredient.optional === 'string' && optional[ingredient.optional])
+          })
+        }
+        if((!('optional' in filtered)) || (typeof filtered.optional === 'string' && optional[filtered.optional]))
+          result.push(filtered);
       })
-
-      return result.filter(value => Object.keys(value).length !== 0)
+      return result;
+      
     }, [steps, optional])
 
-
-    const sortedIngredients : Array<IngredientsType> = useMemo(() => {
-      const result: Array<IngredientsType> = []
-      filteredIngredients.map((group) => {
-        group.forEach((ingredient, index) => {
-          const status : statusType = step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready";
-          ingredient.status = status;
-        });
-        result.push(group);
+    const sortedIngredients : IngredientsType = useMemo(() => {
+      const result: IngredientsType = []
+      filteredIngredients.map((group, index) => {
+        const sorted : IngredientType = {
+          ...group,
+          description: group.description.map((ingredient) => {
+            return { ...ingredient, status: step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready" }
+          })
+        }
+        result.push(sorted);
       });
       return result
     }, [step, filteredIngredients])
 
     useEffect(() => {
         const initialOptionalState: OptionalType = {};
-        recipe?.optional_ingredients?.forEach(ingredient => {
-            initialOptionalState[ingredient.name] = false;
-        });
-        setOptional(initialOptionalState);
+        let optionalArray : string[] = [];
+        if(typeof recipe?.optional_ingredients === 'string' && recipe?.optional_ingredients !== null) {
+          optionalArray = recipe.optional_ingredients.split(',')
+          optionalArray.forEach(ingredient => {
+              initialOptionalState[ingredient] = false;
+          });
+          setOptional(initialOptionalState);
+        }
     }, [recipe]);
 
-    const filteredInstructions: Array<InstructionsType> = useMemo(() => {
-      const result: Array<InstructionsType> = [];
-      steps.forEach((step, index) => {
-        result.push([])
-        step.instructions.forEach(instruction => {
-          if (
-            !('optional' in instruction) || 
-            (typeof instruction.optional === 'string' && optional[instruction.optional])
-          ) {
-            result[index].push(instruction);
-          }
-        })
+    const filteredInstructions: FilteredInstructionsType = useMemo(() => {
+      const result: FilteredInstructionsType = [];
+      steps.forEach((step : stepType) => {
+        const { instructions } = step
+        const filtered : InstructionsType = {
+          ...instructions,
+          instructions: Array.isArray(instructions) ? instructions.filter((instruction : InstructionType) => {
+              return (!('optional' in instruction) || 
+            (typeof instruction.optional === 'string' && optional[instruction.optional]))
+          }) : []
+        }
+        if(filtered.instructions.length > 0)
+          result.push(filtered);
       })
 
-      return result.filter(value => Object.keys(value).length !== 0)
+      return result
     }, [optional, steps])
 
     useEffect(() => {
@@ -159,7 +168,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [filteredInstructions])
 
     return (
-      <RecipeContext.Provider value={{steps, step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional}}>
+      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional}}>
           <>{children}</>
       </RecipeContext.Provider>
     )

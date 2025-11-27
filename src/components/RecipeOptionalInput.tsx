@@ -18,8 +18,12 @@ function RecipeOptionalInput() {
 
 const { recipe, step, setOptional, optional } = useContext(RecipeContext)
 
-if(recipe?.optional_ingredients?.length === 0 || step > 0)
+
+if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
     return <></>
+
+    let optionalArray : string[] = []
+    optionalArray = recipe.optional_ingredients.split(',')
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
         setOptional(optional => ({
@@ -37,15 +41,15 @@ if(recipe?.optional_ingredients?.length === 0 || step > 0)
             </DrawerHeader>
             <DrawerDescription asChild>
             <div className="px-4" >
-            {recipe?.optional_ingredients?.map((ingredient) => (
-                <div key={ingredient.name}>
+            {optionalArray.map((ingredient) => (
+                <div key={ingredient}>
                 <input 
-                    id={ingredient.name} 
-                    checked={ingredient.name in optional ? optional[ingredient.name] : false} 
+                    id={ingredient} 
+                    checked={ingredient in optional ? optional[ingredient] : false} 
                     onChange={handleOptional} 
                     type="checkbox" 
                      />
-                <label className="ml-1" htmlFor={ingredient.name}>{ingredient.name}</label>
+                <label className="ml-1" htmlFor={ingredient}>{ingredient}</label>
                 </div>
             ))}
             </div>

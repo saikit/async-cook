@@ -2,7 +2,7 @@ import { IngredientType } from "@/context/RecipeProvider"
 import RecipeNoteIcon from "./RecipeNoteIcon"
 
 
-const Ingredient = ({ description, status }: { description: IngredientType['description'][0], status: IngredientType['status'] }) => {
+const Ingredient = ({ description, status }: { description: IngredientType['description'][0], status: IngredientType['description'][0]['status'] }) => {
   const { name, context } = description
   const icon = (
     (context) ?

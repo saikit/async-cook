@@ -1,8 +1,30 @@
-import { House } from "lucide-react";
-import { Link } from "react-router";
+import { ListFilter } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import RecipeList from "./RecipeList";
 
-function HomeLink({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
-  return <Link className=" rounded-full fixed top-2 left-2 p-2 bg-slate-200 opacity-80" to="/"><House size={size} color={color} /></Link>;
+function HomeLink() {
+  return (
+    <Dialog>
+      <form>
+        <DialogTrigger asChild>
+          <Button className=" rounded-bl-full rounded-br-full h-6 w-12 fixed top-0 left-1/2 bg-slate-200 opacity-80 transform -translate-x-1/2 flex justify-center"><ListFilter className="" size={18} color="black" /></Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Recipe List</DialogTitle>
+          </DialogHeader>
+          <RecipeList/>
+        </DialogContent>
+      </form>
+    </Dialog>
+  )
 }
 
 export default HomeLink;

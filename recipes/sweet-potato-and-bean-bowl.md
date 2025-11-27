@@ -16,7 +16,7 @@ Combining two long cooking ingredients to form a base of a high protein and high
 Extra virgin olive oil
 Red Wine Vinegar
 Black pepper
-Tajin seasoning (optional)
+Tajin seasoning (optional) (recommendation: Any vinegar-based hot sauce will also work)
 
 ## Optional Ingredients
 

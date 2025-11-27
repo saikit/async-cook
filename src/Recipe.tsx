@@ -1,21 +1,20 @@
 import { useContext } from 'react'
-import Instruction from './components/Instruction'
 import RecipeContext from './context/RecipeProvider'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
-import { ScrollArea } from './components/ui/scrollarea'
+//import { ScrollArea } from './components/ui/scrollarea'
 import { Link } from 'react-router'
-
+import LoadingIcon from './components/loadingIcon'
+import RecipeInstructionsList from './components/RecipeInstructionsList'
 
 function Recipe() {
-  const {step, recipe, filteredInstructions} = useContext(RecipeContext)
+  const {step, recipe} = useContext(RecipeContext)
 
   if (!recipe) {
-    return <div className='h-screen text-center'>Loading...</div>;
+    return <LoadingIcon/>
   }
 
   const { title, intro, reference, optional_ingredients } = recipe;
-
 
   const content = (
     <div className='p-4'>
@@ -36,27 +35,18 @@ function Recipe() {
     }
     
     { optional_ingredients && step === 0 ?
-    <div className='flex justify-center'><RecipeOptionalInput/></div>
+    <div className='flex justify-center mb-2'><RecipeOptionalInput/></div>
     : null}
     <h2 className='text-3xl mb-2'>Ingredients</h2>
     
-    {step > 0 ?
+    {/* {step > 0 ?
     <ScrollArea className='h-[35vh]'>
         <RecipeIngredientsList/>
     </ScrollArea>
-    : <RecipeIngredientsList/>}
+    : <RecipeIngredientsList/>} */}
+    <RecipeIngredientsList/>
     <hr className='my-4'/>
-    <h2 className='text-3xl mb-2'>{step > 0 ? `Step ${step}` : "Instructions"}</h2>
-    {step === 0 
-    ? 
-    <ol className='list-decimal list-outside pl-4'>{filteredInstructions.map((instructions, index) => (
-        <li key={index}>
-          <Instruction instructions={instructions} />
-        </li>
-    ))}</ol>
-    :
-    <Instruction key={step - 1} instructions={filteredInstructions[step - 1]}/>
-    }
+    <RecipeInstructionsList/>
 
     </div>
   )
