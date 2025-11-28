@@ -27,7 +27,7 @@ function Recipe() {
       <p className='my-4'>
         {intro}&nbsp;
         {reference && (
-          <Link className='text-blue-500 underline' to={reference} target='_blank'>See original recipe</Link>
+          <Link className='text-blue-500 underline print:hidden' to={reference} target='_blank'>See original recipe</Link>
         )}
       </p>
     </div> 
@@ -35,7 +35,7 @@ function Recipe() {
     }
     
     { optional_ingredients && step === 0 ?
-    <div className='flex justify-center mb-2'><RecipeOptionalInput/></div>
+    <div className='flex justify-center mb-4 print:hidden'><RecipeOptionalInput/></div>
     : null}
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     
