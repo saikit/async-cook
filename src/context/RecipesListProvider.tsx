@@ -29,7 +29,7 @@ export const RecipesListProvider = ({ children } : ChildrenType) => {
   }, []);
 
   useEffect(() => {
-    const path = `${API_URL}/recipes/`;
+    const path = `${API_URL}/recipes`;
     fetchJSONDataFrom(path);
 
   }, [fetchJSONDataFrom]);

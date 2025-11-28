@@ -4,40 +4,33 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 
 ## Ingredients
 
-200g Lettuce
-1 scallion
-3 cloves garlic
+- 200g Lettuce
+- 1 scallion
+- 3 cloves garlic
 
 ### Sauce
 
-20g oyster sauce
-10ml soy sauce
-2g sugar
-2g dark soy sauce
-A sprinkle of MSG (optional)
-1 5oz can of chunk light tuna, undrained (Recommendation: For larger cuts of tuna, chop into smaller pieces)
+- 20g oyster sauce
+- 10ml soy sauce
+- 2g sugar
+- 2g dark soy sauce
+- a sprinkle of MSG (optional)
+- 1 5oz can of chunk light tuna, undrained (Recommendation: For larger cuts of tuna, chop into smaller pieces.)
 
 ### Cornstarch slurry
 
-1g cornstarch
-20 ml water
+- 1g cornstarch
+- 20ml water
 
-500 ml water
-10 g salt
+- 500ml water
+- 10g salt
 
-10g neutral cooking oil
-(Minced garlic)
-(Choppsed scallion)
-Red pepper flakes
-
-(Chopped lettuce)
-
-(Cooked lettuce)
-(Finished sauce)
+- 10g neutral cooking oil
+- red pepper flakes
 
 ## Step 1
 
-Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (Recommendation: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve)
+Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (recommendation: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.)
 
 ## Step 2
 
@@ -49,11 +42,11 @@ Combine **cornstarch** and **water** in a separate bowl. Mix well.
 
 ## Step 4
 
-Heat a pot of **salted water** to a boil. (Recommendation: Water for blanching should very salty)
+Heat a pot of **salted water** to a boil. (recommendation: Water for blanching should very salty.)
 
 ## Step 5
 
-In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flake**s and fry until aromatic.
+In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.
 Add **combined sauce** to pan. Cook briefly then set flame to low and add **cornstarch slurry**. Cook until sauce is thickened.
 
 ## Step 6

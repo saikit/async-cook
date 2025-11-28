@@ -6,29 +6,29 @@ Combining two long cooking ingredients to form a base of a high protein and high
 
 ### Beans
 
-225g dried pinto beans (recommendation: Any larger long-cooking bean will work)
-900g water
-5g salt
-1g baking soda
+- 225g dried pinto beans (recommendation: Any larger long-cooking bean will work.)
+- 900g water
+- 5g salt
+- 1g baking soda
 
-300-400g sweet potato (recommendation: Freeze sweet pototoes overnight before cooking to improve its texture)
+- 300-400g sweet potato (recommendation: Freeze sweet pototoes overnight before cooking to improve its texture)
 
-Extra virgin olive oil
-Red Wine Vinegar
-Black pepper
-Tajin seasoning (optional) (recommendation: Any vinegar-based hot sauce will also work)
+- extra virgin olive oil
+- red wine vinegar
+- black pepper
+- Tajín seasoning (optional) (recommendation: Any vinegar-based hot sauce or seasoning will also work.)
 
-## Optional Ingredients
+### Avocado (optional)
 
-1 Avocado
+- 1 Avocado
 
 ## Step 1
 
-Rinse **beans** and then combine with **salt**, **baking soda**, **water** in an electric pressure cooker. Set pressure cooker to 50 minutes. Allow for natural release.
+Rinse **beans** and then combine with **salt**, **baking soda**, and **water** in an electric pressure cooker. Set pressure cooker to **high pressure** for **50 minutes**. Let the pressure release naturally.
 
 ## Step 2
 
-On a baking sheet covered with foil, place sweet potatoes in 450&deg;F oven for 50 minutes or until interior is soft.
+On a baking sheet covered with foil, place **sweet potatoes** in an oven set at **450°F** for **50 minutes** or until the interior is fork tender.
 
 ## Optional Step (Avocado)
 
@@ -40,4 +40,4 @@ Drain **cooked beans** and place in mixing bowl. Peel **cooked sweet potatoes** 
 
 ## Optional Step 2 (Avocado)
 
-Top bowl with **sliced avocado**. Add more olive oil, black pepper, or Tajin seasoning if using.
+Top bowl with **sliced avocado**. Add more olive oil, black pepper, or Tajín seasoning if using.

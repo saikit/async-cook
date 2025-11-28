@@ -4,28 +4,30 @@ Cooking chicken gizzards in a pressure cooker to help form a base for a less com
 
 ## Ingredients
 
-For the soup
-280g chicken gizzard
-250ml dashi or chicken stock
-300g carrots and/or daikon radish
-15g miso paste
+### Soup
 
-For the stir-fry sauce
-15g gochujang
-15g soy sauce
-15g mirin
-3g sugar
+- 280g chicken gizzard
+- 250ml dashi or chicken stock
+- 300g carrots and/or daikon radish
+- 15g miso paste
 
-15ml neutral cooking oil
-3 cloves of garlic
-10g ginger
-200g bok choy, any variety
+### Stir-fry sauce
+
+- 15g gochujang
+- 15g soy sauce
+- 15g mirin
+- 3g sugar
+
+- 15ml neutral cooking oil
+- 3 cloves of garlic
+- 10g ginger
+- 200g bok choy, any variety
 
 ## Instructions
 
-1. Chop daikon radish and carrots into small bite-sized pieces
-2. Clean chicken gizzards by removing membranes and string and chop into bite sized pieces
-3. In an electric pressure cooker, combine gizzards, daikon, carrots, and stock and cook under high pressure for 30 minutes. Natural release.
+1. Chop daikon radish and carrots into small bite-sized pieces.
+2. Clean chicken gizzards by removing membranes and string and chop into bite sized pieces.
+3. In an electric pressure cooker, combine gizzards, daikon, carrots, and stock and cook under high pressure for 30 minutes. Let pressure release naturally.
 4. Combine gochujang, soy sauce, mirin, and sugar in a bowl and set separately
 5. Wash bok choy and cut into bite sized pieces (context: separate the leaves and the stem. Stem can be cut further to smaller pieces)
 6. Mince garlic and ginger and set aside
