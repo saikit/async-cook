@@ -40,14 +40,14 @@ export type InstructionsType = {
 export type DescriptionType = {
   name: string,
   context?: Array<RecipeNoteIconType>,
-  cooked?: boolean,
-  status?: statusType
+  cooked?: boolean
 }
 
 export type IngredientType = {
   text?: string,
   description: Array<DescriptionType>,
-  optional?: string
+  optional?: string,
+  status?: statusType
 }
 
 export type IngredientsType = Array<IngredientType>
@@ -124,11 +124,12 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       filteredIngredients.map((group, index) => {
         const sorted : IngredientType = {
           ...group,
-          description: group.description.map((ingredient) => {
-            return { ...ingredient, status: step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready" }
-          })
+          status: step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready"
         }
-        result.push(sorted);
+        if(sorted.status === "active")
+          result.unshift(sorted);
+        else
+          result.push(sorted);
       });
       return result
     }, [step, filteredIngredients])

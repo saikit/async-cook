@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import RecipeContext from './context/RecipeProvider'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
-//import { ScrollArea } from './components/ui/scrollarea'
+import { ScrollArea } from './components/ui/scrollarea'
 import { Link } from 'react-router'
 import LoadingIcon from './components/LoadingIcon'
 import RecipeInstructionsList from './components/RecipeInstructionsList'
@@ -18,13 +18,13 @@ function Recipe() {
 
   const content = (
     <div className='p-4'>
-    <h1 className="text-4xl font-bold text-center m-2">
+    <h1 className="text-4xl font-bold text-center m-4">
       {title}
     </h1>
     
     {intro && step === 0 ?
     <div>
-      <p className='my-2'>
+      <p className='my-4'>
         {intro}&nbsp;
         {reference && (
           <Link className='text-blue-500 underline' to={reference} target='_blank'>See original recipe</Link>
@@ -37,14 +37,13 @@ function Recipe() {
     { optional_ingredients && step === 0 ?
     <div className='flex justify-center mb-2'><RecipeOptionalInput/></div>
     : null}
-    <h2 className='text-3xl mb-2'>Ingredients</h2>
+    <h2 className='text-3xl mb-4'>Ingredients</h2>
     
-    {/* {step > 0 ?
+    {step > 0 ?
     <ScrollArea className='h-[35vh]'>
         <RecipeIngredientsList/>
     </ScrollArea>
-    : <RecipeIngredientsList/>} */}
-    <RecipeIngredientsList/>
+    : <RecipeIngredientsList/>}
     <hr className='my-4'/>
     <RecipeInstructionsList/>
 

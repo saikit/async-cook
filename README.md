@@ -21,7 +21,7 @@ This is a reimaging of the recipe page for the modern home cook
 - Merges processes for cooks making more than one recipe 
 - Take an existing recipe and refactor it to fit a user's environment and goals
 - Customize existing recipes
-- Recipe Templates, using a single template to create a variety of dishes
+- Recipe Templates, using a single template to create a variety of dishes **half done**
 - Add substitute ingredients if it significantly changes the steps
 - Linking ingredients on the ingredients list with the ingredients written in the instructions
 - Customize ingredient ratios or select available equipment before START

@@ -22,7 +22,7 @@ function RecipeIngredientsList() {
                   (!('optional' in ingredient) || (('optional' in ingredient) && optional[ingredient.optional as string]))
                 ) {
                   return <Ingredient
-                    status={ingredient.status || "ready"}
+                    status={group.status || "ready"}
                     key={`${key}-${ingredient.name}`}
                     description={ingredient}
                   />

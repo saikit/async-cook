@@ -2,14 +2,17 @@ import { IngredientType } from "@/context/RecipeProvider"
 import RecipeNoteIcon from "./RecipeNoteIcon"
 
 
-const Ingredient = ({ description, status }: { description: IngredientType['description'][0], status: IngredientType['description'][0]['status'] }) => {
-  const { name, context } = description
+const Ingredient = ({ description, status }: { description: IngredientType['description'][0], status: IngredientType['status'] }) => {
+  const { name, context, cooked } = description
   const icon = (
     (context) ?
       (context.map((note, key) => <RecipeNoteIcon note={note} key={key}/>)) 
     : null
   )
   const content = (
+    (status === "active" && cooked ) ?
+      <li><b className="text-stone-500">{name}</b>{icon}</li>
+    :
     (status === "active") ?
       <li className={status}><b>{name}</b>{icon}</li>
     :

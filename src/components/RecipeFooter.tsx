@@ -10,22 +10,22 @@ function RecipeFooter () {
             <div className='flex justify-center gap-2'>
                 {step === 0
                 ?
-                <Button className='w-50S' onClick={() => setStep(step + 1)}>Start</Button>
+                <Button className='w-50S bg-slate-800' onClick={() => setStep(step + 1)}>Start</Button>
                 :
                 <>
-                <Button className='border disabled:opacity-80' 
+                <Button className='border disabled:opacity-80 bg-slate-800' 
                 onClick={() => setStep(step - 1)}
                 disabled={step > 1 ? false : true}
                 >Previous Step</Button>
-                <Button className='border' onClick={() => setStep(0)}>Reset</Button>
-                <Button className='border disabled:opacity-50'
+                <Button className='border bg-slate-800' onClick={() => setStep(0)}>Reset</Button>
+                <Button className='border bg-slate-800 disabled:opacity-50'
                 onClick={() => setStep(step + 1)}
                 disabled={maxStep === step ? true : false}
                     >Next Step</Button>
                 </>
                 }
             </div>
-            <p className="text-center text-sm py-2">This recipe and app is hand-crafted by Sai-Kit Hui</p>
+            <p className="text-center text-sm py-2">This recipe and app is hand-crafted by <a href="https://saikithui.com" target="_blank" className="text-blue-500 underline">Sai-Kit Hui</a></p>
         </div>
     )
 
