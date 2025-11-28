@@ -2,29 +2,27 @@
     "title": "string",
     "intro": "string",
     "reference": "string",
-    "optional_ingredients": [{"name": "string"}],
+    "optional_ingredients": "string,string",
     "steps": [
         {
-            "background?": "string",
-            "ingredients": [
-                {
-                    "name": "string",
-                    "description": [
-                        {
-                            "name": "string",
-                            "context": [
-                                {
-                                    "category": "string",
-                                    "note": "string"
-                                }
-                            ],
-                            "optional?": "string",
-                            "cooked?": "boolean"
-                        }
-                    ]
-                }
-            ],
+            "ingredients": {
+                "name": "string",
+                "description": [
+                    {
+                        "name": "string",
+                        "context": [
+                            {
+                                "category": "string",
+                                "note": "string"
+                            }
+                        ],
+                        "optional?": "string",
+                        "cooked?": "boolean"
+                    }
+                ]
+            },
             "instructions": [{
+                "background?": "string",
                 "text": "string",
                 "optional?": "string",
                 "context": [
