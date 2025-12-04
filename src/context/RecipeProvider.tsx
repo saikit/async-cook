@@ -9,7 +9,8 @@ type RecipeContextType = {
     sortedIngredients: IngredientsType,
     filteredInstructions: FilteredInstructionsType,
     optional: OptionalType,
-    setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>
+    setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>,
+    isComplete?: boolean,
 }
 
 type ChildrenType = { children?: ReactElement | ReactElement[] }
@@ -40,7 +41,8 @@ export type InstructionsType = {
 export type DescriptionType = {
   name: string,
   context?: Array<RecipeNoteIconType>,
-  cooked?: boolean
+  cooked?: boolean,
+  fdc_id?: number
 }
 
 export type IngredientType = {
@@ -77,6 +79,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     const [recipe, setRecipe] = useState<RecipeType>()
     const [optional, setOptional] = useState<OptionalType>({})
     const [maxStep, setMaxStep] = useState<number>(0)
+    const [isComplete, setIsComplete] = useState<boolean>(false)
     const { section, id } = useParams<routerParams>();
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
@@ -88,6 +91,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       });
       const data = await response.json();
       setRecipe(data.data);
+      setIsComplete(true);
     }, []);
   
     useEffect(() => {
@@ -169,7 +173,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [filteredInstructions])
 
     return (
-      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional}}>
+      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, isComplete}}>
           <>{children}</>
       </RecipeContext.Provider>
     )

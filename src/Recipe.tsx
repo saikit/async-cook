@@ -4,11 +4,15 @@ import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
 import { ScrollArea } from './components/ui/scrollarea'
 import { Link } from 'react-router'
+import NutritionalInformation from './components/NutritionalInformation'
+import { ButtonGroup } from './components/ui/button-group'
 import LoadingIcon from './components/LoadingIcon'
 import RecipeInstructionsList from './components/RecipeInstructionsList'
+import FoodDataContext from './context/FoodDataProvider'
 
 function Recipe() {
   const {step, recipe} = useContext(RecipeContext)
+  const { foodDataIsComplete } = useContext(FoodDataContext)
 
   if (!recipe) {
     return <LoadingIcon/>
@@ -33,10 +37,19 @@ function Recipe() {
     </div> 
     : null
     }
-    
-    { optional_ingredients && step === 0 ?
-    <div className='flex justify-center mb-4 print:hidden'><RecipeOptionalInput/></div>
+    { step === 0 ?
+    <div className='flex justify-center mb-4 print:hidden'>
+    <ButtonGroup orientation="vertical">
+      {foodDataIsComplete ?
+      <NutritionalInformation />
+      : null}
+    { optional_ingredients ?
+    <RecipeOptionalInput/>
     : null}
+    </ButtonGroup>
+    </div>
+    : null
+    }
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     
     {step > 0 ?
