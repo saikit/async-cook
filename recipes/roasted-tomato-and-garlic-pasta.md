@@ -37,15 +37,15 @@ My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roas
 
 - extra grated Parmesan cheese (for serving)
 
-## Step 1
+## Step 1 (Prep and roast tomatoes)
 
 Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **black pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast in an oven set at **450°F** for **25-30 minutes**. (explanation: Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding.)
 
-## Optional Step (shrimp)
+## Optional Step (Season shrimp)
 
 Season **raw shrimp** with **salt** and a pinch of **baking soda**. If frozen, thaw under running water for 10 minutes first. (Alert: Use a small amount of baking soda prevents the shrimp from becoming mushy.)
 
-## Optional Step (mozzarella)
+## Optional Step (Prep mozzarella)
 
 Slice **mozzarella**.
 
@@ -53,11 +53,11 @@ Slice **mozzarella**.
 
 Boil **pasta** in **salted water** for **1-2 minutes** before instructions for al dente. Set aside pasta and pasta cooking water. (Explanation: Pasta will finish cooking in during the next step.)
 
-## Optional Step (shrimp) 2
+## Optional Step (Pan-fry shrimp)
 
 In a pan, heat cooking oil in high heat until smoking. Fry **marinated shrimp** for about **1 minute** until slightly brown. Remove from heat and set aside.
 
-## Step 3
+## Step 3 (Stir-fry pasta)
 
 - Remove peel from garlic. Pour **roasted tomatoes and garlic** into pan. Add **basil** and **red pepper flakes** to sauce. Add **cooked pasta** and some of the **cooked pasta water** to pan and stir on high heat.
 - Remove pan from heat and add most or all of the **grated Parmesan cheese**.
@@ -65,7 +65,7 @@ In a pan, heat cooking oil in high heat until smoking. Fry **marinated shrimp** 
 - Add **salt** to taste. Add more pasta water to adjust consistency.
 - Add **cooked shrimp** to pasta and toss to combine.
 
-## Step 4
+## Step 4 (Plate the pasta)
 
 Serve pasta with extra **grated Parmesan cheese**, **olive oil**, and extra **black pepper**.
 

@@ -29,6 +29,7 @@ export type RecipeNoteIconType = {
 
 export type InstructionType = {
   background?: string,
+  title?: string,
   text: string,
   optional?: string,
   context?: Array<RecipeNoteIconType>
