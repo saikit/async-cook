@@ -11,6 +11,7 @@ import {
     DrawerTrigger,
   } from "./ui/drawer"
 import { Button } from "./ui/button"
+import ActionButton from "./ActionButton"
   
 
 
@@ -34,7 +35,7 @@ if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
 
     const content = (
         <Drawer>
-        <DrawerTrigger asChild><Button variant="outline">Select optional ingredients</Button></DrawerTrigger>
+        <DrawerTrigger asChild><ActionButton><>Select optional ingredients</></ActionButton></DrawerTrigger>
         <DrawerContent>
             <DrawerHeader>
             <DrawerTitle>Select optional ingredients</DrawerTitle>

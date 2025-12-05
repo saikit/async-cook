@@ -10,9 +10,10 @@ type FoodDataContextType = {
 export type foodDataType = Array<{
     description: string;
     foodNutrients: Array<{
-        name: string;
-        amount: number;
-        unitName: string;
+        name: string,
+        amount: number,
+        unitName: string,
+        number: number
     }>
 }>;
 
@@ -25,12 +26,17 @@ const nutrients = [
     '307', // Sodium, Na
     '601', // Cholesterol
     '606', // Fatty acids, total saturated
+    '645', // Fatty acids, total monounsaturated
+    '646', // Fatty acids, total polyunsaturated
+    '291', // Fiber, total dietary
 ]
 
 const params = new URLSearchParams({    
     api_key: API_KEY,
     format: 'abridged',
     nutrients: nutrients.join(','),
+    sortBy: 'description',
+    sortOrder: 'asc'
 })
 
 const FoodDataContext = createContext<FoodDataContextType>({ foodData: [] } as FoodDataContextType);
@@ -38,7 +44,7 @@ const FoodDataContext = createContext<FoodDataContextType>({ foodData: [] } as F
 type ChildrenType = { children?: ReactElement | ReactElement[] }
 
 export const FoodDataProvider = ({ children } : ChildrenType ) => {
-    const [foodData, setFoodData] = useState<FoodDataContextType>({});
+    const [foodData, setFoodData] = useState<foodDataType>([]);
     const [foodDataIsComplete, setfoodDataIsComplete] = useState<boolean>(false);
     const { sortedIngredients, isComplete } = useContext(RecipeContext)
 
