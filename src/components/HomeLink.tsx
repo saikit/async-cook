@@ -1,9 +1,9 @@
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button"
-import { useState, useContext } from "react";
+import { useState, useContext, MouseEvent } from "react";
 import RecipesListContext from "@/context/RecipesListProvider";
 import RecipeContext from "@/context/RecipeProvider";
-import { Link } from 'react-router'
+import { NavLink } from 'react-router'
 import { useLocation } from "react-router";
 import {
   Sheet,
@@ -22,7 +22,7 @@ function HomeLink() {
   const { setStep } = useContext(RecipeContext);
   const location = useLocation();
 
-  function handleClick(event: MouseEvent, path : string) {
+  function handleClick(event: MouseEvent<HTMLAnchorElement>, path : string) {
     if (location.pathname === path) {
       event.preventDefault();
     } else {
@@ -42,7 +42,7 @@ function HomeLink() {
           <SheetDescription></SheetDescription>
           <ol className='list-decimal pl-4 text-gray-900'>
               {recipesList.map(recipe => <li className='underline' key={recipe.slug}>
-                <Link className='text-gray-900' to={`/${recipe.slug}`} onClick={(e) => handleClick(e, `/${recipe.slug}`)}>{recipe.title}</Link></li>
+                <NavLink className={({isActive}) => (isActive ? 'text-gray-900' : 'text-gray-600')} to={`/${recipe.slug}`} onClick={(e) => handleClick(e, `/${recipe.slug}`)}>{recipe.title}</NavLink></li>
               )}
           </ol>
         </SheetHeader>

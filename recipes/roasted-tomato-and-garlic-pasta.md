@@ -37,7 +37,7 @@ My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roas
 
 - extra grated Parmesan cheese (for serving)
 
-## Step 1 (Prep and roast tomatoes)
+## Step 1 (Prep and roast tomatoes and garlic)
 
 Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **black pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast in an oven set at **450°F** for **25-30 minutes**. (explanation: Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding.)
 
@@ -49,7 +49,7 @@ Season **raw shrimp** with **salt** and a pinch of **baking soda**. If frozen, t
 
 Slice **mozzarella**.
 
-## Step 2
+## Step 2 (Boil pasta)
 
 Boil **pasta** in **salted water** for **1-2 minutes** before instructions for al dente. Set aside pasta and pasta cooking water. (Explanation: Pasta will finish cooking in during the next step.)
 
@@ -65,10 +65,10 @@ In a pan, heat cooking oil in high heat until smoking. Fry **marinated shrimp** 
 - Add **salt** to taste. Add more pasta water to adjust consistency.
 - Add **cooked shrimp** to pasta and toss to combine.
 
-## Step 4 (Plate the pasta)
+## Step 4 (Plate pasta dish)
 
 Serve pasta with extra **grated Parmesan cheese**, **olive oil**, and extra **black pepper**.
 
-## Optional Step (Mozzerella)
+## Optional Step (Top with mozzarella)
 
 Top pasta with **sliced mozzarella**.

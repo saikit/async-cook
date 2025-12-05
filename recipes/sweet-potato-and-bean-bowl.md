@@ -36,7 +36,7 @@ Open and slice avocado.
 
 ## Step 3 (Plate the dish)
 
-Drain **cooked beans** and place in mixing bowl. Peel **cooked sweet potatoes** and to bowl. Combine with **olive oil**, **vinegar**, and **black pepper** and serve. Top with **tajin seasoning** if using.
+Drain **cooked beans** and place in serving bowl. Peel **roasted sweet potatoes** and cut to bite-sized pieces and add to bowl. Combine with **olive oil**, **vinegar**, and **black pepper** and serve. Top with **tajin seasoning** if using.
 
 ## Optional Step 2 (Top the dish with avocado)
 

@@ -32,7 +32,7 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 
 Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (recommendation: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.)
 
-## Step 2 (Make sauce)
+## Step 2 (Make the sauce)
 
 Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, and **sugar**, and **MSG** in a bowl. Mix well.
 
@@ -44,12 +44,12 @@ Combine **cornstarch** and **water** in a separate bowl. Mix well.
 
 Heat a pot of **salted water** to a boil. (recommendation: Water for blanching should very salty.)
 
-## Step 5 (Cook sauce)
+## Step 5 (Cook the sauce)
 
 In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.
 Add **combined sauce** to pan. Cook briefly then set flame to low and add **cornstarch slurry**. Cook until sauce is thickened.
 
-## Step 6 (Boil lettuce)
+## Step 6 (Boil the lettuce)
 
 Add **chopped lettuce** to the salted boiling water and cook until leaves turn bright green. Remove lettuce from pan and drain well.
 
