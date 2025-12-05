@@ -17,15 +17,15 @@ This is a reimagined version of a Cantonese zongzi that is much faster to prepar
 
 - 15g lard or butter (optional) (Recommendation: Any flavored oils and fats will work)
 
-## Step 1 (Wash mung beans and rice)
+## Step 1 (Prep mung beans and rice)
 
-Combine and rinse **mung beans** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **soy sauce** and add to rice cooker or pressure cooker.
+Combine and wash **mung beans** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **soy sauce** and add to rice cooker or pressure cooker.
 
-## optional step (Add mushrooms)
+## optional step (Prep the mushrooms)
 
 Wash **mushrooms** and dice into small pieces. Add to **rice and mung bean** mixture.
 
-## optional step (Add cured meats)
+## optional step (Prep the cured meats)
 
 Dice **Chinese sausage** into small pieces. Add to **rice and mung bean** mixture.
 
