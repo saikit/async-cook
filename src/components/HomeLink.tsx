@@ -1,8 +1,10 @@
-import { ListFilter } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button"
 import { useState, useContext } from "react";
 import RecipesListContext from "@/context/RecipesListProvider";
+import RecipeContext from "@/context/RecipeProvider";
 import { Link } from 'react-router'
+import { useLocation } from "react-router";
 import {
   Sheet,
   SheetContent,
@@ -16,13 +18,23 @@ import {
 function HomeLink() {
 
   const [open, setOpen] = useState(false);
-  const context = useContext(RecipesListContext);
-  const { recipesList } = context;
+  const { recipesList } = useContext(RecipesListContext);
+  const { setStep } = useContext(RecipeContext);
+  const location = useLocation();
+
+  function handleClick(event: MouseEvent, path : string) {
+    if (location.pathname === path) {
+      event.preventDefault();
+    } else {
+      setStep(0);
+      setOpen(false);
+    }
+  }
 
   return (
-    <Sheet  open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button className=" rounded-bl-full rounded-br-full h-6 w-12 fixed top-0 left-1/2 bg-slate-200 opacity-80 transform -translate-x-1/2 flex justify-center print:hidden"><ListFilter className="" size={18} color="black" /></Button>
+        <Button className=" rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex justify-center print:hidden"><Menu className="" size={18} color="black" /></Button>
       </SheetTrigger>
       <SheetContent side="top" aria-describedby="Recipe List">
         <SheetHeader>
@@ -30,7 +42,7 @@ function HomeLink() {
           <SheetDescription></SheetDescription>
           <ol className='list-decimal pl-4 text-gray-900'>
               {recipesList.map(recipe => <li className='underline' key={recipe.slug}>
-                <Link className='text-gray-900' to={`/${recipe.slug}`} onClick={() => setOpen(false)}>{recipe.title}</Link></li>
+                <Link className='text-gray-900' to={`/${recipe.slug}`} onClick={(e) => handleClick(e, `/${recipe.slug}`)}>{recipe.title}</Link></li>
               )}
           </ol>
         </SheetHeader>

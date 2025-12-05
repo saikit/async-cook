@@ -46,7 +46,7 @@ type ChildrenType = { children?: ReactElement | ReactElement[] }
 export const FoodDataProvider = ({ children } : ChildrenType ) => {
     const [foodData, setFoodData] = useState<foodDataType>([]);
     const [foodDataIsComplete, setfoodDataIsComplete] = useState<boolean>(false);
-    const { sortedIngredients, isComplete } = useContext(RecipeContext)
+    const { fdc_ids, isComplete } = useContext(RecipeContext)
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
         try {
@@ -69,15 +69,7 @@ export const FoodDataProvider = ({ children } : ChildrenType ) => {
         if(!isComplete) {
             return;
         } else {
-            const fdc_ids: number[] = [];
-            sortedIngredients.forEach((ingredient) => {
-                ingredient.description.forEach((item) => {
-                    if('fdc_id' in item && item.fdc_id) {
-                        fdc_ids.push(item.fdc_id);
-                    }
-                })
-            });
-            if (fdc_ids.length === 0) {
+            if (fdc_ids === undefined || fdc_ids.length === 0) {
                 return;
             } else {
                 params.set('fdcIds', fdc_ids.join(','));
@@ -86,7 +78,7 @@ export const FoodDataProvider = ({ children } : ChildrenType ) => {
             }
         }
     
-      }, [fetchJSONDataFrom, sortedIngredients, isComplete]);
+      }, [fetchJSONDataFrom, fdc_ids, isComplete]);
     
       return (
         <FoodDataContext.Provider value={{foodData, foodDataIsComplete}}>

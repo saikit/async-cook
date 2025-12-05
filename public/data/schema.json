@@ -25,6 +25,7 @@
             "instructions": [{
                 "background?": "string",
                 "text": "string",
+                "title": "string",
                 "optional?": "string",
                 "context": [
                     {

@@ -10,6 +10,7 @@ type RecipeContextType = {
     filteredInstructions: FilteredInstructionsType,
     optional: OptionalType,
     setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>,
+    fdc_ids?: number[],
     isComplete?: boolean,
 }
 
@@ -107,6 +108,19 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     
     const { steps = [] } = recipe ?? { steps: [] };
 
+    const fdc_ids: number[] = useMemo(() => {
+      const ids: number[] = [];
+      steps.forEach((step) => {
+        const { ingredients } : { ingredients : IngredientType } = step
+        ingredients.description.forEach((item) => {
+            if('fdc_id' in item && item.fdc_id) {
+                ids.push(item.fdc_id);
+            }
+        })
+      });
+      return ids;
+    }, [steps]);
+
     const filteredIngredients : IngredientsType = useMemo(() => {
       const result : IngredientsType = [];
       steps.forEach((step) => {
@@ -174,7 +188,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [filteredInstructions])
 
     return (
-      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, isComplete}}>
+      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, isComplete}}>
           <>{children}</>
       </RecipeContext.Provider>
     )
