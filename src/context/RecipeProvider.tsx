@@ -145,12 +145,24 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
           ...group,
           status: step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready"
         }
-        if(sorted.status === "active")
-          result.unshift(sorted);
-        else
-          result.push(sorted);
+        result.push(sorted)
       });
-      return result
+
+      const categoryOrder = {
+        'active': 0,
+        'ready': 1,
+        'complete': 2
+      }
+
+      return result.sort((a, b) => {
+        const categoryAOrder = categoryOrder[a.status || 'ready'];
+        const categoryBOrder = categoryOrder[b.status || 'ready'];
+        if (categoryAOrder !== categoryBOrder) {
+          return categoryAOrder - categoryBOrder;
+        }
+
+        return 0
+      });
     }, [step, filteredIngredients])
 
     useEffect(() => {

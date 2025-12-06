@@ -13,17 +13,15 @@ function Instruction({ list }: { list: InstructionsType, index: number }) {
           ));
         return (
           <Markdown key={`md-${key}`} components={{
-            p(props) {
+            li(props) {
               const {children, ...rest} = props;
-              return <p className="mb-2" {...rest}>{children}{icons}</p>;
+              return <li className="mb-2" {...rest}>{children}{icons}</li>;
             },
             strong(props) {
               const {children, ...rest} = props;
               return <strong className="font-bold" {...rest}>{children}</strong>;
             }
-          }}>
-            {instruction.text}
-          </Markdown>
+          }}>{`- ${instruction.text}`}</Markdown>
         )
     })}
     </>

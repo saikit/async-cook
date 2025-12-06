@@ -43,7 +43,7 @@ if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
             <DrawerDescription asChild>
             <div className="px-4" >
             {optionalArray.map((ingredient) => (
-                <div key={ingredient}>
+                <div key={ingredient} className="mb-1">
                 <input 
                     id={ingredient} 
                     checked={ingredient in optional ? optional[ingredient] : false} 

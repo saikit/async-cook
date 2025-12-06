@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react"
 import RecipeContext from "../context/RecipeProvider"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-
 function RecipeBackgroundBanner() {
     const context = useContext(RecipeContext)
     const { step, filteredInstructions } = context
