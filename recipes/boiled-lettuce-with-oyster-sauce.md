@@ -4,28 +4,28 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 
 ## Ingredients
 
-- 200g Lettuce
-- 1 scallion
-- 3 cloves garlic
+- **200g** Lettuce
+- **1** scallion
+- **3** cloves garlic
 
 ### Sauce
 
-- 20g oyster sauce
-- 10ml soy sauce
-- 2g sugar
-- 2g dark soy sauce
-- a sprinkle of MSG (optional)
-- 1 5oz can of chunk light tuna, undrained (Recommendation: For larger cuts of tuna, chop into smaller pieces.)
+- **20g** oyster sauce
+- **10ml** soy sauce
+- **2g** sugar
+- **2g** dark soy sauce
+- a sprinkle of MSG *(optional)*
+- **1** **5oz** can of chunk light tuna, undrained (Recommendation: For larger cuts of tuna, chop into smaller pieces.)
 
 ### Cornstarch slurry
 
-- 1g cornstarch
-- 20ml water
+- **1g** cornstarch
+- **20ml** water
 
-- 500ml water
-- 10g salt
+- **500ml** water
+- **10g** salt
 
-- 10g neutral cooking oil
+- **10g** neutral cooking oil
 - red pepper flakes
 
 ## Step 1 (Cut lettuce & aromatics)
