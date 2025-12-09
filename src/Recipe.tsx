@@ -10,14 +10,14 @@ import RecipeInstructionsList from './components/RecipeInstructionsList'
 import FoodDataContext from './context/FoodDataProvider'
 
 function Recipe() {
-  const {step, recipe} = useContext(RecipeContext)
+  const {step, recipe, optional_ingredients} = useContext(RecipeContext)
   const { foodDataIsComplete } = useContext(FoodDataContext)
 
   if (!recipe) {
     return <LoadingIcon/>
   }
 
-  const { title, intro, reference, optional_ingredients } = recipe;
+  const { title, intro, reference } = recipe;
 
   const content = (
     <div className='p-4'>

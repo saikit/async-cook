@@ -13,18 +13,12 @@ import {
 import { Button } from "./ui/button"
 import ActionButton from "./ActionButton"
   
-
-
 function RecipeOptionalInput() {
 
-const { recipe, step, setOptional, optional } = useContext(RecipeContext)
+const { optional_ingredients, step, setOptional, optional } = useContext(RecipeContext)
 
-
-if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
+if(!optional_ingredients || step > 0)
     return <></>
-
-    let optionalArray : string[] = []
-    optionalArray = (recipe.optional_ingredients as string).split(',').map(s => s.trim())
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
         setOptional(optional => ({
@@ -42,7 +36,7 @@ if(typeof recipe?.optional_ingredients !== 'string' || step > 0)
             </DrawerHeader>
             <DrawerDescription asChild>
             <div className="px-4" >
-            {optionalArray.map((ingredient) => (
+            {optional_ingredients.map((ingredient) => (
                 <div key={ingredient} className="mb-1">
                 <input 
                     id={ingredient} 

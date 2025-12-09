@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback, ReactElement, useEffect, useMemo } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 type RecipeContextType = {
     step: number,
@@ -11,6 +11,7 @@ type RecipeContextType = {
     optional: OptionalType,
     setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>,
     fdc_ids?: number[],
+    optional_ingredients?: string[],
     isComplete?: boolean,
 }
 
@@ -83,17 +84,29 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     const [maxStep, setMaxStep] = useState<number>(0)
     const [isComplete, setIsComplete] = useState<boolean>(false)
     const { section, id } = useParams<routerParams>();
+    const navigate = useNavigate();
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
-      const response = await fetch(path, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+      try {
+        const response = await fetch(path, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
+        });
+        if(!response.ok) {
+          if(response.status === 404) {
+            navigate('/not-found');
+          }
+        } else {
+          const data = await response.json();
+          setRecipe(data.data);
         }
-      });
-      const data = await response.json();
-      setRecipe(data.data);
-      setIsComplete(true);
+      } catch (error) {
+        console.error("Error fetching recipe data:", error);
+      } finally {
+        setIsComplete(true);
+      }
     }, []);
   
     useEffect(() => {
@@ -119,6 +132,17 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
         })
       });
       return ids;
+    }, [steps]);
+
+    const optional_ingredients: string[] = useMemo(() => {
+      const optionalArray: string[] = [];
+      steps.forEach((step) => {
+        const { ingredients } : { ingredients : IngredientType } = step
+        if('optional' in ingredients && typeof ingredients.optional === 'string') {
+            optionalArray.push(ingredients.optional);
+        }
+      });
+      return Array.from(new Set(optionalArray));
     }, [steps]);
 
     const filteredIngredients : IngredientsType = useMemo(() => {
@@ -167,15 +191,13 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
 
     useEffect(() => {
         const initialOptionalState: OptionalType = {};
-        let optionalArray : string[] = [];
-        if(typeof recipe?.optional_ingredients === 'string' && recipe?.optional_ingredients !== null) {
-          optionalArray = recipe.optional_ingredients.split(',')
-          optionalArray.forEach(ingredient => {
+        if(optional_ingredients && optional_ingredients.length > 0) {
+          optional_ingredients.forEach(ingredient => {
               initialOptionalState[ingredient] = false;
           });
           setOptional(initialOptionalState);
         }
-    }, [recipe]);
+    }, [optional_ingredients]);
 
     const filteredInstructions: FilteredInstructionsType = useMemo(() => {
       const result: FilteredInstructionsType = [];
@@ -200,7 +222,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [filteredInstructions])
 
     return (
-      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, isComplete}}>
+      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, optional_ingredients, isComplete}}>
           <>{children}</>
       </RecipeContext.Provider>
     )
