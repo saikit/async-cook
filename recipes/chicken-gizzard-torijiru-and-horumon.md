@@ -56,6 +56,6 @@ Remove part or all of the **gizzards** from the finished soup. Mix **miso paste*
 ### Step (Stir-fry gizzards and bok choy)
 
 - In a pan, heat oil in high heat
-- Add gizzards and cook until browned
-- Set gizzards aside in pan and add **minced garlic and ginger** and cook until aromatic
+- Add **gizzards** and cook until browned
+- Set **gizzards** aside in pan and add **minced garlic and ginger** and cook until aromatic
 - Add **stir-fry sauce** and cook for another **30 seconds**

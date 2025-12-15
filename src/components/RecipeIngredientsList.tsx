@@ -14,11 +14,11 @@ function RecipeIngredientsList() {
         return (
           <div key={index} className="mb-3">
           <Title/>
-          <ul className="list-none" key={index}>
+          <ul className="list-none">
             {group.description.map((ingredient, key) => {
                 if (
                   (!('cooked' in ingredient) || 
-                  (('cooked' in ingredient) && step - 1 >= index)) &&
+                  (('cooked' in ingredient) && step >= group.step)) &&
                   (!('optional' in ingredient) || (('optional' in ingredient) && optional[ingredient.optional as string]))
                 ) {
                   return <Ingredient

@@ -43,6 +43,8 @@ export type InstructionsType = {
 
 export type DescriptionType = {
   name: string,
+  quantity?: number,
+  unit?: string,
   context?: Array<RecipeNoteIconType>,
   cooked?: boolean,
   fdc_id?: number
@@ -50,6 +52,7 @@ export type DescriptionType = {
 
 export type IngredientType = {
   text?: string,
+  step: number,
   description: Array<DescriptionType>,
   optional?: string,
   status?: statusType
@@ -107,7 +110,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       } finally {
         setIsComplete(true);
       }
-    }, []);
+    }, [navigate]);
   
     useEffect(() => {
       if (!id) {
@@ -151,6 +154,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
         const { ingredients } : { ingredients : IngredientType } = step
         const filtered : IngredientType = {
           ...ingredients,
+          step: result.length + 1,
           description: ingredients.description.filter((ingredient : DescriptionType) => {
               return (!('optional' in ingredient ) || typeof ingredient.optional === 'string' && optional[ingredient.optional])
           })

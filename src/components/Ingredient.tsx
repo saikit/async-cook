@@ -10,10 +10,13 @@ const Ingredient = ({
   description: IngredientType["description"][0];
   status: IngredientType["status"];
 }) => {
-  const { name, context, cooked } = description;
+  const { name, unit, quantity, context, cooked } = description;
   const icons =
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);
+
+  const measurement = `${quantity ? `${quantity}` : ""}${unit ? `${unit} `: ""}`.trim();
+  const ingredient = `${measurement ? `**${measurement}** ` : ""}${name}`;
 
   const createMarkdownComponents = (
     includeIcons: boolean = false,
@@ -22,7 +25,7 @@ const Ingredient = ({
     li(props: React.HTMLProps<HTMLLIElement>) {
       const { children, ...rest } = props;
       return (
-        <li className={`mb-0.5 ${includeCooked && "text-slate-500"}`} {...rest}>
+        <li className={`mb-0.5 ${includeCooked && "text-slate-500"} ${status}`} {...rest}>
           {children}
           {includeIcons && icons}
         </li>
@@ -46,16 +49,16 @@ const Ingredient = ({
     status === "active" && cooked ? (
       <Markdown
         components={markdownComponentsWithCooked}
-      >{`- **${name}**`}</Markdown>
+      >{`- **${ingredient}**`}</Markdown>
     ) : status === "active" ? (
-      <Markdown components={markdownComponents}>{`- **${name}**`}</Markdown>
+      <Markdown components={markdownComponents}>{`- **${ingredient}**`}</Markdown>
     ) : status === "complete" ? (
       <Markdown
         components={markdownComponentsWithoutIcons}
         remarkPlugins={[remarkGfm]}
-      >{`- ~~${name}~~`}</Markdown>
+      >{`- ~~${ingredient}~~`}</Markdown>
     ) : (
-      <Markdown components={markdownComponents}>{`- ${name}`}</Markdown>
+      <Markdown components={markdownComponents}>{`- ${ingredient}`}</Markdown>
     );
 
   return content;
