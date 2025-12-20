@@ -11,9 +11,8 @@ import {
 import Markdown from 'react-markdown'
 import { IngredientType } from '@/context/RecipeProvider';
 import { Slider } from './ui/slider';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { ButtonGroup } from './ui/button-group';
 import { DialogDescription } from '@radix-ui/react-dialog';
 
 const createMarkdownComponents = () => ({
@@ -36,7 +35,7 @@ function RecipeCalculator({ group, updateQuantity, quantityState, ...props } : {
         const newValues : Record<string, { quantity: number | undefined; variable: number | undefined }> = {};
         group.description.forEach((ingredient) => {
             newValues[ingredient.name] = {
-                quantity: ingredient.name in quantityState ? quantityState[ingredient.name] : ingredient.quantity,
+                quantity: group.text in quantityState ? quantityState[group.text][ingredient.name] : ingredient.quantity,
                 variable: ingredient.variable
             };
         });
@@ -67,7 +66,8 @@ function RecipeCalculator({ group, updateQuantity, quantityState, ...props } : {
         event.preventDefault()
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
-        updateQuantity(data)
+
+        updateQuantity({[group.text] : data})
     }
 
     return (

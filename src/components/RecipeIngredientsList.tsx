@@ -10,6 +10,8 @@ function RecipeIngredientsList() {
     const updateQuantity = (newValues) => {
       setQuantityState({...newValues})
     }
+
+    console.log(quantityState)
     
     const content = (
       <div className="my-2">
@@ -38,6 +40,7 @@ function RecipeIngredientsList() {
                     key={`${key}-${ingredient.name}`}
                     description={ingredient}
                     quantityState={quantityState}
+                    groupName={group.text}
                   />
                 }
             })}
