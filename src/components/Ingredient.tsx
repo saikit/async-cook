@@ -6,16 +6,18 @@ import remarkGfm from "remark-gfm";
 const Ingredient = ({
   description,
   status,
+  quantityState
 }: {
   description: IngredientType["description"][0];
   status: IngredientType["status"];
+  quantityState: Record<string, number | "">;
 }) => {
   const { name, unit, quantity, context, cooked } = description;
   const icons =
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);
 
-  const measurement = `${quantity ? `${quantity}` : ""}${unit ? `${unit} `: ""}`.trim();
+  const measurement = `${name in quantityState ? `${quantityState[name]}` : quantity ? quantity : ""}${unit ? `${unit} `: ""}`.trim();
   const ingredient = `${measurement ? `**${measurement}** ` : ""}${name}`;
 
   const createMarkdownComponents = (

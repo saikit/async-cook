@@ -45,6 +45,7 @@ export type DescriptionType = {
   name: string,
   quantity?: number,
   unit?: string,
+  variable?: number,
   context?: Array<RecipeNoteIconType>,
   cooked?: boolean,
   fdc_id?: number
@@ -53,6 +54,9 @@ export type DescriptionType = {
 export type IngredientType = {
   text?: string,
   step: number,
+  calculator?: {
+    text: string,
+  },
   description: Array<DescriptionType>,
   optional?: string,
   status?: statusType
