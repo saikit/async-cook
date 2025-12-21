@@ -3,10 +3,10 @@ import RecipeContext from "@/context/RecipeProvider";
 import { useContext } from "react";
 
 function RecipeInstructionsList() {
-    const { step, filteredInstructions } = useContext(RecipeContext)
+    const { stepNumber, filteredInstructions } = useContext(RecipeContext)
     const content = (
         <>
-        {step === 0 
+        {stepNumber === 0 
         ? 
         <>
         <h2 className='text-3xl mb-4'>Instructions</h2>
@@ -20,8 +20,8 @@ function RecipeInstructionsList() {
         </>
         :
         <>
-        <h2 className='text-3xl mb-4'>Step {step}: {filteredInstructions[step - 1].instructions[0].title}</h2>
-        <Instruction index={step - 1} list={filteredInstructions[step - 1]}/>
+        <h2 className='text-3xl mb-4'>Step {stepNumber}: {filteredInstructions[stepNumber - 1].instructions[0].title}</h2>
+        <Instruction index={stepNumber - 1} list={filteredInstructions[stepNumber - 1]}/>
         </>
         }
         </>

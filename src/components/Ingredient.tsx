@@ -19,7 +19,8 @@ const Ingredient = ({
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);
 
-  const measurement = `${groupName in quantityState ? `${quantityState[groupName][name]}` : quantity ? quantity : ""}${unit ? `${unit} `: ""}`.trim();
+  const quantityValue = groupName in quantityState && typeof quantityState[groupName] === 'object' ? quantityState[groupName][name as keyof typeof quantityState[typeof groupName]] : quantity;
+  const measurement = `${quantityValue || ""}${unit ? `${unit} `: ""}`.trim();
   const ingredient = `${measurement ? `**${measurement}** ` : ""}${name}`;
 
   const createMarkdownComponents = (

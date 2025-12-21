@@ -2,8 +2,8 @@ import React, { createContext, useState, useCallback, ReactElement, useEffect, u
 import { useParams, useNavigate } from "react-router";
 
 type RecipeContextType = {
-    step: number,
-    setStep: React.Dispatch<React.SetStateAction<RecipeContextType['step']>>,
+    stepNumber: number,
+    setStepNumber: React.Dispatch<React.SetStateAction<number>>,
     maxStep: number,
     recipe: RecipeType | undefined,
     sortedIngredients: IngredientsType,
@@ -78,19 +78,19 @@ type OptionalType = { [key: string]: boolean }
 const RecipeContext = createContext<RecipeContextType>({} as RecipeContextType);
 
 type routerParams = {
-    section?: string,
-    id: string
+    slug: string,
+    step?: string
 }
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const RecipeProvider = ({ children } : ChildrenType) => {
-    const [step, setStep] = useState<RecipeContextType['step']>(0);
+    const [stepNumber, setStepNumber] = useState<RecipeContextType['stepNumber']>(0);
     const [recipe, setRecipe] = useState<RecipeType>()
     const [optional, setOptional] = useState<OptionalType>({})
     const [maxStep, setMaxStep] = useState<number>(0)
     const [isComplete, setIsComplete] = useState<boolean>(false)
-    const { section, id } = useParams<routerParams>();
+    const { slug, step } = useParams<routerParams>();
     const navigate = useNavigate();
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
@@ -117,14 +117,14 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [navigate]);
   
     useEffect(() => {
-      if (!id) {
+      if (!slug) {
         console.error("No recipe ID provided in the URL.");
         return;
       }
-      const path = `${API_URL}/recipes/${id}`;
+      const path = `${API_URL}/recipes/${slug}`;
       fetchJSONDataFrom(path);
 
-    }, [fetchJSONDataFrom, section, id]);
+    }, [fetchJSONDataFrom, slug]);
     
     const { steps = [] } = recipe ?? { steps: [] };
 
@@ -175,7 +175,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       filteredIngredients.map((group, index) => {
         const sorted : IngredientType = {
           ...group,
-          status: step > 0 && step - 1 === index ? "active" : step > 0 && step > index ? "complete" : "ready"
+          status: stepNumber > 0 && stepNumber - 1 === index ? "active" : stepNumber > 0 && stepNumber > index ? "complete" : "ready"
         }
         result.push(sorted)
       });
@@ -195,7 +195,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
 
         return 0
       });
-    }, [step, filteredIngredients])
+    }, [stepNumber, filteredIngredients])
 
     useEffect(() => {
         const initialOptionalState: OptionalType = {};
@@ -229,8 +229,13 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       setMaxStep(filteredInstructions.length)
     }, [filteredInstructions])
 
+    useEffect(() => {
+      if(step && parseInt(step) <= maxStep)
+        setStepNumber(parseInt(step))
+    }, [step, maxStep])
+
     return (
-      <RecipeContext.Provider value={{step, setStep, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, optional_ingredients, isComplete}}>
+      <RecipeContext.Provider value={{stepNumber, setStepNumber, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, optional_ingredients, isComplete}}>
           <>{children}</>
       </RecipeContext.Provider>
     )

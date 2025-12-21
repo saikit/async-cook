@@ -2,23 +2,24 @@ import RecipeContext from "@/context/RecipeProvider";
 import Ingredient from "./Ingredient";
 import { useContext } from "react";
 import RecipeCalculator from "./RecipeCalculator";
-import { useState } from "react";
+//import { useState } from "react";
+import { usePersistedState } from "@/hooks/usePersistedState";
+
+type quantityType = Record<string, {quantity: number, variable: number | undefined}>;
 
 function RecipeIngredientsList() {
-    const { step, sortedIngredients, optional } = useContext(RecipeContext)
-    const [quantityState, setQuantityState] = useState<Record<string, number>>({});
-    const updateQuantity = (newValues) => {
-      setQuantityState({...newValues})
+    const { stepNumber, sortedIngredients, optional } = useContext(RecipeContext)
+    const [quantityState, setQuantityState] = usePersistedState('quantityState', {})
+    const updateQuantity = (newValues: quantityType) => {
+      setQuantityState(newValues)
     }
-
-    console.log(quantityState)
     
     const content = (
       <div className="my-2">
       {sortedIngredients.map((group, index) => {
         const Title = () => {
           const CalculatorIcon = () => {
-          if(('calculator' in group && group.calculator) && step === 0)
+          if(('calculator' in group && group.calculator) && stepNumber === 0)
             return (<RecipeCalculator group={group} quantityState={quantityState} updateQuantity={updateQuantity} />);
           }
           if('text' in group && group.text !== '')
@@ -32,7 +33,7 @@ function RecipeIngredientsList() {
             {group.description.map((ingredient, key) => {
                 if (
                   (!('cooked' in ingredient) || 
-                  (('cooked' in ingredient) && step >= group.step)) &&
+                  (('cooked' in ingredient) && stepNumber >= group.step)) &&
                   (!('optional' in ingredient) || (('optional' in ingredient) && optional[ingredient.optional as string]))
                 ) {
                   return <Ingredient
@@ -40,7 +41,7 @@ function RecipeIngredientsList() {
                     key={`${key}-${ingredient.name}`}
                     description={ingredient}
                     quantityState={quantityState}
-                    groupName={group.text}
+                    groupName={group.text || ""}
                   />
                 }
             })}

@@ -3,24 +3,24 @@ import RecipeContext from "../context/RecipeProvider"
 import { Button } from "@/components/ui/button"
 
 function RecipeFooter () {
-    const { step, setStep, maxStep } = useContext(RecipeContext)
+    const { stepNumber, setStepNumber, maxStep } = useContext(RecipeContext)
 
     const content = (
         <div className=" p-4 w-full sticky bottom-0 bg-slate-200 print:hidden">
             <div className='flex justify-center gap-2'>
-                {step === 0
+                {stepNumber === 0
                 ?
-                <Button className='w-50S bg-slate-800' onClick={() => setStep(step + 1)}>Start</Button>
+                <Button className='w-50S bg-slate-800' onClick={() => setStepNumber(stepNumber + 1)}>Start</Button>
                 :
                 <>
                 <Button className='border disabled:opacity-80 bg-slate-800' 
-                onClick={() => setStep(step - 1)}
-                disabled={step > 1 ? false : true}
+                onClick={() => setStepNumber(stepNumber - 1)}
+                disabled={stepNumber > 1 ? false : true}
                 >Previous Step</Button>
-                <Button className='border bg-slate-800' onClick={() => setStep(0)}>Reset</Button>
+                <Button className='border bg-slate-800' onClick={() => setStepNumber(0)}>Reset</Button>
                 <Button className='border bg-slate-800 disabled:opacity-50'
-                onClick={() => setStep(step + 1)}
-                disabled={maxStep === step ? true : false}
+                onClick={() => setStepNumber(stepNumber + 1)}
+                disabled={maxStep === stepNumber ? true : false}
                     >Next Step</Button>
                 </>
                 }

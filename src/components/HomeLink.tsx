@@ -17,14 +17,14 @@ import {
 function HomeLink() {
   const [open, setOpen] = useState(false);
   const { recipesList } = useContext(RecipesListContext);
-  const { setStep } = useContext(RecipeContext);
+  const { setStepNumber } = useContext(RecipeContext);
   const location = useLocation();
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>, path: string) {
     if (location.pathname === path) {
       event.preventDefault();
     } else {
-      setStep(0);
+      setStepNumber(0);
       setOpen(false);
     }
   }

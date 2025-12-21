@@ -10,7 +10,7 @@ import RecipeInstructionsList from './components/RecipeInstructionsList'
 import FoodDataContext from './context/FoodDataProvider'
 
 function Recipe() {
-  const {step, recipe, optional_ingredients} = useContext(RecipeContext)
+  const {stepNumber, recipe, optional_ingredients} = useContext(RecipeContext)
   const { foodDataIsComplete } = useContext(FoodDataContext)
 
   if (!recipe) {
@@ -25,7 +25,7 @@ function Recipe() {
       {title}
     </h1>
     
-    {intro && step === 0 && (
+    {intro && stepNumber === 0 && (
       <p className='my-4'>
         {intro}&nbsp;
         {reference && (
@@ -33,7 +33,7 @@ function Recipe() {
         )}
       </p>
     )}
-    { step === 0 && (
+    { stepNumber === 0 && (
     <div className='sm:flex sm:justify-center mb-2 print:hidden gap-0 sm:gap-2'>
       {foodDataIsComplete && (
       <NutritionalInformation />
@@ -45,7 +45,7 @@ function Recipe() {
     )}
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     
-    {step > 0 ?
+    {stepNumber > 0 ?
     <ScrollArea className='h-[35vh]'>
         <RecipeIngredientsList/>
     </ScrollArea>
