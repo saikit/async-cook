@@ -52,7 +52,8 @@ function RecipeCalculator({
   useEffect(() => {
     const newValues: Record<string, valueType> = {};
     description.forEach((ingredient) => {
-      const quantityFromState = quantityState[text][ingredient.name];
+      const quantityFromState = text && quantityState[text] ? quantityState[text][ingredient.name]
+        : undefined;
 
       newValues[ingredient.name] = {
         quantity: quantityFromState ?? ingredient.quantity ?? 0,
