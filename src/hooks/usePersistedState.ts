@@ -1,4 +1,4 @@
-import { getItem, setItem } from 'utils/sessionStorage';
+import { getItem, setItem } from "@/utils/sessionStorage";
 import { useEffect, useState } from 'react';
 
 export function usePersistedState <T>(key: string, initialValue: T) {

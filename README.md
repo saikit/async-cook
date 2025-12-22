@@ -1,4 +1,4 @@
-# Async Cook Project
+# The Async Cook
 
 This is a reimaging of the recipe page for the modern home cook
 
@@ -17,11 +17,8 @@ This is a reimaging of the recipe page for the modern home cook
 
 ## Future features
 
-- Recipes for multiple cooks
-- Merges processes for cooks making more than one recipe 
-- Take an existing recipe and refactor it to fit a user's environment and goals
-- Customize existing recipes
+- Recipes for multiple cooks (partner mode)
 - Recipe Templates, using a single template to create a variety of dishes **half done**
-- Add substitute ingredients if it significantly changes the steps
-- Linking ingredients on the ingredients list with the ingredients written in the instructions
-- Customize ingredient ratios or select available equipment before START
+- Linking ingredients on the ingredients list with the ingredients written in the instructions (tagging)
+  - Add substitute ingredients if it significantly changes the steps
+- Customize ingredient ratios or select available equipment before START (ingredient calculators) **half done**

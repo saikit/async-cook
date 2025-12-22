@@ -56,7 +56,7 @@ export type IngredientType = {
   step: number,
   calculator?: {
     text: string,
-  },
+  } | undefined,
   description: Array<DescriptionType>,
   optional?: string,
   status?: statusType
