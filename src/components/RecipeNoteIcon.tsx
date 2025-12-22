@@ -27,7 +27,7 @@ function RecipeNoteIcon({ note } : { note : RecipeNoteIconType }) {
 
     return (
         <Popover>
-            <PopoverTrigger className="align-top ml-1 print:hidden"><Icon size={24} color="#57534d" /></PopoverTrigger>
+            <PopoverTrigger className="align-top ml-1 print:hidden" title={note.category}><Icon size={24} color="#57534d" /></PopoverTrigger>
             <PopoverContent><p>{note.note}</p></PopoverContent>
         </Popover>
     )

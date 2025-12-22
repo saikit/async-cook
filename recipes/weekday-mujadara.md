@@ -1,6 +1,7 @@
 # Weekday Mujadara
 
-A weekday version of Middle Eastern lentil that is ready as soon as the rice and lentils are done cooking, though it does require attention of two separate pans at the stove. <https://feelgoodfoodie.net/recipe/mujadara/>
+A weekday version of Middle Eastern lentil that is ready as soon as the rice and lentils are done cooking, though it does require attention of two separate pans at the stove.
+<https://feelgoodfoodie.net/recipe/mujadara/>
 
 ## Ingredients
 

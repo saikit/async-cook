@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 function RecipeBackgroundBanner() {
     const context = useContext(RecipeContext)
-    const { step, filteredInstructions } = context
+    const { stepNumber, filteredInstructions } = context
     const [isVisible, setIsVisible] = useState(true)
 
     useEffect(() => {
@@ -14,9 +14,9 @@ function RecipeBackgroundBanner() {
       }, 3000)
 
       return () => clearTimeout(timer);
-    }, [step]);
+    }, [stepNumber]);
 
-    const background = step > 0 && filteredInstructions[step - 1].instructions[0].background ? filteredInstructions[step - 1].instructions[0].background : null
+    const background = stepNumber > 0 && filteredInstructions[stepNumber - 1].instructions[0].background ? filteredInstructions[stepNumber - 1].instructions[0].background : null
 
     if(!background || !isVisible)
         return null

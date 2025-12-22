@@ -6,7 +6,7 @@ Cooking chicken gizzards in a pressure cooker to help form a base for a less com
 
 ### Soup
 
-- **280g** chicken gizzard
+- **280g** chicken gizzards
 - **250ml** dashi or chicken stock
 - **300g** carrots and/or daikon radish
 - **15g** miso paste
@@ -53,7 +53,7 @@ Mince garlic and ginger and set aside
 
 Remove part or all of the **gizzards** from the finished soup. Mix **miso paste** into soup. Keep warm.
 
-### Step (Stir-fry gizzards and bok choy)
+### Step 8 (Stir-fry gizzards and bok choy)
 
 - In a pan, heat oil in high heat
 - Add **gizzards** and cook until browned

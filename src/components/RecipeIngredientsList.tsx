@@ -2,10 +2,9 @@ import RecipeContext from "@/context/RecipeProvider";
 import Ingredient from "./Ingredient";
 import { useContext } from "react";
 import RecipeCalculator from "./RecipeCalculator";
-//import { useState } from "react";
 import { usePersistedState } from "@/hooks/usePersistedState";
 
-type quantityType = Record<string, {quantity: number, variable: number | undefined}>;
+export type quantityType = Record<string, Record<string, number>>;
 
 function RecipeIngredientsList() {
     const { stepNumber, sortedIngredients, optional } = useContext(RecipeContext)

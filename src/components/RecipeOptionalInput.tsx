@@ -15,9 +15,9 @@ import ActionButton from "./ActionButton"
   
 function RecipeOptionalInput() {
 
-const { optional_ingredients, step, setOptional, optional } = useContext(RecipeContext)
+const { optional_ingredients, stepNumber, setOptional, optional } = useContext(RecipeContext)
 
-if(!optional_ingredients || step > 0)
+if(!optional_ingredients || stepNumber > 0)
     return <></>
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
