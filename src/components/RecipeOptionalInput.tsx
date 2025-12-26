@@ -17,7 +17,7 @@ function RecipeOptionalInput() {
 
 const { optional_ingredients, stepNumber, setOptional, optional } = useContext(RecipeContext)
 
-if(!optional_ingredients || stepNumber > 0)
+if(!optional_ingredients || optional_ingredients?.length < 1 || stepNumber > 0)
     return <></>
 
     const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -109,7 +109,7 @@ function RecipeCalculator({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data: Record<string, number> = Object.fromEntries(
-      Array.from(formData.entries()).map(([key, value]) => [
+      [...formData.entries()].map(([key, value]) => [
         key,
         typeof value === "string" ? Number(value) : 0,
       ])

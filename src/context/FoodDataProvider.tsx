@@ -22,13 +22,18 @@ const nutrients = [
     '203', // Protein
     '204', // Total lipid (fat)
     '205', // Carbohydrate, by difference
-    '269', // Sugars, total including NLEA
+    '269', // Sugars, total
+    '539', // Sugars, added
     '307', // Sodium, Na
     '601', // Cholesterol
     '606', // Fatty acids, total saturated
     '645', // Fatty acids, total monounsaturated
     '646', // Fatty acids, total polyunsaturated
     '291', // Fiber, total dietary
+    '306', // Potassium
+    '303', // Iron
+    '301', // Calcium
+    '324', // Vitamin D
 ]
 
 const params = new URLSearchParams({    

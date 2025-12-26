@@ -10,8 +10,8 @@ type RecipeContextType = {
     filteredInstructions: FilteredInstructionsType,
     optional: OptionalType,
     setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>,
-    fdc_ids?: number[],
-    optional_ingredients?: string[],
+    fdc_ids: number[],
+    optional_ingredients: string[],
     isComplete?: boolean,
 }
 

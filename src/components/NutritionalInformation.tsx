@@ -24,10 +24,16 @@ import { useContext } from "react"
 import { foodDataType } from "@/context/FoodDataProvider"
 import { Link } from "react-router"
 import ActionButton from "./ActionButton"
+import RecipeContext from "@/context/RecipeProvider"
 
 
 function NutritionalInformation() {
     const { foodData } = useContext(FoodDataContext) as { foodData : foodDataType};
+    const { fdc_ids, stepNumber } = useContext(RecipeContext)
+
+    if(!fdc_ids || fdc_ids?.length < 1 || stepNumber > 0)
+    return <></>
+
     const content = (
         <Dialog>
             <DialogTrigger asChild>
