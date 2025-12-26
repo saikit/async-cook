@@ -1,14 +1,13 @@
-# Chicken gizzard torijiru and horumon itame
+# Chicken gizzard soup & stir-fry
 
-Cooking chicken gizzards in a pressure cooker to help form a base for a less common version of a popular Japanese soup and then serving the tender gizzards in a stir-fry sauce based on horumonyaki. Serve with white rice.
+Cooking chicken gizzards in a pressure cooker to help form a base for a Japanese soup and then serving the tender gizzards in a stir-fry sauce based on Japanese grilled offal. Serve with white rice.
 
 ## Ingredients
 
-### Soup
-
+- **150g** carrots
+- **150g** daikon radish
 - **280g** chicken gizzards
 - **250ml** dashi or chicken stock
-- **300g** carrots and/or daikon radish
 - **15g** miso paste
 
 ### Stir-fry sauce
@@ -39,23 +38,23 @@ In an electric pressure cooker, combine **gizzards**, **daikon**, **carrots**, a
 
 ### Step 4 (Mix stir-fry sauce)
 
-Combine gochujang, soy sauce, mirin, and sugar in a bowl and set separately
+Combine **gochujang**, **soy sauce**, **mirin**, and **sugar** in a bowl and set aside
 
 ### Step 5 (Prep bok choy)
 
-Wash bok choy and cut into bite sized pieces (Recommendation: separate the leaves and the stem. Stem can be cut further to smaller pieces)
+Wash **bok choy** and cut into bite sized pieces (Recommendation: separate the leaves and the stem. Stem can be cut further to smaller pieces)
 
 ### Step 6 (Prepare garlic & ginger)
 
-Mince garlic and ginger and set aside
+Mince **garlic** and **ginger** and set aside
 
 ### Step 7 (Finish soup)
 
-Remove part or all of the **gizzards** from the finished soup. Mix **miso paste** into soup. Keep warm.
+Remove part or all of the gizzards from the finished soup. Mix **miso paste** into soup. Keep warm.
 
 ### Step 8 (Stir-fry gizzards and bok choy)
 
-- In a pan, heat oil in high heat
-- Add **gizzards** and cook until browned
-- Set **gizzards** aside in pan and add **minced garlic and ginger** and cook until aromatic
+- In a pan, heat **neutral oil** in high heat, add **gizzards** and cook until browned
+- Set gizzards aside in pan and add **minced garlic and ginger** and cook until aromatic
+- Add **bok choy** and cook until leaves and stems are wilted
 - Add **stir-fry sauce** and cook for another **30 seconds**

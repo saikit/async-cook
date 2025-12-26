@@ -1,4 +1,4 @@
-# Weekday Zongzi
+# Weekday Rice & Mung Beans
 
 This is a reimagined version of a Cantonese zongzi that is much faster to prepare. This version highlights the benefits of eating pulses like mung beans to reach macronutrient goals. <https://www.madewithlau.com/recipes/bamboo-sticky-rice>
 

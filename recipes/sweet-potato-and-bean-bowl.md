@@ -1,4 +1,4 @@
-# Sweet Potato and Bean bowl
+# Sweet Potato & Bean bowl
 
 Combining two long cooking ingredients to form a base of a high protein and highly customizable meal.
 
@@ -7,7 +7,7 @@ Combining two long cooking ingredients to form a base of a high protein and high
 ### Beans
 
 - **225g** dried pinto beans (recommendation: Any larger long-cooking bean will work.)
-- **900g** water
+- **894g** water
 - **5g** salt
 - **1g** baking soda
 

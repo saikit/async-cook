@@ -2,10 +2,10 @@
 
 ## Ingredients
 
-### Recipe subcategoty
+### Recipe subcategory
 
 - 1g of recipe
 
-## Step 1
+## Step 1 (Title)
 
-## Optional Step
+## Optional Step (Title)

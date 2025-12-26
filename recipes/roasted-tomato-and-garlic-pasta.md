@@ -1,4 +1,4 @@
-# Roasted Tomato and Garlic Pasta
+# Roasted Tomato & Garlic Pasta
 
 My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roasting the tomatoes in the over adds additional with less mess. <https://www.seriouseats.com/fast-easy-pasta-blistered-cherry-tomato-sauce-recipe>
 
