@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useRef, useEffect } from 'react'
 import RecipeContext from './context/RecipeProvider'
 import RecipeOptionalInput from './components/RecipeOptionalInput'
 import RecipeIngredientsList from './components/RecipeIngredientsList'
@@ -9,9 +9,19 @@ import LoadingIcon from './components/LoadingIcon'
 import RecipeInstructionsList from './components/RecipeInstructionsList'
 import FoodDataContext from './context/FoodDataProvider'
 
+
 function Recipe() {
   const {stepNumber, recipe, optional_ingredients} = useContext(RecipeContext)
   const { foodDataIsComplete } = useContext(FoodDataContext)
+  const viewportRef = useRef<HTMLDivElement>(null)
+    const scrollToTop = () => {
+      if(viewportRef.current)
+        viewportRef.current?.querySelector('[data-radix-scroll-area-viewport]')?.scrollTo({top: 0})
+    }
+
+    useEffect(() => {
+      scrollToTop()
+    }, [stepNumber])
 
   if (!recipe) {
     return <LoadingIcon/>
@@ -46,7 +56,7 @@ function Recipe() {
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     
     {stepNumber > 0 ?
-    <ScrollArea className='h-[35vh]'>
+    <ScrollArea className='h-[35vh]' ref={viewportRef}>
         <RecipeIngredientsList/>
     </ScrollArea>
     : <RecipeIngredientsList/>}

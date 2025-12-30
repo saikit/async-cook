@@ -26,7 +26,7 @@ function RecipeIngredientsList() {
         }
         
         return (
-          <div key={index} className="mb-3">
+          <div key={index} className="mb-3" >
           <Title/>
           <ul className="list-none">
             {group.description.map((ingredient, key) => {

@@ -11,6 +11,7 @@ type RecipeContextType = {
     optional: OptionalType,
     setOptional: React.Dispatch<React.SetStateAction<RecipeContextType['optional']>>,
     fdc_ids: number[],
+    searchWords : Array<string[]>,
     optional_ingredients: string[],
     isComplete?: boolean,
 }
@@ -197,6 +198,18 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
       });
     }, [stepNumber, filteredIngredients])
 
+    const searchWords = useMemo(() => {
+      if(stepNumber === 0) {
+        return []
+      } else {
+        const words : Array<string[]> = [];
+        filteredIngredients[stepNumber - 1].description.forEach((item) => {
+          words.push(item.name.split(" "))
+        })
+        return words;
+      }
+    }, [stepNumber, filteredIngredients])
+
     useEffect(() => {
         const initialOptionalState: OptionalType = {};
         if(optional_ingredients && optional_ingredients.length > 0) {
@@ -235,7 +248,7 @@ export const RecipeProvider = ({ children } : ChildrenType) => {
     }, [step, maxStep])
 
     return (
-      <RecipeContext.Provider value={{stepNumber, setStepNumber, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, optional, fdc_ids, optional_ingredients, isComplete}}>
+      <RecipeContext.Provider value={{stepNumber, setStepNumber, recipe, maxStep, sortedIngredients, filteredInstructions, setOptional, searchWords, optional, fdc_ids, optional_ingredients, isComplete}}>
           <>{children}</>
       </RecipeContext.Provider>
     )
