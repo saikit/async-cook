@@ -22,3 +22,4 @@ This is a reimaging of the recipe page for the modern home cook
 - Linking ingredients on the ingredients list with the ingredients written in the instructions (tagging)
   - Add substitute ingredients if it significantly changes the steps
 - Customize ingredient ratios or select available equipment before START (ingredient calculators) **half done**
+- A "my kitchen" and "my pantry" dashboard (aggregate of ingredients and equipment used overall)

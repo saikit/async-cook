@@ -22,16 +22,17 @@ A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the
 - lemon zest
 - salt
 
-- **2** onions (Alert: Since we are making crispy onions and carmelized onions simultaneously, feel free to drop one or the other)
+- **2** onions (Alert: Because the recipe involves making crispy onions and caramelized onions simultaneously, feel free to skip one of them)
 - **1** scallion *(optional)*
 - **2g** cumin seeds
-- extra virgin olive oil
+- **15ml** extra virgin olive oil per onion
 - salt
 - water
 
 ## Step 1 (Prep and cook rice and lentils)
 
-Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker.
+Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. 
+Cook in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.
 
 ## Step 2 (Chop onions and aromatics)
 
@@ -43,11 +44,11 @@ Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. 
 
 ## Step 3 (Steam and cook onions)
 
-- Place **sliced onions** and **diced onions** in separate pans, add a tablespoon of **olive oil** each and season with **salt**. Cover onions halfway with **water** and cover with a lid. Steam each at high heat for 7-10 minutes.
+- Place **sliced onions** and **diced onions** in separate pans, add **olive oil** each and season with **salt**. Cover onions halfway with **water** and cover with a lid. Steam each at high heat for 7-10 minutes (Explanation: Add just enough water to cook through the onions before it evaporates.)
 
-- For *caramelized onions*, once water disappears from the pan remove the lid, lower heat to medium, and continuously add small amounts of water and scrape the sides of the pan with a wooden spoon. Do this until rice and lentil or longer
+- For *caramelized onions*, once the water evaporates from the pan remove the lid, lower heat to medium, and continuously add small amounts of water and scrape the sides of the pan with a wooden spoon. Do this until rice and lentil or longer
 
-- For *crispy onions*, once the water disappears from the pan remove the lid, lower heat to medium-low, and separate each slice of onion from each. Cook until desired crispiness and remove onions from the heat.
+- For *crispy onions*, once the water evaporates from the pan remove the lid, lower heat to medium-low, and separate each slice of onion from each. Cook until desired crispiness and remove onions from the heat.
 
 ## Step 4 (Plate the dish)
 
