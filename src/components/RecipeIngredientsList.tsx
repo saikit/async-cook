@@ -41,6 +41,7 @@ function RecipeIngredientsList() {
                     description={ingredient}
                     quantityState={quantityState}
                     groupName={group.text || ""}
+                    index={key}
                   />
                 }
             })}

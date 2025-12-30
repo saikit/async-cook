@@ -3,7 +3,7 @@ import RecipeContext from "@/context/RecipeProvider";
 import { useContext } from "react";
 
 function RecipeInstructionsList() {
-    const { stepNumber, filteredInstructions } = useContext(RecipeContext)
+    const { stepNumber, filteredInstructions, searchWords } = useContext(RecipeContext)
     const content = (
         <>
         {stepNumber === 0 
@@ -13,7 +13,7 @@ function RecipeInstructionsList() {
         <ol className='list-decimal list-outside pl-4'>
             {filteredInstructions.map((instruction, index) => (
                 <li key={`list-${index}`}>
-                <Instruction index={index} list={instruction} />
+                <Instruction searchWords={searchWords} list={instruction} />
                 </li>
             ))}
         </ol>
@@ -21,7 +21,7 @@ function RecipeInstructionsList() {
         :
         <>
         <h2 className='text-3xl mb-4'>Step {stepNumber}: {filteredInstructions[stepNumber - 1].instructions[0].title}</h2>
-        <Instruction index={stepNumber - 1} list={filteredInstructions[stepNumber - 1]}/>
+        <Instruction searchWords={searchWords} list={filteredInstructions[stepNumber - 1]}/>
         </>
         }
         </>

@@ -53,7 +53,7 @@ function NutritionalInformation() {
                 <Table className="mb-2" key={item.description}>
                     <TableHeader>
                     <TableRow>
-                        <TableHead><b>{item.description} (100g)</b></TableHead>
+                        <TableHead className="whitespace-normal"><b>{item.description} (100g)</b></TableHead>
                     </TableRow>
                     </TableHeader>
                     <TableBody>

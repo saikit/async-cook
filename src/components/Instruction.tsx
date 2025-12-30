@@ -1,8 +1,9 @@
 import { InstructionsType } from "../context/RecipeProvider"
 import RecipeNoteIcon from "./RecipeNoteIcon"
 import Markdown from "react-markdown"
+import InstructionHighlights from "./InstructionHighlight"
 
-function Instruction({ list }: { list: InstructionsType, index: number }) {
+function Instruction({ list, searchWords }: { list: InstructionsType, searchWords: Array<string[]> }) {
   const { instructions } = list
   const content = (
     <>
@@ -19,7 +20,10 @@ function Instruction({ list }: { list: InstructionsType, index: number }) {
             },
             strong(props) {
               const {children, ...rest} = props;
-              return <strong className="font-bold" {...rest}>{children}</strong>;
+              if(searchWords && searchWords.length > 0)
+                return <InstructionHighlights searchWords={searchWords} children={children}/>
+              else
+                return <strong {...rest}>{children}</strong>
             }
           }}>{`- ${instruction.text}`}</Markdown>
         )

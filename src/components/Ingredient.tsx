@@ -2,17 +2,20 @@ import { IngredientType } from "@/context/RecipeProvider";
 import RecipeNoteIcon from "./RecipeNoteIcon";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { twColors } from "@/lib/constants";
 
 const Ingredient = ({
   description,
   status,
   quantityState,
-  groupName
+  groupName,
+  index
 }: {
   description: IngredientType["description"][0];
   status: IngredientType["status"];
   quantityState: Record<string, number | "">;
-  groupName: string
+  groupName: string,
+  index: number
 }) => {
   const { name, unit, quantity, context, cooked } = description;
   const icons =
@@ -39,7 +42,7 @@ const Ingredient = ({
     strong(props: React.HTMLProps<HTMLElement>) {
       const { children, ...rest } = props;
       return (
-        <strong className="font-bold" {...rest}>
+        <strong className={`font-bold ${status === 'active' ? twColors[index] : ""}`} {...rest}>
           {children}
         </strong>
       );
