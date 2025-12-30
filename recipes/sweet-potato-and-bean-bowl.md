@@ -10,9 +10,9 @@ Combining two long cooking ingredients to form a base of a high protein and high
 - **894g** water
 - **5g** salt
 - **1g** baking soda
-
+<!---->
 - **300-400g** sweet potato (recommendation: Freeze sweet pototoes overnight before cooking to improve its texture)
-
+<!---->
 - extra virgin olive oil
 - red wine vinegar
 - black pepper

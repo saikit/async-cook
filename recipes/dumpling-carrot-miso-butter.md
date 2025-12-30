@@ -2,11 +2,11 @@
 
 ## Ingredients
 
-- Frozen Pierogie
+- Frozen Pierogies
 - Carrot
 - Mushroom
 
-- Miso
+- Miso paste
 - Butter
 - Rice wine vinegar
 - Sugar

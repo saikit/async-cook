@@ -16,7 +16,7 @@ Cooking chicken gizzards in a pressure cooker to help form a base for a Japanese
 - **15g** soy sauce
 - **15g** mirin
 - **3g** sugar
-
+<!---->
 - **15ml** neutral cooking oil
 - **3** cloves of garlic
 - **10g** ginger
