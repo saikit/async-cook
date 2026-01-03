@@ -3,7 +3,8 @@ import { createContext, useEffect, useState, useCallback, ReactElement } from 'r
 export type RecipesListType = {
   id: number,
   title: string,
-  slug: string
+  slug: string,
+  tags: Array<{equipment: {name: string, icon: string}}>,
 }
 
 type RecipesListContextType = {

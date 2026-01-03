@@ -30,6 +30,11 @@ export type RecipeNoteIconType = {
   note: string,
 }
 
+export type EquipmentType = {
+  name: string,
+  description: string
+}
+
 export type InstructionType = {
   background?: string,
   title?: string,
@@ -71,7 +76,8 @@ export type RecipeType = {
   title: string,
   intro?: string,
   reference?: string,
-  optional_ingredients?: string
+  optional_ingredients?: string,
+  tags: Array<{'equipment': EquipmentType}>
 }
 
 type OptionalType = { [key: string]: boolean } 

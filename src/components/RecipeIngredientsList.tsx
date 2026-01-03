@@ -24,11 +24,9 @@ function RecipeIngredientsList() {
           if('text' in group && group.text !== '')
           return (<h3 className="text-xl text-slate-500"><em>For the {group.text}</em>{CalculatorIcon()}</h3>);
         }
-        
         return (
           <div key={index} className="mb-3" >
           <Title/>
-          <ul className="list-none">
             {group.description.map((ingredient, key) => {
                 if (
                   (!('cooked' in ingredient) || 
@@ -45,7 +43,6 @@ function RecipeIngredientsList() {
                   />
                 }
             })}
-          </ul>
           </div>
         )
       })}

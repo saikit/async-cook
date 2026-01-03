@@ -8,6 +8,7 @@ import NutritionalInformation from './components/NutritionalInformation'
 import LoadingIcon from './components/LoadingIcon'
 import RecipeInstructionsList from './components/RecipeInstructionsList'
 import FoodDataContext from './context/FoodDataProvider'
+import RecipeEquipmentTag from './components/RecipeEquipmentTag'
 
 
 function Recipe() {
@@ -27,9 +28,10 @@ function Recipe() {
     return <LoadingIcon/>
   }
 
-  const { title, intro, reference } = recipe;
+  const { title, intro, reference, tags } = recipe;
 
   const content = (
+    <>
     <div className='p-4'>
     <h1 className="text-4xl font-bold text-center m-4">
       {title}
@@ -41,6 +43,12 @@ function Recipe() {
         {reference && (
           <Link className='text-blue-500 underline print:hidden' to={reference} target='_blank'>See original recipe</Link>
         )}
+        {tags && (
+          tags.map((tag, index) => {
+            return <RecipeEquipmentTag tag={tag} index={index} />
+          })
+        )}
+        
       </p>
     )}
     { stepNumber === 0 && (
@@ -64,6 +72,7 @@ function Recipe() {
     <RecipeInstructionsList/>
 
     </div>
+    </>
   )
 
     return content

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Dec 30, 2025 at 06:12 AM
+-- Generation Time: Jan 03, 2026 at 07:19 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.3.27
 
@@ -70,13 +70,12 @@ INSERT INTO `context` (`id`, `recipe_id`, `ingredient_id`, `instruction_id`, `ca
 (3, 1, 10, NULL, 'recommendation', 'Most types of dried pasta will work, but be sure to use a pot that will fit your dried pasta of choice easily.'),
 (4, 1, 21, NULL, 'recommendation', 'Fish sauce pairs well with tomato-based sauces.'),
 (5, 1, NULL, 2, 'alert', 'Use a small amount of baking soda prevents the shrimp from becoming mushy.'),
-(6, 0, NULL, NULL, '', ''),
 (7, 2, 37, NULL, 'recommendation', 'Any leafy green will work for this dish.'),
 (8, 2, NULL, 14, 'recommendation', 'If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.'),
-(9, 2, 43, NULL, '', 'If using seasoned soy sauce, reduce or omit the sugar.'),
-(10, 2, 47, NULL, '', 'For larger cuts of tuna, chop into smaller pieces.'),
+(9, 2, 43, NULL, 'recommendation', 'If using seasoned soy sauce, reduce or omit the sugar.'),
+(10, 2, 47, NULL, 'recommendation', 'For larger cuts of tuna, chop into smaller pieces.'),
 (11, 2, NULL, 16, 'recommendation', 'Water for blanching should be very salty.'),
-(12, 4, 60, NULL, 'recommendation', 'Freeze sweet potatoes for 3 up to three hours before cooking to improve its texture.'),
+(12, 4, 60, NULL, 'recommendation', 'Freeze sweet potatoes for 3 or more hours before cooking to improve its texture.'),
 (13, 4, 59, NULL, 'recommendation', 'Any larger long-cooking bean will work.'),
 (14, 4, 69, NULL, 'recommendation', 'Any vinegar-based hot sauce or seasoning will also work.'),
 (15, 3, 72, NULL, 'recommendation', 'Traditionally, glutinous rice is used, but any rice will work.'),
@@ -90,7 +89,51 @@ INSERT INTO `context` (`id`, `recipe_id`, `ingredient_id`, `instruction_id`, `ca
 (23, 6, NULL, 47, 'recommendation', 'Separate the leaves and the stem. Stem can be cut further to smaller pieces'),
 (30, 5, 149, NULL, 'recommendation', 'Basmati is traditionally used, but any type of rice will work'),
 (31, 5, 154, NULL, 'alert', 'Because the recipe involves making crispy onions and caramelized onions simultaneously, feel free to skip one of them'),
-(32, 5, NULL, 57, 'Explanation', 'Add just enough water to cook through the onions before it evaporates');
+(32, 5, NULL, 57, 'explanation', 'Add just enough water to cook through the onions before it evaporates');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment`
+--
+
+DROP TABLE IF EXISTS `equipment`;
+CREATE TABLE `equipment` (
+  `id` int NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`id`, `name`, `description`) VALUES
+(1, 'Electric Pressure Cooker', 'Electric pressure cookers are highly recommended, especially for places with small kitchens or even no kitchen. They can cook certain items quickly without supervision while you focus on other tasks.'),
+(2, 'Oven', 'Something as small as a toaster oven is useful. Useful for browning meats and vegetables.'),
+(3, 'Microwave', 'Microwaves are more versatile than just reheating food. Steaming root vegetables and frying small amounts of aromatics are among some of the uses.'),
+(4, '2 Burners', 'Cooking will be faster using two burners at the same time, but all recipes can be completed with only one.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `icons`
+--
+
+DROP TABLE IF EXISTS `icons`;
+CREATE TABLE `icons` (
+  `id` int NOT NULL,
+  `category` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `icons`
+--
+
+INSERT INTO `icons` (`id`, `category`) VALUES
+(2, 'alert'),
+(3, 'explanation'),
+(1, 'recommendation');
 
 -- --------------------------------------------------------
 
@@ -163,7 +206,7 @@ INSERT INTO `ingredients` (`id`, `recipe_id`, `quantity`, `unit`, `variable`, `n
 (57, 2, NULL, NULL, NULL, 'finished sauce', NULL, 1, NULL, 7, 2),
 (58, 2, NULL, NULL, NULL, 'cooked lettuce', NULL, 1, NULL, 7, 1),
 (59, 4, 225, 'g', 4, 'dried pinto beans', 747445, 0, NULL, 1, 1),
-(60, 4, 300, 'g', NULL, 'sweet potato', 2346404, 0, NULL, 2, 1),
+(60, 4, 1, NULL, NULL, 'sweet potato', 2346404, 0, NULL, 2, 1),
 (65, 4, 1, NULL, NULL, 'avocado', 2710824, 0, NULL, 3, 1),
 (66, 4, NULL, NULL, NULL, 'extra virgin olive oil', NULL, 0, NULL, 4, 3),
 (67, 4, NULL, NULL, NULL, 'red wine vinegar', NULL, 0, NULL, 4, 4),
@@ -204,8 +247,8 @@ INSERT INTO `ingredients` (`id`, `recipe_id`, `quantity`, `unit`, `variable`, `n
 (146, 6, NULL, NULL, NULL, 'minced garlic and ginger', NULL, 1, NULL, 8, 3),
 (147, 6, NULL, NULL, NULL, 'chopped bok choy', NULL, 1, NULL, 8, 4),
 (148, 6, NULL, NULL, NULL, 'stir fry sauce', NULL, 1, NULL, 8, 5),
-(149, 5, 150, 'g', 1, 'rice', 2512381, 0, NULL, 1, 1),
-(150, 5, 150, 'g', 2, 'brown or green lentils', 2644283, 0, NULL, 1, 2),
+(149, 5, 150, 'g', 1, 'rice', 2512381, 0, NULL, 1, 2),
+(150, 5, 150, 'g', 2, 'brown or green lentils', 2644283, 0, NULL, 1, 1),
 (151, 5, 448, 'g', 0, 'water', NULL, 0, NULL, 1, 3),
 (152, 5, 2, 'g', -1, 'salt', NULL, 0, NULL, 1, 4),
 (154, 5, 2, NULL, NULL, 'onions', 790646, 0, NULL, 2, 1),
@@ -345,7 +388,7 @@ INSERT INTO `instructions` (`id`, `recipe_id`, `step`, `title`, `text`, `backgro
 (51, 6, 8, '', 'Set gizzards aside in pan and add **minced garlic and ginger** and cook until aromatic', NULL, NULL, 2),
 (52, 6, 8, '', 'Add **bok choy** and cook until leaves and stems are wilted', NULL, NULL, 3),
 (53, 6, 8, '', 'Add **stir fry sauce** and cook for another **30 seconds**', NULL, NULL, 4),
-(54, 5, 1, 'Prep and cook rice and lentils', 'Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. Cook in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.\r\n\r\n', NULL, NULL, 1),
+(54, 5, 1, 'Prep and cook rice and lentils', 'Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. Cook in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.\n\n', NULL, NULL, 1),
 (55, 5, 2, 'Chop onions and aromatics', 'For the *caramelized onions*, peel and dice one of the **onions**.', NULL, NULL, 1),
 (56, 5, 2, '', 'For the *crispy onions*, peel and cut the other onion into thin slices.', NULL, NULL, 2),
 (57, 5, 3, 'Steam and cook onions', 'Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**.', 'Two pans are active', NULL, 1),
@@ -376,8 +419,8 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`id`, `slug`, `category`, `title`, `intro`, `reference`, `published`) VALUES
-(1, 'pasta', '', 'Roasted Tomato & Garlic Pasta', 'My spin on a recipe inspired by Kenji Lopez-Alt\'s quick fresh tomato pasta. Roasting the tomatoes in the oven adds additional flavor with less mess.', 'https://www.seriouseats.com/fast-easy-pasta-blistered-cherry-tomato-sauce-recipe', 1),
-(2, 'lettuce', '', 'Boiled Lettuce with Garlic & Oyster Sauce', 'Based on Lucas Sin\'s recipe of the same name, I added can of tuna in order to make the dish a more complete meal and to help thicken the sauce. Serve with white rice.', 'https://food52.com/recipes/90179-chinese-style-lettuce-with-garlic-and-oyster-sauce', 1),
+(1, 'tomato-garlic-pasta', '', 'Roasted Tomato & Garlic Pasta', 'My spin on a recipe inspired by Kenji Lopez-Alt\'s quick fresh tomato pasta. Roasting the tomatoes in the oven adds additional flavor with less mess.', 'https://www.seriouseats.com/fast-easy-pasta-blistered-cherry-tomato-sauce-recipe', 1),
+(2, 'tuna-oyster-sauce-lettuce', '', 'Boiled Lettuce with Garlic & Oyster Sauce', 'Based on Lucas Sin\'s recipe of the same name, I added can of tuna in order to make the dish a more complete meal and to help thicken the sauce. Serve with white rice.', 'https://food52.com/recipes/90179-chinese-style-lettuce-with-garlic-and-oyster-sauce', 1),
 (3, 'weekday-rice-mungbean', 'Rice and Pulses', 'Weekday Rice & Mung Bean', 'This is a reimagined version of a Cantonese zongzi. This version highlights the benefits of eating pulses like mung beans to reach macronutrient goals.', 'https://www.madewithlau.com/recipes/bamboo-sticky-rice', 1),
 (4, 'bean-sweet-potato', 'Rice and Pulses', 'Sweet Potato & Pinto Bean Bowl', 'Combining two long cooking ingredients to form a base of a high protein and highly customizable meal.', NULL, 1),
 (5, 'weekday-rice-lentils', 'Rice and Pulses', 'Weekday Rice & Lentils', 'A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the rice and lentils are done cooking, though it does require attention of two separate pans at the stove.\n', 'https://feelgoodfoodie.net/recipe/mujadara/\r\n', 0),
@@ -438,6 +481,33 @@ INSERT INTO `steps` (`id`, `recipe_id`, `step`) VALUES
 (37, 5, 3),
 (38, 5, 4);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags` (
+  `id` int NOT NULL,
+  `recipe_id` int NOT NULL,
+  `name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `recipe_id`, `name`) VALUES
+(1, 1, 'Oven'),
+(2, 2, '2 Burners'),
+(3, 3, 'Electric Pressure Cooker'),
+(4, 4, 'Oven'),
+(5, 4, 'Electric Pressure Cooker'),
+(6, 5, 'Electric Pressure Cooker'),
+(7, 5, '2 Burners'),
+(8, 6, 'Electric Pressure Cooker');
+
 --
 -- Indexes for dumped tables
 --
@@ -446,31 +516,55 @@ INSERT INTO `steps` (`id`, `recipe_id`, `step`) VALUES
 -- Indexes for table `calculator`
 --
 ALTER TABLE `calculator`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_calculator_ingredient_group_id` (`ingredient_group_id`),
+  ADD KEY `fk_calculator_recipe_id` (`recipe_id`);
 
 --
 -- Indexes for table `context`
 --
 ALTER TABLE `context`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_context_ingredient_id` (`ingredient_id`),
+  ADD KEY `fk_context_instruction_id` (`instruction_id`),
+  ADD KEY `fk_context_recipe_id` (`recipe_id`),
+  ADD KEY `fk_context_icon_category` (`category`);
+
+--
+-- Indexes for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `name_2` (`name`);
+
+--
+-- Indexes for table `icons`
+--
+ALTER TABLE `icons`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `category` (`category`);
 
 --
 -- Indexes for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_ingredients_recipe_id` (`recipe_id`);
 
 --
 -- Indexes for table `ingredient_groups`
 --
 ALTER TABLE `ingredient_groups`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_ingedient_groups_recipe_id` (`recipe_id`);
 
 --
 -- Indexes for table `instructions`
 --
 ALTER TABLE `instructions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_instructions_recipe_id` (`recipe_id`);
 
 --
 -- Indexes for table `recipes`
@@ -483,7 +577,16 @@ ALTER TABLE `recipes`
 -- Indexes for table `steps`
 --
 ALTER TABLE `steps`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_steps_recipe_id` (`recipe_id`);
+
+--
+-- Indexes for table `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_tag_recipe_id` (`recipe_id`),
+  ADD KEY `fk_tag_equipment_name` (`name`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -500,6 +603,18 @@ ALTER TABLE `calculator`
 --
 ALTER TABLE `context`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `equipment`
+--
+ALTER TABLE `equipment`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `icons`
+--
+ALTER TABLE `icons`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ingredients`
@@ -530,6 +645,63 @@ ALTER TABLE `recipes`
 --
 ALTER TABLE `steps`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `calculator`
+--
+ALTER TABLE `calculator`
+  ADD CONSTRAINT `fk_calculator_ingredient_group_id` FOREIGN KEY (`ingredient_group_id`) REFERENCES `ingredient_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_calculator_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `context`
+--
+ALTER TABLE `context`
+  ADD CONSTRAINT `fk_context_icon_category` FOREIGN KEY (`category`) REFERENCES `icons` (`category`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_context_ingredient_id` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_context_instruction_id` FOREIGN KEY (`instruction_id`) REFERENCES `instructions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_context_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  ADD CONSTRAINT `fk_ingredients_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `ingredient_groups`
+--
+ALTER TABLE `ingredient_groups`
+  ADD CONSTRAINT `fk_ingedient_groups_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `instructions`
+--
+ALTER TABLE `instructions`
+  ADD CONSTRAINT `fk_instructions_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `steps`
+--
+ALTER TABLE `steps`
+  ADD CONSTRAINT `fk_steps_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `tags`
+--
+ALTER TABLE `tags`
+  ADD CONSTRAINT `fk_tag_equipment_name` FOREIGN KEY (`name`) REFERENCES `equipment` (`name`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_tag_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

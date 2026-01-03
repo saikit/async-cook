@@ -33,7 +33,7 @@ const Ingredient = ({
     li(props: React.HTMLProps<HTMLLIElement>) {
       const { children, ...rest } = props;
       return (
-        <li className={`mb-0.5 ${includeCooked && "text-slate-500"} ${status}`} {...rest}>
+        <li className={`mb-1 ${includeCooked && "text-slate-500"} ${status}`} {...rest}>
           {children}
           {includeIcons && icons}
         </li>
