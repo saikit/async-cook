@@ -17,7 +17,7 @@ function RecipeFooter () {
                 onClick={() => setStepNumber(stepNumber - 1)}
                 disabled={stepNumber > 1 ? false : true}
                 >Previous Step</Button>
-                <Button className='border bg-slate-800' onClick={() => setStepNumber(0)}>Reset</Button>
+                <Button className='border bg-slate-800' onClick={() => setStepNumber(0)}>{stepNumber === maxStep ? "Done!" : "Restart"}</Button>
                 <Button className='border bg-slate-800 disabled:opacity-50'
                 onClick={() => setStepNumber(stepNumber + 1)}
                 disabled={maxStep === stepNumber ? true : false}
