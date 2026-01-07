@@ -1,4 +1,4 @@
-# Pierogie and carrot in miso butter
+# Pierogie and carrot in miso butter (in development)
 
 ## Ingredients
 

@@ -15,17 +15,11 @@ A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the
 - **2** onions (Alert: Because the recipe involves making crispy onions and caramelized onions simultaneously, feel free to skip one of them)
 - **1** scallion *(optional)*
 <!---->
-- sliced onions
-- diced onions
 - extra virgin olive oil
 - salt
 - water
 <!---->
 - **2g** cumin seeds
-- sliced scallions
-- caramelized onions
-- rice and lentils
-- onion-infused oil
 <!---->
 ## Step 1 — Prep and cook rice and lentils
 

@@ -16,9 +16,7 @@ This is a reimagined version of a Cantonese zongzi. This version highlights the 
 <!---->
 - **80g** Chinese sausage (Recommendation: Other cured or preserved meats such as bacon works as well.)
 <!---->
-- rice and mung beans mixture
 <!---->
-- cooked rice and beans
 - **15g** lard or butter *(optional)* (Recommendation: Any flavored oils and fats will work.)
 <!---->
 ## Step 1 — Prep mung beans and rice

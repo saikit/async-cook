@@ -108,20 +108,21 @@ function buildMarkdown(recipe) {
         }
 
         ingredients.forEach(ing => {
-          let ingLine = '- ';
-          
-          // Add quantity and unit
-          if (ing.quantity !== null && ing.quantity !== undefined) {
-            ingLine += `**${ing.quantity}`;
-            if (ing.unit) ingLine += ing.unit;
-            ingLine += '** ';
-          }
-          
-          // Add ingredient name
-          ingLine += ing.name;
-          if(ing.optional) {
-            ingLine += ' *(optional)*';
-          }
+          if(!ing.cooked) {
+            let ingLine = '- ';
+            
+            // Add quantity and unit
+            if (ing.quantity !== null && ing.quantity !== undefined) {
+              ingLine += `**${ing.quantity}`;
+              if (ing.unit) ingLine += ing.unit;
+              ingLine += '** ';
+            }
+            
+            // Add ingredient name
+            ingLine += ing.name;
+            if(ing.optional) {
+              ingLine += ' *(optional)*';
+            }
 
           // Add context (recommendation, alert, explanation)
           if (ing.context && ing.context.length > 0) {
@@ -132,7 +133,9 @@ function buildMarkdown(recipe) {
           }
 
           md += ingLine + '\n';
+        }
         });
+        
 
         md += '<!---->\n';
       }

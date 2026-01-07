@@ -15,14 +15,11 @@ Combining two long cooking ingredients to form a base of a high protein and high
 <!---->
 - **1** avocado
 <!---->
-- cooked beans
-- roasted sweet potatoes
 - extra virgin olive oil
 - red wine vinegar
 - black pepper
 - Tajín seasoning *(optional)* (Recommendation: Any vinegar-based hot sauce or seasoning will also work.)
 <!---->
-- sliced avocado
 <!---->
 ## Step 1 — Cook the beans
 

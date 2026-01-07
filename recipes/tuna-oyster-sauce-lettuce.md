@@ -27,16 +27,9 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 - **10g** salt
 <!---->
 - **10g** neutral cooking oil
-- minced garlic
-- chopped scallion
 - red pepper flakes
-- combined sauce
-- cornstarch slurry
 <!---->
-- chopped lettuce
 <!---->
-- cooked lettuce
-- finished sauce
 <!---->
 ## Step 1 — Cut lettuce & aromatics
 

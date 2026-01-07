@@ -27,21 +27,16 @@ My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roas
 - **600ml** water
 - salt (Recommendation: Use just enough to season pasta if you plan to use the pasta water.)
 <!---->
-- seasoned shrimp
 <!---->
 - dried basil (Recommendation: If using fresh basil, chop into smaller pieces.)
 - red pepper flakes
-- cooked pasta
-- cooked pasta water
 - **20g** grated Parmesan cheese
 - black pepper
 - extra virgin olive oil
 - salt or fish sauce (Recommendation: Fish sauce pairs well with tomato-based sauces.)
-- cooked shrimp *(optional)*
 <!---->
 - grated Parmesan cheese *(for serving)*
 - extra virgin olive oil *(for serving)*
-- sliced mozzarella *(optional)*
 <!---->
 ## Step 1 — Prep and roast tomatoes & garlic
 
