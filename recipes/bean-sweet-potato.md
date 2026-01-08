@@ -21,6 +21,8 @@ Combining two long cooking ingredients to form a base of a high protein and high
 - Tajín seasoning *(optional)* (Recommendation: Any vinegar-based hot sauce or seasoning will also work.)
 <!---->
 <!---->
+## Instructions
+
 ## Step 1 — Cook the beans
 
 Rinse **beans** and then combine with **salt**, **baking soda**, and **water** in an electric pressure cooker. Set pressure cooker to high pressure for 50 minutes. Let the pressure release naturally.

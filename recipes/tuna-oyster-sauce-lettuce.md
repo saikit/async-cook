@@ -31,11 +31,11 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 <!---->
 <!---->
 <!---->
+## Instructions
+
 ## Step 1 — Cut lettuce & aromatics
 
-Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**.
-
-Recommendation: *If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.*
+Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (Recommendation: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.)
 
 ## Step 2 — Make the sauce
 
@@ -47,9 +47,7 @@ Combine **cornstarch** and **water** in a separate bowl. Mix well.
 
 ## Step 4 — Boil water
 
-In a pot, bring the **water** to a boil and add **salt**.
-
-Recommendation: *Water for blanching should be very salty.*
+In a pot, bring the **water** to a boil and add **salt**. (Recommendation: Water for blanching should be very salty.)
 
 ## Step 5 — Cook sauce
 

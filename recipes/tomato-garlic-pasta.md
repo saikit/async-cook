@@ -38,19 +38,17 @@ My spin on a recipe inspired by Kenji Lopez-Alt's quick fresh tomato pasta. Roas
 - grated Parmesan cheese *(for serving)*
 - extra virgin olive oil *(for serving)*
 <!---->
+## Instructions
+
 ## Step 1 — Prep and roast tomatoes & garlic
 
-Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **black pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast in an oven at **450&deg;F** for **25-30 minutes**.
-
-Explanation: *Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding.*
+Wash and cut **cherry tomatoes** in half. Toss tomatoes in bowl with **olive oil**, **salt**, and **black pepper**. Place tomatoes and **garlic** on a parchment-lined baking sheet flesh side up and in a single layer. Roast in an oven at **450&deg;F** for **25-30 minutes**. (Explanation: Parchment paper is non-stick. Putting tomatoes flesh side up prevents the tomato skins from burning. Single layer prevents crowding.)
 
 ## Step 2 — Season shrimp *(optional)*
 
 Background: *Tomatoes and garlic are in the oven.*
 
-Season **raw shrimp** with **salt** and a pinch of **baking soda**.
-
-Alert: *Use a small amount of baking soda prevents the shrimp from becoming mushy.*
+Season **raw shrimp** with **salt** and a pinch of **baking soda**. (Alert: Use a small amount of baking soda prevents the shrimp from becoming mushy.)
 
 ## Step 3 — Prep mozzarella *(optional)*
 

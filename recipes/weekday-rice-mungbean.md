@@ -19,6 +19,8 @@ This is a reimagined version of a Cantonese zongzi. This version highlights the 
 <!---->
 - **15g** lard or butter *(optional)* (Recommendation: Any flavored oils and fats will work.)
 <!---->
+## Instructions
+
 ## Step 1 — Prep mung beans and rice
 
 Combine and wash **mung beans** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **soy sauce** and add to rice cooker or pressure cooker.

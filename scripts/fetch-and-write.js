@@ -142,6 +142,9 @@ function buildMarkdown(recipe) {
     }
 
     // Write Instructions section
+
+    md += '## Instructions\n\n';
+
     if (Object.keys(instructionsByStep).length > 0) {
       const sortedSteps = Object.keys(instructionsByStep)
         .map(Number)
@@ -156,14 +159,17 @@ function buildMarkdown(recipe) {
           if (instr.background) {
             md += `Background: *${instr.background}*\n\n`;
           }
-          
-          md += instr.text + '\n\n';
 
+          let contextStr = '';
           if (instr.context && instr.context.length > 0) {
             instr.context.forEach(ctx => {
-              md += `${capitalize(ctx.category)}: *${ctx.note}*\n\n`;
+              contextStr += ` (${capitalize(ctx.category)}: ${ctx.note})`;
             });
           }
+          
+          md += `${instr.text}${contextStr}\n\n`;
+
+          
         });
       });
     }

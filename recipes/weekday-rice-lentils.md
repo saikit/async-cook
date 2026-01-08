@@ -21,6 +21,8 @@ A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the
 <!---->
 - **2g** cumin seeds
 <!---->
+## Instructions
+
 ## Step 1 — Prep and cook rice and lentils
 
 Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. Cook in electric pressure cooker for **15 minutes** on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.
@@ -37,9 +39,7 @@ Slice **scallions** if using
 
 Background: *Two pans are active*
 
-Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**.
-
-Explanation: *Add just enough water to cook through the onions before it evaporates*
+Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**. (Explanation: Add just enough water to cook through the onions before it evaporates)
 
 For *caramelized onions*, once water evaporates from the pan remove the lid, **lower heat to medium** and **add a small amount of water and deglaze** the pan. Repeat the process until onions reach desired sweetness.
 

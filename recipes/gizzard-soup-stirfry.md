@@ -27,6 +27,8 @@ Cooking chicken gizzards in a pressure cooker to help form a base for a Japanese
 <!---->
 - neutral cooking oil
 <!---->
+## Instructions
+
 ## Step 1 — Prep radish & carrots
 
 Chop **daikon radish** and **carrots** into small bite-sized pieces.
@@ -45,9 +47,7 @@ Combine **gochujang**, **soy sauce**, **mirin**, and **sugar** in a bowl and set
 
 ## Step 5 — Prep bok choy
 
-Wash **bok choy** and cut into bite sized pieces.
-
-Recommendation: *Separate the leaves and the stem. Stem can be cut further to smaller pieces*
+Wash **bok choy** and cut into bite sized pieces. (Recommendation: Separate the leaves and the stem. Stem can be cut further to smaller pieces)
 
 ## Step 6 — Prepare garlic & ginger
 
