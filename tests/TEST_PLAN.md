@@ -1,12 +1,13 @@
 # Async Cook - E2E Test Plan
 
-**Target Environment:** http://localhost:5174/  
+**Target Environment:** <http://localhost:5174/>
 **Test Framework:** Playwright  
 **Date Created:** January 12, 2026
 
 ---
 
 ## Table of Contents
+
 1. [Test Scope](#test-scope)
 2. [Pre-Test Setup](#pre-test-setup)
 3. [Critical User Journeys](#critical-user-journeys)
@@ -20,6 +21,7 @@
 ## Test Scope
 
 ### In Scope
+
 - Homepage and recipe list display
 - Recipe detail page navigation and content rendering
 - Ingredient selection and status tracking
@@ -32,6 +34,7 @@
 - Cross-browser compatibility (Chrome, Firefox, Safari)
 
 ### Out of Scope
+
 - Backend API testing (assumed working)
 - Database testing
 - Authentication/user accounts (single user app)
@@ -43,12 +46,14 @@
 ## Pre-Test Setup
 
 ### Prerequisites
+
 1. Node.js and npm installed
 2. Playwright installed: `npm init playwright@latest`
 3. Development server running: `npm run dev`
 4. App accessible at http://localhost:5174/
 
 ### Test Data
+
 - Sample recipes available in `/recipes` directory
 - All recipes fully loaded and accessible
 
@@ -57,9 +62,11 @@
 ## Critical User Journeys
 
 ### Journey 1: Discover and View a Recipe
+
 **User Goal:** Find and view a recipe without any modifications
 
 **Steps:**
+
 1. Load homepage
 2. View recipe list
 3. Click on a recipe card
@@ -70,9 +77,11 @@
 ---
 
 ### Journey 2: Cook Through a Recipe (Basic)
+
 **User Goal:** Follow a recipe from start to finish without modifications
 
 **Steps:**
+
 1. Load recipe detail page
 2. Check off ingredients as used
 3. Progress through each instruction step
@@ -84,9 +93,11 @@
 ---
 
 ### Journey 3: Customize Recipe with Optional Ingredients
+
 **User Goal:** Enable/disable optional ingredients and see updated instructions
 
 **Steps:**
+
 1. Load recipe with optional ingredients
 2. Toggle optional ingredient on/off
 3. Verify instructions update accordingly
@@ -98,9 +109,11 @@
 ---
 
 ### Journey 4: Scale Recipe Ingredients
+
 **User Goal:** Adjust ingredient quantities using calculator
 
 **Steps:**
+
 1. Load recipe with calculator
 2. Adjust serving size or ingredient ratio
 3. Verify all ingredients scale proportionally
@@ -116,36 +129,35 @@
 ### Test Category 1: Homepage & Navigation
 
 #### TC-1.1: Homepage Loads
+
 - **Steps:** Navigate to http://localhost:5174/
 - **Expected:** Homepage displays without errors
 - **Verify:** Page title contains "Async Cook", recipe list visible
 - **Browsers:** Chrome, Firefox, Safari
 
 #### TC-1.2: Recipe List Displays
+
 - **Steps:** On homepage, observe recipe list
 - **Expected:** All recipes from `/recipes` directory display
 - **Verify:** Each recipe has title, description, clickable card
 - **Pass Criteria:** ≥ 6 recipes visible (bean-sweet-potato, dumpling-carrot, etc.)
 
 #### TC-1.3: Navigate to Recipe Detail
+
 - **Steps:** Click first recipe card on homepage
 - **Expected:** Navigate to recipe detail page
 - **Verify:** URL changes, recipe title displays, content loads
 - **Pass Criteria:** No console errors, page loads in < 2 seconds
 
-#### TC-1.4: Home Link Navigation
-- **Steps:** From recipe detail, click home link
-- **Expected:** Return to homepage
-- **Verify:** URL returns to `/`, recipe list visible
-- **Pass Criteria:** Navigation smooth, no white flash or lag
+#### TC-1.4: Browser Back Button
 
-#### TC-1.5: Browser Back Button
 - **Steps:** From recipe detail, click browser back button
 - **Expected:** Return to homepage
 - **Verify:** URL and content match expected homepage state
 - **Pass Criteria:** Back button works as expected
 
 #### TC-1.6: Navigate Between Multiple Recipes
+
 - **Steps:** View recipe A → Home → View recipe B → Home → View recipe C
 - **Expected:** Each navigation loads correct recipe content
 - **Verify:** No state mixing (recipe A content visible when viewing recipe B)

@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+const API_URL = process.env.VITE_API_URL;
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
 });
@@ -12,7 +14,7 @@ test('has title', async ({ page }) => {
 
   
 test('has recipe list', async ({ page, request }) => {
-  const apiResponse = await request.get('http://localhost/api/recipes/');
+  const apiResponse = await request.get(`${API_URL}/recipes/`);
   await expect(apiResponse).toBeOK();
   const recipes = await apiResponse.json();
   const recipeLength = recipes.data.length;

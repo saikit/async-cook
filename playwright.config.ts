@@ -1,4 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
+import { loadEnv } from 'vite';
+
+// Load all env files from the current working directory
+// Pass '' for the mode to load all generic .env and .env.local files
+const env = loadEnv('', process.cwd(), '');
+
+// Assign the loaded environment variables to process.env
+Object.assign(process.env, env);
 
 /**
  * Read environment variables from file.
