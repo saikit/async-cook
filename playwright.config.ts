@@ -8,6 +8,12 @@ const env = loadEnv('', process.cwd(), '');
 // Assign the loaded environment variables to process.env
 Object.assign(process.env, env);
 
+// Sensible defaults so page.goto('/') doesn't fail when env vars are missing in CI.
+const DEFAULT_BASE = 'http://localhost:5174';
+process.env.VITE_BASE_URL = process.env.VITE_BASE_URL || DEFAULT_BASE;
+// Default API URL to the same origin unless explicitly provided.
+process.env.VITE_API_URL = process.env.VITE_API_URL || 'http://cooking.saikithui.com/api';
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -30,7 +36,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }], ['list']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
