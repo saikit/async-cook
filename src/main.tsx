@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path='/'>
                 <Route index element={<Index />} />
-                <Route path='/:slug/:step?' element={<App />} />
+                <Route path='/recipe/:slug/:step?' element={<App />} />
                 <Route path='/not-found' element={<NotFound />} />
             </Route>
         </Routes>

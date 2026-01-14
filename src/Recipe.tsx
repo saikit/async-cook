@@ -20,15 +20,17 @@ function Recipe() {
         viewportRef.current?.querySelector('[data-radix-scroll-area-viewport]')?.scrollTo({top: 0})
     }
 
-    useEffect(() => {
+  useEffect(() => {
       scrollToTop()
     }, [stepNumber])
+
 
   if (!recipe) {
     return <LoadingIcon/>
   }
 
   const { title, intro, reference, tags } = recipe;
+  
 
   const content = (
     <>

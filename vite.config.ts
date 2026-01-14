@@ -18,7 +18,9 @@ export default defineConfig({
   server: {
     watch: {
       ignored: [
-        '**/recipes/**'
+        '**/recipes/**',
+        '**/scripts/**',
+        '**/tests/**'
       ]
     }
   }

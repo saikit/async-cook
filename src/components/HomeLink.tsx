@@ -38,25 +38,25 @@ function HomeLink() {
       </SheetTrigger>
       <SheetContent side="top" aria-describedby="Recipe List">
         <SheetHeader>
-          <SheetTitle className="text-xl mb-2 font-bold uppercase">
+          <SheetTitle className="text-xl font-bold uppercase text-center">
             Recipe List
           </SheetTitle>
           <SheetDescription></SheetDescription>
-          <ol className="list-decimal pl-4 text-gray-900">
+          <ul className="text-gray-900 text-center">
             {recipesList.map((recipe) => (
-              <li className="underline" key={recipe.slug}>
+              <li className="underline mb-1" key={recipe.slug}>
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? "text-gray-900" : "text-gray-600"
                   }
-                  to={`/${recipe.slug}`}
-                  onClick={(e) => handleClick(e, `/${recipe.slug}`)}
+                  to={`/recipe/${recipe.slug}`}
+                  onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
                 >
                   {recipe.title}
                 </NavLink>
               </li>
             ))}
-          </ol>
+          </ul>
         </SheetHeader>
       </SheetContent>
     </Sheet>

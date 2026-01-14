@@ -17,7 +17,7 @@ function RecipeFooter () {
                 onClick={() => setStepNumber(stepNumber - 1)}
                 disabled={stepNumber > 1 ? false : true}
                 >Previous Step</Button>
-                <Button className='border bg-slate-800' onClick={() => setStepNumber(0)}>{stepNumber === maxStep ? "Done!" : "Restart"}</Button>
+                <Button className={`border ${stepNumber === maxStep ? 'bg-green-500' : 'slate-800'}`} onClick={() => setStepNumber(0)}>{stepNumber === maxStep ? "Done!" : "Restart"}</Button>
                 <Button className='border bg-slate-800 disabled:opacity-50'
                 onClick={() => setStepNumber(stepNumber + 1)}
                 disabled={maxStep === stepNumber ? true : false}
@@ -25,7 +25,7 @@ function RecipeFooter () {
                 </>
                 }
             </div>
-            <p className="text-center text-sm py-2">This recipe and app is hand-crafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Sai-Kit Hui</a></p>
+            <p className="text-center text-sm pt-4">This recipe and app is handcrafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Sai-Kit Hui</a></p>
         </div>
     )
 

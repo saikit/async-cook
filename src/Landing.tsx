@@ -16,7 +16,7 @@ function Landing() {
           {!recipesList &&(
           <EggFried className="animate-spin w-12 h-12 text-slate-800" />)}
           {recipesList.map(recipe => <li className='underline' key={recipe.slug}>
-            <Link className='text-gray-900' to={`/${recipe.slug}`}>{recipe.title}</Link></li>
+            <Link className='text-gray-900' to={`/recipe/${recipe.slug}`}>{recipe.title}</Link></li>
           )}
         </ol>
     </div>
