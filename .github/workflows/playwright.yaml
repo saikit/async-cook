@@ -8,6 +8,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: ${{ vars.BASE_URL }}
+      API_URL: ${{ vars.API_URL }}
+      API_KEY: ${{ secrets.DATA_GOV_KEY }}
     steps:
     - uses: actions/checkout@v5
     - uses: actions/setup-node@v5
