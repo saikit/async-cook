@@ -8,12 +8,6 @@ const env = loadEnv('', process.cwd(), '');
 // Assign the loaded environment variables to process.env
 Object.assign(process.env, env);
 
-// Sensible defaults so page.goto('/') doesn't fail when env vars are missing in CI.
-const DEFAULT_BASE = 'http://localhost:5174';
-process.env.VITE_BASE_URL = process.env.VITE_BASE_URL || DEFAULT_BASE;
-// Default API URL to the same origin unless explicitly provided.
-process.env.VITE_API_URL = process.env.VITE_API_URL || 'http://cooking.saikithui.com/api';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -35,49 +29,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. Seimport { defineConfig, devices } from '@playwright/test';
-import { loadEnv } from 'vite';
-
-// Load Vite env files (e.g., .env, .env.local) so tests can read the same env vars used by the app.
-const env = loadEnv('', process.cwd(), '');
-Object.assign(process.env, env);
-
-// Default to port 5174 so page.goto('/') resolves in CI and locally when env is not set.
-const DEFAULT_BASE = 'http://localhost:5174';
-process.env.VITE_BASE_URL = process.env.VITE_BASE_URL || DEFAULT_BASE;
-process.env.VITE_API_URL = process.env.VITE_API_URL || process.env.VITE_BASE_URL;
-
-export default defineConfig({
-  testDir: './tests',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-
-  reporter: [['html', { open: 'never' }], ['list']],
-
-  use: {
-    baseURL: process.env.VITE_BASE_URL,
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-  },
-
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-  ],
-
-  webServer: {
-    // Ensure Vite binds to the network interface in CI and uses port 5174
-    command: 'npm run dev -- --host --port 5174',
-    url: process.env.VITE_BASE_URL,
-    reuseExistingServer: !process.env.CI,
-    // Increase timeout if the dev server needs extra time to build
-    timeout: 240 * 1000, // 4 minutes
-  },
-});e https://playwright.dev/docs/test-reporters */
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html', { open: 'never' }], ['list']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -95,26 +47,26 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // Uncomment to test on mobile devices
-     {
-       name: 'Mobile Chrome',
-       use: { ...devices['Pixel 5'] },
-     },
-     {
-      name: 'Mobile Safari',
-       use: { ...devices['iPhone 12'] },
-    },
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
 
     /* Test against branded browsers. */
     // {
@@ -129,7 +81,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev -- --host --port 5174',
+    command: 'npm run dev',
     url: process.env.VITE_BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

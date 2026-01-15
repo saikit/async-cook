@@ -15,6 +15,7 @@ test('has title', async ({ page }) => {
   
 test('has recipe list', async ({ page, request }) => {
   const apiResponse = await request.get(`${API_URL}/recipes/`);
+  console.log('status', API_URL);
   await expect(apiResponse).toBeOK();
   const recipes = await apiResponse.json();
   const recipeLength = recipes.data.length;
