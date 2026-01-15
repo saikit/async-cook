@@ -81,7 +81,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? 'npm run build && npm run preview' : 'npm run dev',
+    command: 'npm run dev -- --host 0.0.0.0 --port 5174',
     url: process.env.VITE_BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
