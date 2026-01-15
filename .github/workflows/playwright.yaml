@@ -1,54 +1,33 @@
-# Save this as .github/workflows/playwright.yml
+name: Playwright Tests
 on:
   push:
+    branches: [ main, master ]
   pull_request:
-
-name: Playwright tests
-
+    branches: [ main, master ]
 jobs:
   test:
-    runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      CI: true
-      # Force the base & API URL to use port 5174 in CI
-      VITE_BASE_URL: "http://localhost:5174"
-      VITE_API_URL:  "http://cooking.saikithui.com/api"
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers and deps
-        run: npx playwright install --with-deps
-
-      - name: Wait for dev server to be ready
-        run: |
-          echo "Waiting for http://localhost:5174 to respond..."
-          for i in {1..60}; do
-            if curl -sSf http://localhost:5174 >/dev/null; then
-              echo "dev server is up"
-              break
-            fi
-            echo "waiting for server... ($i)"
-            sleep 2
-          done
-
-      - name: Run Playwright tests
-        run: npx playwright test --reporter=list
-
-      - name: Upload Playwright report
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+      env:
+        CI: true
+        VITE_BASE_URL: ${{ vars.BASE_URL }}
+        VITE_API_URL: ${{ vars.API_URL }}
+        BASE_URL: ${{ vars.BASE_URL }}
+        API_URL: ${{ vars.API_URL }}
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
