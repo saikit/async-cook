@@ -30,12 +30,6 @@ jobs:
       - name: Install Playwright browsers and deps
         run: npx playwright install --with-deps
 
-      - name: Start dev server in background (for debugging)
-        # Playwright webServer will also attempt to start the server; this step is optional.
-        # Use it if you prefer to start the server explicitly in the workflow.
-        run: |
-          npm run dev -- --host --port 5174 &
-
       - name: Wait for dev server to be ready
         run: |
           echo "Waiting for http://localhost:5174 to respond..."
