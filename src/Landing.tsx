@@ -8,6 +8,8 @@ function Landing() {
     const { recipesList } = context
 
     const content = (
+    <>
+    <title>The Async Cook - Recipes and App hand-crafted by Sai-Kit Hui</title>
     <div className='p-4'>
         <h1 className="font-bold text-4xl mb-4 text-center">The Async Cook</h1>
         <h2 className='text-xl mb-4'>Async Cook is an App for mobile devices and tablets and a cookbook for home cooks with easy-to-follow recipes. App and recipes developed by <Link className='underline text-blue-500 whitespace-nowrap' to="http://saikithui.com" target='_blank'>Sai-Kit Hui</Link></h2>
@@ -20,6 +22,7 @@ function Landing() {
           )}
         </ol>
     </div>
+    </>
     )
 
     return content

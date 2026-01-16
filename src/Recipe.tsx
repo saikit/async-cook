@@ -20,7 +20,7 @@ function Recipe() {
         viewportRef.current?.querySelector('[data-radix-scroll-area-viewport]')?.scrollTo({top: 0})
     }
 
-  useEffect(() => {
+useEffect(() => {
       scrollToTop()
     }, [stepNumber])
 
@@ -30,9 +30,9 @@ function Recipe() {
   }
 
   const { title, intro, reference, tags } = recipe;
-  
 
-  const content = (
+
+return (
     <>
     <div className='p-4'>
     <h1 className="text-4xl font-bold text-center m-4">
@@ -76,8 +76,6 @@ function Recipe() {
     </div>
     </>
   )
-
-    return content
 }
 
 export default Recipe

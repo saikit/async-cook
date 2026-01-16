@@ -12,7 +12,7 @@ import { twNeutralColors } from "@/lib/constants"
 function RecipeEquipmentTag({ tag, index } : { tag : {'equipment': EquipmentType}, index?: number}) {
     const { equipment } = tag
     return (
-        <Popover>
+        <Popover key={equipment.name}>
             <PopoverTrigger className="align-top mx-1 print:hidden" title={equipment.name}><Badge className={twNeutralColors[index || 0]} variant="secondary">{equipment.name}</Badge></PopoverTrigger>
             <PopoverContent><p>{equipment.description}</p></PopoverContent>
         </Popover>

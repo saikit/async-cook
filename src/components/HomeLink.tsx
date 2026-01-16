@@ -17,7 +17,7 @@ import {
 function HomeLink() {
   const [open, setOpen] = useState(false);
   const { recipesList } = useContext(RecipesListContext);
-  const { setStepNumber } = useContext(RecipeContext);
+  const { setStepNumber, recipe } = useContext(RecipeContext);
   const location = useLocation();
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>, path: string) {
@@ -30,6 +30,8 @@ function HomeLink() {
   }
 
   return (
+    <>
+    <title>{recipe ? `${recipe.title} - The Async Cook` : 'The Async Cook'}</title>
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button className=" rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex justify-center print:hidden">
@@ -60,6 +62,7 @@ function HomeLink() {
         </SheetHeader>
       </SheetContent>
     </Sheet>
+    </>
   );
 }
 
