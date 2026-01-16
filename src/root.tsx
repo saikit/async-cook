@@ -7,6 +7,7 @@ import {
 } from "react-router";
 
 import './index.css'
+import LoadingIcon from "./components/LoadingIcon";
 
 export function Layout({
   children,
@@ -32,6 +33,11 @@ export function Layout({
     </html>
   );
 }
+
+export function HydrateFallback() {
+  return <LoadingIcon />;
+}
+
 
 export default function Root() {
   return <Outlet />;
