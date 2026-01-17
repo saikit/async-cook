@@ -22,10 +22,10 @@ function RecipeIngredientsList() {
             return (<RecipeCalculator group={group} quantityState={quantityState} updateQuantity={updateQuantity} />);
           }
           if('text' in group && group.text !== '')
-          return (<h3 className="text-xl text-slate-500"><em>For the {group.text}</em>{CalculatorIcon()}</h3>);
+            return (<h3 className="text-xl text-slate-500 mb-1"><em>For the {group.text}</em>{CalculatorIcon()}</h3>)
         }
         return (
-          <div key={index} className="mb-3" >
+          <div key={index} className={'text' in group && group.text !== '' ? 'my-4' : ''} >
           <Title/>
             {group.description.map((ingredient, key) => {
                 if (

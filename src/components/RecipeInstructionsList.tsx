@@ -12,7 +12,7 @@ function RecipeInstructionsList() {
         <h2 className='text-3xl mb-4'>Instructions</h2>
         <ol className='list-decimal list-outside pl-4'>
             {filteredInstructions.map((instruction, index) => (
-                <li key={`list-${index}`}>
+                <li className="mb-4" key={`list-${index}`}>
                 <Instruction searchWords={searchWords} list={instruction} />
                 </li>
             ))}

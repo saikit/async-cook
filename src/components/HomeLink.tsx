@@ -44,21 +44,23 @@ function HomeLink() {
             Recipe List
           </SheetTitle>
           <SheetDescription></SheetDescription>
-          <ul className="text-gray-900 text-center">
-            {recipesList.map((recipe) => (
-              <li className="underline mb-1" key={recipe.slug}>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-gray-900" : "text-gray-600"
-                  }
-                  to={`/recipe/${recipe.slug}`}
-                  onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
-                >
-                  {recipe.title}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <nav>
+            <ul className="text-gray-900 text-center">
+              {recipesList.map((recipe) => (
+                <li className="underline mb-1" key={recipe.slug}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-gray-900" : "text-gray-600"
+                    }
+                    to={`/recipe/${recipe.slug}`}
+                    onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
+                  >
+                    {recipe.title}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </SheetHeader>
       </SheetContent>
     </Sheet>

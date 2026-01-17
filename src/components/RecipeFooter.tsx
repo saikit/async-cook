@@ -6,7 +6,7 @@ function RecipeFooter () {
     const { stepNumber, setStepNumber, maxStep } = useContext(RecipeContext)
 
     const content = (
-        <div className=" p-4 w-full sticky bottom-0 bg-slate-200 print:hidden">
+        <footer className=" p-4 w-full sticky bottom-0 bg-slate-200 print:hidden">
             <div className='flex justify-center gap-2'>
                 {stepNumber === 0
                 ?
@@ -25,8 +25,8 @@ function RecipeFooter () {
                 </>
                 }
             </div>
-            <p className="text-center text-sm pt-4">This recipe and app is handcrafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Sai-Kit Hui</a></p>
-        </div>
+            <p className="text-center text-sm pt-4">This recipe and app is handcrafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Sai-Kit Hui</a></p>
+        </footer>
     )
 
     return content
