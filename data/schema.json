@@ -1,39 +1,57 @@
 {
-    "title": "string",
-    "intro": "string",
-    "reference": "string",
-    "optional_ingredients": "string,string",
-    "steps": [
+  "title": "string",
+  "intro": "string (optional)",
+  "reference": "string (optional)",
+  "optional_ingredients": "string (optional)",
+  "steps": [
+    {
+      "ingredients": {
+        "text": "string (optional - name of ingredient group like 'roasted tomatoes')",
+        "step": "number",
+        "calculator": {
+          "text": "string (optional)"
+        },
+        "description": [
+          {
+            "name": "string (ingredient name)",
+            "quantity": "number (optional)",
+            "unit": "string (optional)",
+            "variable": "number (optional)",
+            "optional": "string (optional - marks as optional if present)",
+            "cooked": "boolean (optional)",
+            "fdc_id": "number (optional - USDA FDC ID for nutrition data)",
+            "context": [
+              {
+                "category": "string (e.g., 'Explanation', 'Alert', 'Recommendation')",
+                "note": "string (the actual note text)"
+              }
+            ]
+          }
+        ]
+      },
+      "instructions": [
         {
-            "ingredients": {
-                "name": "string",
-                "description": [
-                    {
-                        "name": "string",
-                        "context": [
-                            {
-                                "category": "string",
-                                "note": "string"
-                            }
-                        ],
-                        "optional?": "string",
-                        "cooked?": "boolean",
-                        "fdc_id?": "number"
-                    }
-                ]
-            },
-            "instructions": [{
-                "background?": "string",
-                "text": "string",
-                "title": "string",
-                "optional?": "string",
-                "context": [
-                    {
-                        "category": "string",
-                        "note": "string"
-                    }
-                ]
-            }]
+          "text": "string (main instruction text)",
+          "title": "string (optional - step title)",
+          "background": "string (optional - context of what's happening)",
+          "optional": "string (optional - marks instruction as optional)",
+          "context": [
+            {
+              "category": "string (e.g., 'Explanation', 'Alert')",
+              "note": "string"
+            }
+          ]
         }
-    ]
+      ],
+      "background": "string (optional)"
+    }
+  ],
+  "tags": [
+    {
+      "equipment": {
+        "name": "string (equipment name)",
+        "description": "string (what it does)"
+      }
+    }
+  ]
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 03, 2026 at 07:19 AM
+-- Generation Time: Jan 17, 2026 at 04:28 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.3.27
 
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `saikithui`
+-- Database: `async_cook`
 --
+
+USE async_cook;
 
 -- --------------------------------------------------------
 
@@ -360,11 +362,11 @@ INSERT INTO `instructions` (`id`, `recipe_id`, `step`, `title`, `text`, `backgro
 (11, 1, 6, '', 'Add **cooked shrimp** to pasta and toss to combine.', NULL, 'Shrimp', 5),
 (13, 1, 7, 'Top with mozzarella', 'Top pasta with **sliced mozzarella**.', NULL, 'Mozzarella', 1),
 (14, 2, 1, 'Cut lettuce & aromatics', 'Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**.', NULL, NULL, 1),
-(15, 2, 2, 'Make the sauce', 'Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, and **sugar**, and **MSG** in a bowl. Mix well. ', NULL, NULL, 1),
-(16, 2, 4, 'Boil water', 'Bring the **water** to a boil and add **salt**.', NULL, NULL, 1),
-(17, 2, 5, 'Cook sauce', 'In a pan, heat up **neutral oil** over high heat until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.', 'Water is boiling.', NULL, 1),
-(18, 2, 5, '', 'Add **combined sauce** to pan. Cook briefly then set flame to low and add **cornstarch slurry**. Cook until sauce is thickened.', NULL, NULL, 2),
-(19, 2, 6, 'Boil the lettuce', 'Add **chopped lettuce** to the salted boiling water and cook until leaves turn bright green. Remove lettuce from pan and drain well.', NULL, NULL, 1),
+(15, 2, 2, 'Make the sauce', 'Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well. ', NULL, NULL, 1),
+(16, 2, 4, 'Boil water', 'In a pot, bring the **water** to a boil and add **salt**.', NULL, NULL, 1),
+(17, 2, 5, 'Cook sauce', 'In a pan, heat up **neutral oil** over **high heat** until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.', 'Water is boiling.', NULL, 1),
+(18, 2, 5, '', 'Add **combined sauce** to pan. Cook for **20 seconds** then **set flame to low** and add and mix **cornstarch slurry**. Cook until sauce is to desired thickness.', NULL, NULL, 2),
+(19, 2, 6, 'Boil the lettuce', 'Add **chopped lettuce** to the salted boiling water and cook for **30 seconds** or until leaves turn bright green. Remove lettuce from pot and drain well.', NULL, NULL, 1),
 (20, 2, 7, 'Plate dish', 'Serve **lettuce** with **sauce** drizzled on top.', NULL, NULL, 1),
 (21, 2, 3, 'Make the cornstarch slurry', 'Combine **cornstarch** and **water** in a separate bowl. Mix well.', NULL, NULL, 1),
 (22, 4, 1, 'Cook the beans', 'Rinse **beans** and then combine with **salt**, **baking soda**, and **water** in an electric pressure cooker. Set pressure cooker to high pressure for 50 minutes. Let the pressure release naturally.', NULL, NULL, 1),
@@ -373,28 +375,28 @@ INSERT INTO `instructions` (`id`, `recipe_id`, `step`, `title`, `text`, `backgro
 (25, 4, 4, 'Plate the dish', 'Drain **cooked beans** and place in serving bowl. Peel **roasted sweet potatoes** and cut to bite-sized pieces and add to bowl. Combine with **olive oil**, **vinegar**, and **black pepper** and serve. Top with **Tajín seasoning** if using.', NULL, NULL, 1),
 (26, 4, 5, 'Top the dish with avocado', 'Top bowl with **sliced avocado**. Top with more olive oil, black pepper, or Tajín seasoning if using.', NULL, 'Avocado', 1),
 (27, 3, 1, 'Prep mung beans and rice', 'Combine and wash **mung beans** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **soy sauce** and add to rice cooker or pressure cooker.', NULL, NULL, 1),
-(28, 3, 2, 'Prep the mushrooms', 'Wash **mushrooms** and dice into small pieces. Add to **mung bean and rice** mixture.\r\n', '', 'Mushrooms', 1),
-(29, 3, 3, 'Prep the cured meats', 'Dice **Chinese sausage** into small pieces. Add to **mung bean and rice** mixture.\r\n', NULL, 'Chinese sausage', 1),
+(28, 3, 2, 'Prep the mushrooms', 'Wash **mushrooms** and dice into small pieces. Add to **mung bean and rice** mixture.', '', 'Mushrooms', 1),
+(29, 3, 3, 'Prep the cured meats', 'Dice **Chinese sausage** into small pieces. Add to **mung bean and rice** mixture.', NULL, 'Chinese sausage', 1),
 (30, 3, 4, 'Cook mung beans and rice', 'Cook **mixture** in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.', NULL, NULL, 1),
 (31, 3, 5, 'Plate dish', 'Mix **cooked rice and beans** with **lard or butter** if using. Add more salt or soy sauce to desired taste.', NULL, '', 1),
-(43, 6, 1, 'Prep radish & carrots', 'Chop **daikon radish** and **carrots** into small bite-sized pieces.\r\n', NULL, NULL, 1),
-(44, 6, 2, 'Prep chicken gizzard', 'Clean **chicken gizzards** by removing membranes and string and chop into bite sized pieces.\r\n', NULL, NULL, 1),
-(45, 6, 3, 'Make the soup', 'In an electric pressure cooker, combine **gizzards**, **daikon**, **carrots**, and **stock** and cook under high pressure for **30 minutes**. Let pressure release naturally.\r\n', NULL, NULL, 1),
-(46, 6, 4, 'Mix stir fry sauce', 'Combine **gochujang**, **soy sauce**, **mirin**, and **sugar** in a bowl and set aside\r\n', NULL, NULL, 1),
-(47, 6, 5, 'Prep bok choy', 'Wash **bok choy** and cut into bite sized pieces', NULL, NULL, 1),
-(48, 6, 6, 'Prepare garlic & ginger', 'Mince **garlic** and **ginger** and set aside\r\n', NULL, NULL, 1),
-(49, 6, 7, 'Finish soup', 'Remove part or all of the gizzards from the finished soup. Mix **miso paste** into soup. Keep warm.\r\n', NULL, NULL, 1),
+(43, 6, 1, 'Prep radish & carrots', 'Chop **daikon radish** and **carrots** into small bite-sized pieces.', NULL, NULL, 1),
+(44, 6, 2, 'Prep chicken gizzard', 'Clean **chicken gizzards** by removing membranes and string and chop into bite sized pieces.', NULL, NULL, 1),
+(45, 6, 3, 'Make the soup', 'In an electric pressure cooker, combine **gizzards**, **daikon**, **carrots**, and **stock** and cook under high pressure for **30 minutes**. Let pressure release naturally.', NULL, NULL, 1),
+(46, 6, 4, 'Mix stir fry sauce', 'Combine **gochujang**, **soy sauce**, **mirin**, and **sugar** in a bowl and set aside.', NULL, NULL, 1),
+(47, 6, 5, 'Prep bok choy', 'Wash **bok choy** and cut into bite sized pieces.', NULL, NULL, 1),
+(48, 6, 6, 'Prepare garlic & ginger', 'Mince **garlic** and **ginger** and set aside.', NULL, NULL, 1),
+(49, 6, 7, 'Finish soup', 'Remove part or all of the gizzards from the finished soup. Mix **miso paste** into soup. Keep warm.', NULL, NULL, 1),
 (50, 6, 8, 'Stir fry gizzards and bok choy', 'In a pan set at high heat, heat **oil** until smoking, add **gizzards** and cook until browned.', NULL, NULL, 1),
-(51, 6, 8, '', 'Set gizzards aside in pan and add **minced garlic and ginger** and cook until aromatic', NULL, NULL, 2),
-(52, 6, 8, '', 'Add **bok choy** and cook until leaves and stems are wilted', NULL, NULL, 3),
+(51, 6, 8, '', 'Set gizzards aside in pan and add **minced garlic and ginger** and cook until aromatic.', NULL, NULL, 2),
+(52, 6, 8, '', 'Add **bok choy** and cook until leaves and stems are wilted.', NULL, NULL, 3),
 (53, 6, 8, '', 'Add **stir fry sauce** and cook for another **30 seconds**', NULL, NULL, 4),
-(54, 5, 1, 'Prep and cook rice and lentils', 'Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. Cook in electric pressure cooker for 15 minutes on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.\n\n', NULL, NULL, 1),
-(55, 5, 2, 'Chop onions and aromatics', 'For the *caramelized onions*, peel and dice one of the **onions**.', NULL, NULL, 1),
-(56, 5, 2, '', 'For the *crispy onions*, peel and cut the other onion into thin slices.', NULL, NULL, 2),
+(54, 5, 1, 'Prep and cook rice and lentils', 'Combine and wash **lentils** and **rice** until rinsing liquid comes out clear. Combine mixture with **water** and **salt** and add to rice cooker or pressure cooker. Cook in electric pressure cooker for **15 minutes** on high pressure or normal setting in a rice cooker. Natural release if using pressure cooker.', NULL, NULL, 1),
+(55, 5, 2, 'Chop onions and aromatics', 'For the *caramelized onions*, peel and **dice** one of the **onions**.', NULL, NULL, 1),
+(56, 5, 2, '', 'For the *crispy onions*, peel and cut the other onion into **thin slices**.', NULL, NULL, 2),
 (57, 5, 3, 'Steam and cook onions', 'Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**.', 'Two pans are active', NULL, 1),
-(58, 5, 3, '', 'For *caramelized onions*, once water evaporates from the pan remove the lid, lower heat to medium and add a small amount of water and deglaze the pan with a wooden spoon. Repeat the process until onions reach desired sweetness.', NULL, NULL, 2),
-(59, 5, 3, '', 'For *crispy onions*, once the water evaporates from the pan remove the lid, lower heat to medium-low, and separate each slice of onion from each other. Cook until desired crispiness and then remove onions from the heat.', NULL, NULL, 3),
-(60, 5, 4, 'Plate the dish', 'When the caramelized onion is cooked to the desired sweetness, add **cumin seeds** (and **sliced scallions** if using) to pan and cook for another 30 seconds. Mix **caramelized onions** and cumin to **rice and lentils**. Top the dish with **crispy onions** and the **onion-infused oil**.', NULL, NULL, 1),
+(58, 5, 3, '', 'For *caramelized onions*, once water evaporates from the pan remove the lid, **lower heat to medium** and **add a small amount of water and deglaze** the pan. Repeat the process until onions reach desired sweetness.', NULL, NULL, 2),
+(59, 5, 3, '', 'For *crispy onions*, once the water evaporates from the pan remove the lid, **lower heat to medium-low**, and **separate each slice from each other**. Cook until desired crispiness and remove onions from the heat.', NULL, NULL, 3),
+(60, 5, 4, 'Plate the dish', 'When the caramelized onion is cooked to the desired sweetness, add **cumin seeds** (and **sliced scallions** if using) to pan and cook for another **30 seconds**. Mix **caramelized onions** and cumin to **rice and lentils**. Top the dish with **crispy onions** and the **onion-infused oil**.', NULL, NULL, 1),
 (61, 5, 2, '', 'Slice **scallions** if using', NULL, NULL, 3);
 
 -- --------------------------------------------------------
@@ -423,7 +425,7 @@ INSERT INTO `recipes` (`id`, `slug`, `category`, `title`, `intro`, `reference`, 
 (2, 'tuna-oyster-sauce-lettuce', '', 'Boiled Lettuce with Garlic & Oyster Sauce', 'Based on Lucas Sin\'s recipe of the same name, I added can of tuna in order to make the dish a more complete meal and to help thicken the sauce. Serve with white rice.', 'https://food52.com/recipes/90179-chinese-style-lettuce-with-garlic-and-oyster-sauce', 1),
 (3, 'weekday-rice-mungbean', 'Rice and Pulses', 'Weekday Rice & Mung Bean', 'This is a reimagined version of a Cantonese zongzi. This version highlights the benefits of eating pulses like mung beans to reach macronutrient goals.', 'https://www.madewithlau.com/recipes/bamboo-sticky-rice', 1),
 (4, 'bean-sweet-potato', 'Rice and Pulses', 'Sweet Potato & Pinto Bean Bowl', 'Combining two long cooking ingredients to form a base of a high protein and highly customizable meal.', NULL, 1),
-(5, 'weekday-rice-lentils', 'Rice and Pulses', 'Weekday Rice & Lentils', 'A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the rice and lentils are done cooking, though it does require attention of two separate pans at the stove.\n', 'https://feelgoodfoodie.net/recipe/mujadara/\r\n', 0),
+(5, 'weekday-rice-lentils', 'Rice and Pulses', 'Weekday Rice & Lentils', 'A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the rice and lentils are done cooking, though it does require attention of two separate pans at the stove.\n', 'https://feelgoodfoodie.net/recipe/mujadara/', 0),
 (6, 'gizzard-soup-stirfry', '', 'Chicken Gizzard Soup & Stir Fry', 'Cooking chicken gizzards in a pressure cooker to help form a base for a Japanese soup and then serving the tender gizzards in a stir-fry sauce based on Japanese grilled offal. Serve with white rice.', NULL, 0);
 
 -- --------------------------------------------------------
@@ -535,8 +537,7 @@ ALTER TABLE `context`
 --
 ALTER TABLE `equipment`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD UNIQUE KEY `name_2` (`name`);
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `icons`
