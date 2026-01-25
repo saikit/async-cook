@@ -19,14 +19,22 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const RecipesListProvider = ({ children } : ChildrenType) => {
   const [recipesList, setRecipesList] = useState<Array<RecipesListType>>([])
   const fetchJSONDataFrom = useCallback(async (path : string) => {
-    const response = await fetch(path, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    });
-    const data = await response.json();
-    setRecipesList(data.data);
+    try {
+      const response = await fetch(path, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      });
+      if(!response.ok) {
+        console.error("Error fetching recipe data:");
+        } else {
+          const data = await response.json();
+          setRecipesList(data.data);
+        }
+    } catch (error) {
+      console.error("Error fetching recipe data:", error);
+    }
   }, []);
 
   useEffect(() => {

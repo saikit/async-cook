@@ -1,4 +1,4 @@
-import HomeLink from './components/HomeLink.tsx'
+import RecipeNavigation from './components/RecipeNavigation.tsx'
 import Recipe from './Recipe.tsx'
 import RecipeBackgroundBanner from './components/RecipeBackgroundBanner.tsx'
 import RecipeFooter from './components/RecipeFooter.tsx'
@@ -10,7 +10,7 @@ function App() {
   return (
     <RecipeProvider>
     <RecipesListProvider>
-      <HomeLink />
+      <RecipeNavigation />
     </RecipesListProvider>
     <RecipeBackgroundBanner />
     <FoodDataProvider>

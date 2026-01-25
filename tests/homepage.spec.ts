@@ -4,23 +4,19 @@ const API_URL = process.env.VITE_API_URL;
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
+  await expect(page.getByRole('list')).toBeVisible({timeout: 10000});
 });
-
 
 test('has title', async ({ page }) => {
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Async Cook/);
 });
-
   
 test('has recipe list', async ({ page, request }) => {
   const apiResponse = await request.get(`${API_URL}/recipes/`);
-  console.log('status', API_URL);
   await expect(apiResponse).toBeOK();
   const recipes = await apiResponse.json();
   const recipeLength = recipes.data.length;
-  await expect(page.getByRole('list')).toBeVisible({timeout: 10000});
-  
   const recipeLocator = await page.getByRole('listitem')
   
   await expect(page.getByRole('list')).toBeVisible();
@@ -44,7 +40,6 @@ test('click on a recipe and go back to homepage', async ({ page }) => {
 })
 
 test('click on each recipe item and go back to homepage', async ({ page }) => {
-  await expect(page.getByRole('list')).toBeVisible({timeout: 10000});
   const recipeList = await page.getByRole('list');
   const allLinks = await recipeList.locator('a').all();
 

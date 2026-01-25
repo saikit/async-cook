@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-function HomeLink() {
+function RecipeNavigation() {
   const [open, setOpen] = useState(false);
   const { recipesList } = useContext(RecipesListContext);
   const { setStepNumber, recipe } = useContext(RecipeContext);
@@ -68,4 +68,4 @@ function HomeLink() {
   );
 }
 
-export default HomeLink;
+export default RecipeNavigation;
