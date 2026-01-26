@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
-    "build": "tsc -b && vite build",
+    "build": "react-router build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@radix-ui/react-checkbox": "^1.1.4",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-popover": "^1.1.6",
