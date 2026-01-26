@@ -46,7 +46,7 @@ function RecipeNavigation() {
           <SheetDescription></SheetDescription>
           <nav>
             <ul className="text-gray-900 text-center">
-              {recipesList.map((recipe) => (
+              {recipesList?.map((recipe) => (
                 <li className="underline mb-1" key={recipe.slug}>
                   <NavLink
                     className={({ isActive }) =>

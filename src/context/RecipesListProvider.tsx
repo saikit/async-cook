@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState, useCallback, ReactElement } from 'react'
+import { createContext, useEffect, useCallback, ReactElement } from 'react'
+import { usePersistedState } from '@/hooks/usePersistedState';
 
 export type RecipesListType = {
   id: number,
@@ -17,7 +18,7 @@ const RecipesListContext = createContext<RecipesListContextType>({ recipesList: 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const RecipesListProvider = ({ children } : ChildrenType) => {
-  const [recipesList, setRecipesList] = useState<Array<RecipesListType>>([])
+  const [recipesList, setRecipesList] = usePersistedState<Array<RecipesListType>>('recipesList', [])
   const fetchJSONDataFrom = useCallback(async (path : string) => {
     try {
       const response = await fetch(path, {
@@ -27,21 +28,29 @@ export const RecipesListProvider = ({ children } : ChildrenType) => {
         }
       });
       if(!response.ok) {
-        console.error("Error fetching recipe data:");
-        } else {
-          const data = await response.json();
+        console.error("Error fetching recipe data:", response.status, response.statusText);
+        setRecipesList([]);
+      } else {
+        const data = await response.json();
+        // Validate that data.data exists and is an array
+        if (data && Array.isArray(data.data)) {
           setRecipesList(data.data);
+        } else {
+          console.error('Invalid API response structure:', data);
+          setRecipesList([]);
         }
+      }
     } catch (error) {
       console.error("Error fetching recipe data:", error);
     }
-  }, []);
+  }, [setRecipesList]);
 
   useEffect(() => {
     const path = `${API_URL}/recipes`;
-    fetchJSONDataFrom(path);
+    if(recipesList.length === 0)
+      fetchJSONDataFrom(path);
 
-  }, [fetchJSONDataFrom]);
+  }, [fetchJSONDataFrom, recipesList.length]);
 
   return (
     <RecipesListContext.Provider value={{recipesList}}>

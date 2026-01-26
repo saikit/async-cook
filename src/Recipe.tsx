@@ -67,7 +67,6 @@ return (
     </header>
     <main>
     <h2 className='text-3xl mb-4'>Ingredients</h2>
-    
     {stepNumber > 0 ?
     <ScrollArea className='h-[35vh]' ref={viewportRef}>
         <RecipeIngredientsList/>
