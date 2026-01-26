@@ -1,15 +1,18 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright'; 
 
 const API_URL = process.env.VITE_API_URL;
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('list')).toBeVisible({timeout: 10000});
+  await expect(page.getByRole('list')).toBeVisible({timeout: 5000});
 });
 
 test('has title', async ({ page }) => {
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Async Cook/);
+
+  await expect(page.getByRole('heading', {name: /The Async Cook/})).toBeVisible();
 });
   
 test('has recipe list', async ({ page, request }) => {
@@ -55,3 +58,22 @@ test('click on each recipe item and go back to homepage', async ({ page }) => {
     await expect(page).toHaveURL('/');
   }
 })
+
+test('test if external link works', async ({ page }) => {
+  const externalLink = await page.getByRole('link', {name: /Sai-Kit Hui/});
+  const externalLinkUrl = await externalLink.getAttribute('href');
+  const externalPromise = page.waitForEvent('popup');
+
+  await externalLink.click();
+
+  const externalPage = await externalPromise;
+
+  await expect(externalPage).toHaveURL(`${externalLinkUrl}`);
+});
+
+test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+
+  const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+
+  expect(accessibilityScanResults.violations).toEqual([]);
+});

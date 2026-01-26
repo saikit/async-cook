@@ -34,8 +34,8 @@ useEffect(() => {
 
 
 return (
-    <div className='p-4'>
-    <header>
+    <>
+    <header className='px-4'>
     <h1 className="text-4xl font-bold text-center m-4">
       {title}
     </h1>
@@ -44,7 +44,7 @@ return (
       <p className='my-4'>
         {intro}&nbsp;
         {reference && (
-          <Link className='text-blue-600 underline print:hidden' to={reference} target='_blank'>See original recipe</Link>
+          <Link className='text-blue-700 underline print:hidden' to={reference} target='_blank'>See original recipe</Link>
         )}
         {tags && (
           tags.map((tag, index) => {
@@ -65,7 +65,7 @@ return (
     </div>
     )}
     </header>
-    <main>
+    <main className='px-4'>
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     {stepNumber > 0 ?
     <ScrollArea className='h-[35vh]' ref={viewportRef}>
@@ -75,7 +75,7 @@ return (
     <Separator className='my-4 border-slate-500 border-1' />
     <RecipeInstructionsList/>
     </main>
-    </div>
+    </>
   )
 }
 

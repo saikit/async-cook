@@ -25,7 +25,7 @@ function RecipeFooter () {
                 </>
                 }
             </div>
-            <p className="text-center text-sm pt-4">This recipe and app is handcrafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Sai-Kit Hui</a></p>
+            <p className="text-center text-sm pt-4">This recipe and app is handcrafted by <a href="https://saikithui.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">Sai-Kit Hui</a></p>
         </footer>
     )
 
