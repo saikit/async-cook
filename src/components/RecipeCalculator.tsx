@@ -95,6 +95,25 @@ function RecipeCalculator({
     return total;
   }, [values]);
 
+  const totalMass = useMemo(() => {
+    let sum: number = 0;
+    Object.values(values).forEach((ingredient) => {
+      const quantity: number = ingredient.quantity
+        ? parseInt(String(ingredient.quantity))
+        : 0;
+
+      if (ingredient.variable) {
+        // Variable ingredients contribute their quantity directly
+        sum = sum + quantity;
+      } else {
+        // Non-variable ingredients contribute based on calculated total
+        sum = sum + (total < 1 ? quantity : total);
+      }
+    });
+
+    return sum;
+  }, [values, total]);
+
   const handleValueChange = (value: number[], name: string) => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -105,7 +124,7 @@ function RecipeCalculator({
     }));
   };
 
-  const saveChanges = (event: React.FormEvent<HTMLFormElement>) => {
+  const saveChanges = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data: Record<string, number> = Object.fromEntries(
@@ -187,6 +206,11 @@ function RecipeCalculator({
               );
             }
           })}
+          <div className="border-t pt-4 mt-4 mb-4">
+            <p className="text-stone-700">
+              Total: <span className="font-bold">{totalMass}g</span>
+            </p>
+          </div>
           <DialogFooter className="mt-4">
             <Button variant="outline" onClick={resetCalculator}>
               Reset

@@ -72,7 +72,7 @@ return (
         <RecipeIngredientsList/>
     </ScrollArea>
     : <RecipeIngredientsList/>}
-    <Separator className='my-4 border-slate-500 border-1' />
+    <Separator className='my-4 border-slate-500 border' />
     <RecipeInstructionsList/>
     </main>
     </>
