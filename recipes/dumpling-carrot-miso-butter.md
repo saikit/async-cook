@@ -2,9 +2,10 @@
 
 ## Ingredients
 
-- Frozen Pierogies
+- Frozen pierogies or stuff pasta like ravioli
+- Water (half the amount)
 - Carrot
-- Mushroom
+- Mushroom (optional)
 
 - Miso paste
 - Butter

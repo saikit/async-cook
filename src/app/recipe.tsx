@@ -1,14 +1,14 @@
 import { useContext, useRef, useEffect } from 'react'
-import RecipeContext from './context/RecipeProvider'
-import RecipeOptionalInput from './components/RecipeOptionalInput'
-import RecipeIngredientsList from './components/RecipeIngredientsList'
-import { ScrollArea } from './components/ui/scrollarea'
+import RecipeContext from '../context/RecipeProvider'
+import RecipeOptionalInput from '../components/RecipeOptionalInput'
+import RecipeIngredientsList from '../components/RecipeIngredientsList'
+import { ScrollArea } from '../components/ui/scrollarea'
 import { Link } from 'react-router'
-import NutritionalInformation from './components/NutritionalInformation'
-import LoadingIcon from './components/LoadingIcon'
-import RecipeInstructionsList from './components/RecipeInstructionsList'
-import FoodDataContext from './context/FoodDataProvider'
-import RecipeEquipmentTag from './components/RecipeEquipmentTag'
+import NutritionalInformation from '../components/NutritionalInformation'
+import LoadingIcon from '../components/LoadingIcon'
+import RecipeInstructionsList from '../components/RecipeInstructionsList'
+import FoodDataContext from '../context/FoodDataProvider'
+import RecipeEquipmentTag from '../components/RecipeEquipmentTag'
 import { Separator } from '@radix-ui/react-separator'
 
 
@@ -68,7 +68,7 @@ return (
     <main className='px-4'>
     <h2 className='text-3xl mb-4'>Ingredients</h2>
     {stepNumber > 0 ?
-    <ScrollArea className='h-[35vh]' ref={viewportRef}>
+    <ScrollArea className='h-[30vh]' ref={viewportRef}>
         <RecipeIngredientsList/>
     </ScrollArea>
     : <RecipeIngredientsList/>}

@@ -6,8 +6,9 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import './index.css'
-import LoadingIcon from "./components/LoadingIcon";
+import '../index.css'
+import LoadingIcon from "../components/LoadingIcon";
+import { AuthenticationProvider } from "../context/AuthenticationProvider";
 
 export function Layout({
   children,
@@ -40,5 +41,9 @@ export function HydrateFallback() {
 
 
 export default function Root() {
-  return <Outlet />;
+  return (
+    <AuthenticationProvider>
+      <Outlet />
+    </AuthenticationProvider>
+  );
 }

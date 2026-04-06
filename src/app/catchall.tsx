@@ -1,5 +1,4 @@
-import Index from "./Index.tsx";
-
+import Index from ".";
 export default function Component() {
   return <Index />;
 }

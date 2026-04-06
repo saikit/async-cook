@@ -1,9 +1,9 @@
-import { InstructionsType } from "../context/RecipeProvider"
+import type { InstructionGroupType } from "@/types/api"
 import RecipeNoteIcon from "./RecipeNoteIcon"
 import Markdown from "react-markdown"
 import InstructionHighlights from "./InstructionHighlight"
 
-function Instruction({ list, searchWords }: { list: InstructionsType, searchWords: Array<string[]> }) {
+function Instruction({ list, searchWords }: { list: InstructionGroupType, searchWords: Array<string[]> }) {
   const { instructions } = list
   const content = (
     <>

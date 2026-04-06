@@ -1,23 +1,23 @@
-import { IngredientType } from "@/context/RecipeProvider";
+import type { IngredientGroupType } from "@/types/api";
 import RecipeNoteIcon from "./RecipeNoteIcon";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { twColors } from "@/lib/constants";
 
 const Ingredient = ({
-  description,
+  ingredients,
   status,
   quantityState,
   groupName,
   index
 }: {
-  description: IngredientType["description"][0];
-  status: IngredientType["status"];
+  ingredients: IngredientGroupType["ingredients"][0];
+  status: IngredientGroupType["status"];
   quantityState: Record<string, number | "">;
   groupName: string,
   index: number
 }) => {
-  const { name, unit, quantity, context, cooked } = description;
+  const { name, unit, quantity, context, cooked } = ingredients;
   const icons =
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);

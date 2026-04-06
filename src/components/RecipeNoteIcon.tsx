@@ -1,4 +1,4 @@
-import { RecipeNoteIconType } from "../context/RecipeProvider"
+import type { RecipeNoteIconType } from "@/types/api"
 import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react'
 import {
     Popover,

@@ -21,7 +21,7 @@ import {
 import { ScrollArea } from '@/components/ui/scrollarea'
 import FoodDataContext from "@/context/FoodDataProvider"
 import { useContext } from "react"
-import { foodDataType } from "@/context/FoodDataProvider"
+import type { foodDataType } from "@/context/FoodDataProvider"
 import { Link } from "react-router"
 import ActionButton from "./ActionButton"
 import RecipeContext from "@/context/RecipeProvider"

@@ -16,7 +16,7 @@ function RecipeBackgroundBanner() {
       return () => clearTimeout(timer);
     }, [stepNumber]);
 
-    const background = stepNumber > 0 && filteredInstructions[stepNumber - 1].instructions[0].background ? filteredInstructions[stepNumber - 1].instructions[0].background : null
+    const background = stepNumber > 0 && filteredInstructions[stepNumber - 1].background ? filteredInstructions[stepNumber - 1].background : null
 
     if(!background || !isVisible)
         return null

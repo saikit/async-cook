@@ -1,57 +1,177 @@
 {
-  "title": "string",
-  "intro": "string (optional)",
-  "reference": "string (optional)",
-  "optional_ingredients": "string (optional)",
-  "steps": [
-    {
-      "ingredients": {
-        "text": "string (optional - name of ingredient group like 'roasted tomatoes')",
-        "step": "number",
-        "calculator": {
-          "text": "string (optional)"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Recipe Schema",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "number"
         },
-        "description": [
-          {
-            "name": "string (ingredient name)",
-            "quantity": "number (optional)",
-            "unit": "string (optional)",
-            "variable": "number (optional)",
-            "optional": "string (optional - marks as optional if present)",
-            "cooked": "boolean (optional)",
-            "fdc_id": "number (optional - USDA FDC ID for nutrition data)",
-            "context": [
-              {
-                "category": "string (e.g., 'Explanation', 'Alert', 'Recommendation')",
-                "note": "string (the actual note text)"
+        "slug": {
+          "type": "string",
+          "description": "string"
+        },
+        "intro": {
+          "type": "string",
+          "description": "string"
+        },
+        "reference": {
+          "type": "string",
+          "description": "string"
+        },
+        "category": {
+          "type": "string",
+          "description": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "string"
+        },
+        "published": {
+          "type": "number",
+          "description": "number"
+        },
+        "created_at": {
+          "type": "null",
+          "description": "null (optional)"
+        },
+        "updated_at": {
+          "type": "null",
+          "description": "null (optional)"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ingredients": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "string"
+                  },
+                  "calculator": {
+                    "type": "null",
+                    "description": "null (optional)"
+                  },
+                  "ingredients": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "quantity": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "description": "string"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "string"
+                        },
+                        "fdc_id": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "context": {
+                          "type": "null",
+                          "description": "null (optional)"
+                        }
+                      }
+                    },
+                    "description": "array"
+                  }
+                },
+                "description": "object"
+              },
+              "instructions": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "string"
+                  },
+                  "instructions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "description": "string"
+                        },
+                        "context": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "category": {
+                                "type": "string",
+                                "description": "string"
+                              },
+                              "note": {
+                                "type": "string",
+                                "description": "string"
+                              }
+                            }
+                          },
+                          "description": "array"
+                        }
+                      }
+                    },
+                    "description": "array"
+                  }
+                },
+                "description": "object"
               }
-            ]
-          }
-        ]
-      },
-      "instructions": [
-        {
-          "text": "string (main instruction text)",
-          "title": "string (optional - step title)",
-          "background": "string (optional - context of what's happening)",
-          "optional": "string (optional - marks instruction as optional)",
-          "context": [
-            {
-              "category": "string (e.g., 'Explanation', 'Alert')",
-              "note": "string"
             }
-          ]
+          },
+          "description": "array"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "equipment": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "string"
+                  }
+                },
+                "description": "object"
+              }
+            }
+          },
+          "description": "array"
+        },
+        "optional_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "string"
+              }
+            }
+          },
+          "description": "array"
         }
-      ],
-      "background": "string (optional)"
+      },
+      "description": "object"
     }
-  ],
-  "tags": [
-    {
-      "equipment": {
-        "name": "string (equipment name)",
-        "description": "string (what it does)"
-      }
-    }
-  ]
+  }
 }

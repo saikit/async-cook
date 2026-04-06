@@ -17,13 +17,13 @@ function InstructionHighlights({
   if(wholeMatchIndex > -1) {
     return <strong className={twColors[wholeMatchIndex]}>{children}</strong>
   } else {
-    const partialatchIndex = searchWords.findIndex(terms =>
+    const partialMatchIndex = searchWords.findIndex(terms =>
         terms.some(term => {
             const regex = new RegExp(`\\b${term.replace(/[*()]/g, '')}.*`, "i")
             return regex.test(children ? children.toString() : "")
         })
     )
-    return <strong className={partialatchIndex > -1 ? twColors[partialatchIndex] : ""}>{children}</strong>
+    return <strong className={partialMatchIndex > -1 ? twColors[partialMatchIndex] : ""}>{children}</strong>
  }
 }
 

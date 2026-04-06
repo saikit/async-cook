@@ -20,7 +20,7 @@ function RecipeInstructionsList() {
         </>
         :
         <>
-        <h2 className='text-3xl mb-4'>Step {stepNumber}: {filteredInstructions[stepNumber - 1].instructions[0].title}</h2>
+        <h2 className='text-3xl mb-4'>Step {stepNumber}: {filteredInstructions[stepNumber - 1].title}</h2>
         <Instruction searchWords={searchWords} list={filteredInstructions[stepNumber - 1]}/>
         </>
         }

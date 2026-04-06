@@ -50,7 +50,7 @@ type ChildrenType = { children?: ReactElement | ReactElement[] }
 
 export const FoodDataProvider = ({ children } : ChildrenType ) => {
     const [foodData, setFoodData] = useState<foodDataType>([]);
-    const [foodDataIsComplete, setfoodDataIsComplete] = useState<boolean>(false);
+    const [foodDataIsComplete, setFoodDataIsComplete] = useState<boolean>(false);
     const { fdc_ids, isComplete } = useContext(RecipeContext)
 
     const fetchJSONDataFrom = useCallback(async (path : string) => {
@@ -66,7 +66,7 @@ export const FoodDataProvider = ({ children } : ChildrenType ) => {
         } catch (error) {
             console.error("Error fetching food data:", error);
         } finally {
-            setfoodDataIsComplete(true);
+            setFoodDataIsComplete(true);
         }
       }, []);
     

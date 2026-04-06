@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import RecipesListContext from "@/context/RecipesListProvider";
 
 
-function Landing() {
+function Index() {
     const context = useContext(RecipesListContext)
     const { recipesList } = context
 
@@ -26,4 +26,4 @@ function Landing() {
     return content
 }
 
-export default Landing
+export default Index

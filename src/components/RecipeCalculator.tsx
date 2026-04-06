@@ -12,7 +12,7 @@ import { Slider } from "./ui/slider";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "./ui/button";
 import { DialogDescription } from "@radix-ui/react-dialog";
-import { IngredientType } from "@/context/RecipeProvider";
+import type { IngredientGroupType, IngredientType} from "@/types/api";
 import { quantityType } from "./RecipeIngredientsList";
 
 const createMarkdownComponents = () => ({
@@ -33,26 +33,27 @@ type SliderProps = React.ComponentProps<typeof Slider>;
 type valueType = { quantity: number; variable?: number };
 
 function RecipeCalculator({
-  group,
+  calculator,
   updateQuantity,
   quantityState,
+  ingredientGroupName,
   ...props
 }: {
-  group: IngredientType;
+  calculator: IngredientGroupType["calculator"];
   updateQuantity: (data: quantityType) => void;
   quantityState: quantityType;
+  ingredientGroupName: string;
 } & SliderProps) {
   const [values, setValues] = useState<Record<string, valueType>>({});
-  const { calculator, text, description } = group as {
-    calculator: IngredientType["calculator"];
-    text: keyof quantityType;
-    description: IngredientType["description"];
+  const { text, calculator_ingredients } = calculator ?? {
+    text: "",
+    calculator_ingredients: [],
   };
 
   useEffect(() => {
     const newValues: Record<string, valueType> = {};
-    description.forEach((ingredient) => {
-      const quantityFromState = text && quantityState[text] ? quantityState[text][ingredient.name]
+    calculator_ingredients.forEach((ingredient : IngredientType) => {
+      const quantityFromState = ingredientGroupName && quantityState[ingredientGroupName] ? quantityState[ingredientGroupName][ingredient.name]
         : undefined;
 
       newValues[ingredient.name] = {
@@ -61,7 +62,7 @@ function RecipeCalculator({
       };
     });
     setValues(newValues);
-  }, [description, text, quantityState]);
+  }, [calculator_ingredients, ingredientGroupName, quantityState]);
 
   const resetCalculator = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -70,7 +71,7 @@ function RecipeCalculator({
 
     const resetValues: Record<string, valueType> = {};
 
-    description.forEach((ingredient) => {
+    calculator_ingredients.forEach((ingredient : IngredientType) => {
       resetValues[ingredient.name] = {
         ...(values[ingredient.name] ?? {}),
         quantity: ingredient.quantity ?? 0,
@@ -134,7 +135,7 @@ function RecipeCalculator({
       ])
     );
 
-    updateQuantity({ [text]: data });
+    updateQuantity({ [ingredientGroupName]: data });
   };
 
   return (
@@ -147,17 +148,17 @@ function RecipeCalculator({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Ingredient Calculator</DialogTitle>
+          <DialogTitle>Ingredient calculator for {ingredientGroupName}</DialogTitle>
         </DialogHeader>
         <DialogDescription asChild>
           {calculator && (
             <Markdown components={createMarkdownComponents()}>
-              {calculator.text}
+              {text}
             </Markdown>
           )}
         </DialogDescription>
         <form onSubmit={saveChanges}>
-          {description.map((ingredient, key) => {
+          {calculator_ingredients.map((ingredient : IngredientType, key : number) => {
             const value: number =
               ingredient.name in values
                 ? values[ingredient.name].quantity

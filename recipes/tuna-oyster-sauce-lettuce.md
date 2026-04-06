@@ -39,7 +39,7 @@ Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to
 
 ## Step 2 — Make the sauce
 
-Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well. 
+Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well.
 
 ## Step 3 — Make the cornstarch slurry
 
