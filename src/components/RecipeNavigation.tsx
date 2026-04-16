@@ -1,10 +1,10 @@
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState, useContext, MouseEvent } from "react";
-import RecipesListContext from "@/context/RecipesListProvider";
-import RecipeContext from "@/context/RecipeProvider";
-import { NavLink } from "react-router";
-import { useLocation } from "react-router";
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useState, useContext, MouseEvent } from 'react';
+import RecipesListContext from '@/context/RecipesListProvider';
+import RecipeContext from '@/context/RecipeProvider';
+import { NavLink } from 'react-router';
+import { useLocation } from 'react-router';
 import {
   Sheet,
   SheetContent,
@@ -12,7 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from '@/components/ui/sheet';
 
 function RecipeNavigation() {
   const [open, setOpen] = useState(false);
@@ -31,39 +31,41 @@ function RecipeNavigation() {
 
   return (
     <>
-    <title>{recipe ? `${recipe.title} - The Async Cook` : 'The Async Cook'}</title>
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button className=" rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex justify-center print:hidden">
-          <Menu className="" size={18} color="black" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="top" aria-describedby="Recipe List">
-        <SheetHeader>
-          <SheetTitle className="text-xl font-bold uppercase text-center">
-            Recipe List
-          </SheetTitle>
-          <SheetDescription></SheetDescription>
-          <nav>
-            <ul className="text-gray-900 text-center">
-              {recipesList?.map((recipe) => (
-                <li className="underline mb-1" key={recipe.slug}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "text-gray-900" : "text-gray-600"
-                    }
-                    to={`/recipe/${recipe.slug}`}
-                    onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
-                  >
-                    {recipe.title}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
+      <title>
+        {recipe ? `${recipe.title} - The Async Cook` : 'The Async Cook'}
+      </title>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button className=" rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex justify-center print:hidden">
+            <Menu className="" size={18} color="black" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="top" aria-describedby="Recipe List">
+          <SheetHeader>
+            <SheetTitle className="text-xl font-bold uppercase text-center">
+              Recipe List
+            </SheetTitle>
+            <SheetDescription></SheetDescription>
+            <nav>
+              <ul className="text-gray-900 text-center">
+                {recipesList?.map((recipe) => (
+                  <li className="underline mb-1" key={recipe.slug}>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? 'text-gray-900' : 'text-gray-600'
+                      }
+                      to={`/recipe/${recipe.slug}`}
+                      onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
+                    >
+                      {recipe.title}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
     </>
   );
 }

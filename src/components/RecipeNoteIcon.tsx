@@ -1,35 +1,39 @@
-import type { RecipeNoteIconType } from "@/types/api"
-import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react'
+import type { RecipeNoteIconType } from '@/types/api';
+import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react';
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover"
-  
-  
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
-function RecipeNoteIcon({ note } : { note : RecipeNoteIconType }) {
+function RecipeNoteIcon({ note }: { note: RecipeNoteIconType }) {
+  let Icon: LucideIcon;
+  switch (note.category) {
+    case 'alert':
+      Icon = CircleAlert;
+      break;
+    case 'explanation':
+      Icon = CircleHelp;
+      break;
+    case 'recommendation':
+      Icon = ChefHat;
+      break;
+    default:
+      Icon = CircleHelp;
+  }
 
-    let Icon : LucideIcon;
-    switch (note.category) {
-        case 'alert':
-            Icon = CircleAlert
-            break
-        case 'explanation':
-            Icon = CircleHelp
-            break
-        case 'recommendation':
-            Icon = ChefHat
-            break
-        default:
-            Icon = CircleHelp
-    }
-
-    return (
-        <Popover>
-            <PopoverTrigger className="align-top ml-1 print:hidden" title={note.category}><Icon size={24} color="#57534d" /></PopoverTrigger>
-            <PopoverContent><p>{note.note}</p></PopoverContent>
-        </Popover>
-    )
+  return (
+    <Popover>
+      <PopoverTrigger
+        className="align-top ml-1 print:hidden"
+        title={note.category}
+      >
+        <Icon size={24} color="#57534d" />
+      </PopoverTrigger>
+      <PopoverContent>
+        <p>{note.note}</p>
+      </PopoverContent>
+    </Popover>
+  );
 }
-export default RecipeNoteIcon
+export default RecipeNoteIcon;

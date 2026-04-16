@@ -14,3 +14,11 @@ export const getItem = (key: string) => {
     console.error(`Failed to get item from localStorage: ${key}`, error);
   }
 };
+
+export const removeItem = (key: string) => {
+  try {
+    window.sessionStorage.removeItem(key);
+  } catch (error) {
+    console.error(`Failed to remove item from localStorage: ${key}`, error);
+  }
+};

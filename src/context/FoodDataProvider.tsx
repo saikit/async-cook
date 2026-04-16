@@ -1,96 +1,94 @@
-import { createContext, useEffect, useState, useCallback, ReactElement, useContext } from 'react'
+import {
+  createContext,
+  useEffect,
+  useState,
+  useCallback,
+  ReactElement,
+  useContext,
+} from 'react';
 import RecipeContext from './RecipeProvider';
+import type { foodDataType } from '@/types/api';
 
-const API_KEY = import.meta.env.VITE_DATA_GOV_KEY
+const API_KEY = import.meta.env.VITE_DATA_GOV_KEY;
 type FoodDataContextType = {
-  foodData: foodDataType,
-  foodDataIsComplete?: boolean
-}
-
-export type foodDataType = Array<{
-    description: string;
-    foodNutrients: Array<{
-        name: string,
-        amount: number,
-        unitName: string,
-        number: number
-    }>
-}>;
+  foodData: foodDataType;
+  foodDataIsComplete?: boolean;
+};
 
 const nutrients = [
-    '208', // Energy
-    '203', // Protein
-    '204', // Total lipid (fat)
-    '205', // Carbohydrate, by difference
-    '269', // Sugars, total
-    '539', // Sugars, added
-    '307', // Sodium, Na
-    '601', // Cholesterol
-    '606', // Fatty acids, total saturated
-    '645', // Fatty acids, total monounsaturated
-    '646', // Fatty acids, total polyunsaturated
-    '291', // Fiber, total dietary
-    '306', // Potassium
-    '303', // Iron
-    '301', // Calcium
-    '324', // Vitamin D
-]
+  '208', // Energy
+  '203', // Protein
+  '204', // Total lipid (fat)
+  '205', // Carbohydrate, by difference
+  '269', // Sugars, total
+  '539', // Sugars, added
+  '307', // Sodium, Na
+  '601', // Cholesterol
+  '606', // Fatty acids, total saturated
+  '645', // Fatty acids, total monounsaturated
+  '646', // Fatty acids, total polyunsaturated
+  '291', // Fiber, total dietary
+  '306', // Potassium
+  '303', // Iron
+  '301', // Calcium
+  '324', // Vitamin D
+];
 
-const params = new URLSearchParams({    
-    api_key: API_KEY,
-    format: 'abridged',
-    nutrients: nutrients.join(','),
-    sortBy: 'description',
-    sortOrder: 'asc'
-})
+const params = new URLSearchParams({
+  api_key: API_KEY,
+  format: 'abridged',
+  nutrients: nutrients.join(','),
+  sortBy: 'description',
+  sortOrder: 'asc',
+});
 
-const FoodDataContext = createContext<FoodDataContextType>({ foodData: [] } as FoodDataContextType);
+const FoodDataContext = createContext<FoodDataContextType>({
+  foodData: [],
+} as FoodDataContextType);
 
-type ChildrenType = { children?: ReactElement | ReactElement[] }
+type ChildrenType = { children?: ReactElement | ReactElement[] };
 
-export const FoodDataProvider = ({ children } : ChildrenType ) => {
-    const [foodData, setFoodData] = useState<foodDataType>([]);
-    const [foodDataIsComplete, setFoodDataIsComplete] = useState<boolean>(false);
-    const { fdc_ids, isComplete } = useContext(RecipeContext)
+export const FoodDataProvider = ({ children }: ChildrenType) => {
+  const [foodData, setFoodData] = useState<foodDataType>([]);
+  const [foodDataIsComplete, setFoodDataIsComplete] = useState<boolean>(false);
+  const { fdc_ids, isComplete } = useContext(RecipeContext);
 
-    const fetchJSONDataFrom = useCallback(async (path : string) => {
-        try {
-            const response = await fetch(path, {
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-            });
-            const data = await response.json();
-            setFoodData(data);
-        } catch (error) {
-            console.error("Error fetching food data:", error);
-        } finally {
-            setFoodDataIsComplete(true);
-        }
-      }, []);
-    
-      useEffect(() => {
-        if(!isComplete) {
-            return;
-        } else {
-            if (fdc_ids === undefined || fdc_ids.length === 0) {
-                return;
-            } else {
-                params.set('fdcIds', fdc_ids.join(','));
-                const path = `https://api.nal.usda.gov/fdc/v1/foods/?${params.toString()}`;
-                fetchJSONDataFrom(path);
-            }
-        }
-    
-      }, [fetchJSONDataFrom, fdc_ids, isComplete]);
-    
-      return (
-        <FoodDataContext.Provider value={{foodData, foodDataIsComplete}}>
-            <>{children}</>
-        </FoodDataContext.Provider>
-      )
+  const fetchJSONDataFrom = useCallback(async (path: string) => {
+    try {
+      const response = await fetch(path, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      });
+      const data = await response.json();
+      setFoodData(data);
+    } catch (error) {
+      console.error('Error fetching food data:', error);
+    } finally {
+      setFoodDataIsComplete(true);
+    }
+  }, []);
 
+  useEffect(() => {
+    if (!isComplete) {
+      return;
+    } else {
+      if (fdc_ids === undefined || fdc_ids.length === 0) {
+        return;
+      } else {
+        params.set('fdcIds', fdc_ids.join(','));
+        const path = `https://api.nal.usda.gov/fdc/v1/foods/?${params.toString()}`;
+        fetchJSONDataFrom(path);
+      }
+    }
+  }, [fetchJSONDataFrom, fdc_ids, isComplete]);
+
+  return (
+    <FoodDataContext.Provider value={{ foodData, foodDataIsComplete }}>
+      <>{children}</>
+    </FoodDataContext.Provider>
+  );
 };
 
 export default FoodDataContext;

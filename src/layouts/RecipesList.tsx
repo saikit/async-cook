@@ -1,13 +1,12 @@
-import { RecipesListProvider } from '../context/RecipesListProvider.tsx'
-import { Outlet } from 'react-router'
+import { RecipesListProvider } from '../context/RecipesListProvider.tsx';
+import { Outlet } from 'react-router';
 
-function RecipesList () {
-    return (
-        <RecipesListProvider>
-            <Outlet />
-        </RecipesListProvider>
-    )
+function RecipesList() {
+  return (
+    <RecipesListProvider>
+      <Outlet />
+    </RecipesListProvider>
+  );
 }
 
-export default RecipesList
-
+export default RecipesList;

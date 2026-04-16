@@ -1,63 +1,79 @@
-import { useContext } from "react"
-import RecipeContext from "../context/RecipeProvider"
+import { useContext } from 'react';
+import RecipeContext from '../context/RecipeProvider';
 import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-  } from "./ui/drawer"
-import { Button } from "./ui/button"
-import ActionButton from "./ActionButton"
-  
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from './ui/drawer';
+import { Button } from './ui/button';
+import ActionButton from './ActionButton';
+
 function RecipeOptionalInput() {
+  const { recipe, stepNumber, setOptional, optional } =
+    useContext(RecipeContext);
 
-const { optional_ingredients, stepNumber, setOptional, optional } = useContext(RecipeContext)
+  const { optional_ingredients } = recipe ?? { optional_ingredients: [] };
 
-if(!optional_ingredients || optional_ingredients?.length < 1 || stepNumber > 0)
-    return <></>
+  if (
+    !optional_ingredients ||
+    optional_ingredients?.length < 1 ||
+    stepNumber > 0
+  )
+    return <></>;
 
-    const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setOptional(optional => ({
-            ...optional,
-            [event.target.id]: event.target.checked
-        }))
-    }
+  const handleOptional = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOptional((optional) => ({
+      ...optional,
+      [event.target.value]: event.target.checked,
+    }));
+  };
 
-    const content = (
-        <Drawer>
-        <DrawerTrigger asChild><ActionButton><>Select optional ingredients</></ActionButton></DrawerTrigger>
-        <DrawerContent>
-            <DrawerHeader>
-            <DrawerTitle>Select optional ingredients</DrawerTitle>
-            </DrawerHeader>
-            <DrawerDescription asChild>
-            <div className="px-4" >
+  const content = (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <ActionButton>
+          <>Select optional ingredients</>
+        </ActionButton>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Select optional ingredients</DrawerTitle>
+        </DrawerHeader>
+        <DrawerDescription asChild>
+          <div className="px-4">
             {optional_ingredients.map((ingredient) => (
-                <div key={ingredient} className="mb-1">
-                <input 
-                    id={ingredient} 
-                    checked={ingredient in optional ? optional[ingredient] : false} 
-                    onChange={handleOptional} 
-                    type="checkbox" 
-                     />
-                <label className="ml-1" htmlFor={ingredient}>{ingredient}</label>
-                </div>
+              <div key={ingredient.id} className="mb-1">
+                <input
+                  id={`optional-${ingredient.name}`}
+                  name={ingredient.name}
+                  value={ingredient.id}
+                  checked={
+                    ingredient.id in optional ? optional[ingredient.id] : false
+                  }
+                  onChange={handleOptional}
+                  type="checkbox"
+                />
+                <label className="ml-1" htmlFor={`optional-${ingredient.name}`}>
+                  {ingredient.name}
+                </label>
+              </div>
             ))}
-            </div>
-            </DrawerDescription>
-            <DrawerFooter>
-            <DrawerClose asChild>
-                <Button variant="outline">Close</Button>
-            </DrawerClose>
-            </DrawerFooter>
-        </DrawerContent>
-        </Drawer>
-    )
+          </div>
+        </DrawerDescription>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Close</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
 
-  return content
+  return content;
 }
-export default RecipeOptionalInput
+export default RecipeOptionalInput;

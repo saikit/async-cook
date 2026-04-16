@@ -1,4 +1,4 @@
-import { Calculator } from "lucide-react";
+import { Calculator } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -6,14 +6,14 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog";
-import Markdown from "react-markdown";
-import { Slider } from "./ui/slider";
-import { useState, useEffect, useMemo } from "react";
-import { Button } from "./ui/button";
-import { DialogDescription } from "@radix-ui/react-dialog";
-import type { IngredientGroupType, IngredientType} from "@/types/api";
-import { quantityType } from "./RecipeIngredientsList";
+} from '@/components/ui/dialog';
+import Markdown from 'react-markdown';
+import { Slider } from './ui/slider';
+import { useState, useEffect, useMemo } from 'react';
+import { Button } from './ui/button';
+import { DialogDescription } from '@radix-ui/react-dialog';
+import type { IngredientGroupType, IngredientType } from '@/types/api';
+import { quantityType } from './RecipeIngredientsList';
 
 const createMarkdownComponents = () => ({
   code(props: React.HTMLProps<HTMLElement>) {
@@ -39,22 +39,24 @@ function RecipeCalculator({
   ingredientGroupName,
   ...props
 }: {
-  calculator: IngredientGroupType["calculator"];
+  calculator: IngredientGroupType['calculator'];
   updateQuantity: (data: quantityType) => void;
   quantityState: quantityType;
   ingredientGroupName: string;
 } & SliderProps) {
   const [values, setValues] = useState<Record<string, valueType>>({});
   const { text, calculator_ingredients } = calculator ?? {
-    text: "",
+    text: '',
     calculator_ingredients: [],
   };
 
   useEffect(() => {
     const newValues: Record<string, valueType> = {};
-    calculator_ingredients.forEach((ingredient : IngredientType) => {
-      const quantityFromState = ingredientGroupName && quantityState[ingredientGroupName] ? quantityState[ingredientGroupName][ingredient.name]
-        : undefined;
+    calculator_ingredients.forEach((ingredient: IngredientType) => {
+      const quantityFromState =
+        ingredientGroupName && quantityState[ingredientGroupName]
+          ? quantityState[ingredientGroupName][ingredient.name]
+          : undefined;
 
       newValues[ingredient.name] = {
         quantity: quantityFromState ?? ingredient.quantity ?? 0,
@@ -65,13 +67,13 @@ function RecipeCalculator({
   }, [calculator_ingredients, ingredientGroupName, quantityState]);
 
   const resetCalculator = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ): void => {
     event.preventDefault();
 
     const resetValues: Record<string, valueType> = {};
 
-    calculator_ingredients.forEach((ingredient : IngredientType) => {
+    calculator_ingredients.forEach((ingredient: IngredientType) => {
       resetValues[ingredient.name] = {
         ...(values[ingredient.name] ?? {}),
         quantity: ingredient.quantity ?? 0,
@@ -104,10 +106,8 @@ function RecipeCalculator({
         : 0;
 
       if (ingredient.variable) {
-        // Variable ingredients contribute their quantity directly
         sum = sum + quantity;
       } else {
-        // Non-variable ingredients contribute based on calculated total
         sum = sum + (total < 1 ? quantity : total);
       }
     });
@@ -131,8 +131,8 @@ function RecipeCalculator({
     const data: Record<string, number> = Object.fromEntries(
       [...formData.entries()].map(([key, value]) => [
         key,
-        typeof value === "string" ? Number(value) : 0,
-      ])
+        typeof value === 'string' ? Number(value) : 0,
+      ]),
     );
 
     updateQuantity({ [ingredientGroupName]: data });
@@ -148,65 +148,67 @@ function RecipeCalculator({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Ingredient calculator for {ingredientGroupName}</DialogTitle>
+          <DialogTitle>
+            Ingredient calculator for {ingredientGroupName}
+          </DialogTitle>
         </DialogHeader>
         <DialogDescription asChild>
           {calculator && (
-            <Markdown components={createMarkdownComponents()}>
-              {text}
-            </Markdown>
+            <Markdown components={createMarkdownComponents()}>{text}</Markdown>
           )}
         </DialogDescription>
         <form onSubmit={saveChanges}>
-          {calculator_ingredients.map((ingredient : IngredientType, key : number) => {
-            const value: number =
-              ingredient.name in values
-                ? values[ingredient.name].quantity
-                : ingredient.quantity ?? 0;
-            if (ingredient.variable) {
-              return (
-                <div key={key}>
-                  <Markdown>{`**${value}${ingredient.unit}** ${ingredient.name}`}</Markdown>
-                  <Slider
-                    className="my-2"
-                    defaultValue={[value]}
-                    name={ingredient.name}
-                    min={
-                      ingredient.quantity && ingredient.quantity > 30
-                        ? Math.floor(ingredient.quantity / 2)
-                        : 0
-                    }
-                    max={ingredient.quantity ? ingredient.quantity * 2 : 100}
-                    value={[value]}
-                    onValueChange={(value) =>
-                      handleValueChange(value, ingredient.name)
-                    }
-                    step={1}
-                    {...props}
-                  ></Slider>
-                </div>
-              );
-            } else {
-              return (
-                <div key={key}>
-                  <Markdown>{`**${total < 1 ? value : total}${
-                    ingredient.unit
-                  }** ${ingredient.name}`}</Markdown>
-                  <Slider
-                    className="my-2"
-                    defaultValue={[value]}
-                    name={ingredient.name}
-                    min={0}
-                    max={ingredient.quantity ? ingredient.quantity * 3 : 1000}
-                    disabled
-                    value={[total < 1 ? value : total]}
-                    step={1}
-                    {...props}
-                  ></Slider>
-                </div>
-              );
-            }
-          })}
+          {calculator_ingredients.map(
+            (ingredient: IngredientType, key: number) => {
+              const value: number =
+                ingredient.name in values
+                  ? values[ingredient.name].quantity
+                  : (ingredient.quantity ?? 0);
+              if (ingredient.variable) {
+                return (
+                  <div key={key}>
+                    <Markdown>{`**${value}${ingredient.unit}** ${ingredient.name}`}</Markdown>
+                    <Slider
+                      className="my-2"
+                      defaultValue={[value]}
+                      name={ingredient.name}
+                      min={
+                        ingredient.quantity && ingredient.quantity > 30
+                          ? Math.floor(ingredient.quantity / 2)
+                          : 0
+                      }
+                      max={ingredient.quantity ? ingredient.quantity * 2 : 100}
+                      value={[value]}
+                      onValueChange={(value) =>
+                        handleValueChange(value, ingredient.name)
+                      }
+                      step={1}
+                      {...props}
+                    ></Slider>
+                  </div>
+                );
+              } else {
+                return (
+                  <div key={key}>
+                    <Markdown>{`**${total < 1 ? value : total}${
+                      ingredient.unit
+                    }** ${ingredient.name}`}</Markdown>
+                    <Slider
+                      className="my-2"
+                      defaultValue={[value]}
+                      name={ingredient.name}
+                      min={0}
+                      max={ingredient.quantity ? ingredient.quantity * 3 : 1000}
+                      disabled
+                      value={[total < 1 ? value : total]}
+                      step={1}
+                      {...props}
+                    ></Slider>
+                  </div>
+                );
+              }
+            },
+          )}
           <div className="border-t pt-4 mt-4 mb-4">
             <p className="text-stone-700">
               Total: <span className="font-bold">{totalMass}g</span>

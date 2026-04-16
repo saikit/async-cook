@@ -1,39 +1,54 @@
-import type { IngredientGroupType } from "@/types/api";
-import RecipeNoteIcon from "./RecipeNoteIcon";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { twColors } from "@/lib/constants";
+import type { IngredientGroupType, IngredientType } from '@/types/api';
+import RecipeNoteIcon from './RecipeNoteIcon';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { twColors } from '@/lib/constants';
 
 const Ingredient = ({
   ingredients,
   status,
   quantityState,
   groupName,
-  index
+  index,
 }: {
-  ingredients: IngredientGroupType["ingredients"][0];
-  status: IngredientGroupType["status"];
-  quantityState: Record<string, number | "">;
-  groupName: string,
-  index: number
+  ingredients: IngredientType;
+  status: IngredientGroupType['status'];
+  quantityState: Record<string, number | ''>;
+  groupName: string;
+  index: number;
 }) => {
   const { name, unit, quantity, context, cooked } = ingredients;
+  if (!name)
+    return (
+      <p>
+        <em>ingredient field is empty</em>
+      </p>
+    );
+
   const icons =
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);
 
-  const quantityValue = groupName in quantityState && typeof quantityState[groupName] === 'object' ? quantityState[groupName][name as keyof typeof quantityState[typeof groupName]] : quantity;
-  const measurement = `${quantityValue || ""}${unit ? `${unit} `: ""}`.trim();
-  const ingredient = `${measurement ? `**${measurement}** ` : ""}${name}`;
+  const quantityValue =
+    groupName in quantityState && typeof quantityState[groupName] === 'object'
+      ? quantityState[groupName][
+          name as keyof (typeof quantityState)[typeof groupName]
+        ]
+      : quantity;
+  const measurement = `${quantityValue || ''}${unit ? `${unit} ` : ''}`.trim();
+  const ingredient = `${measurement ? `**${measurement}** ` : ''}${name}`;
 
   const createMarkdownComponents = (
     includeIcons: boolean = false,
-    includeCooked: boolean = false
+    includeCooked: boolean = false,
   ) => ({
     li(props: React.HTMLProps<HTMLLIElement>) {
       const { children, ...rest } = props;
       return (
-        <li className={`mb-1 ${includeCooked && "text-slate-500"} ${status}`} {...rest}>
+        <li
+          className={`mb-1 ${includeCooked && 'text-slate-500'} ${status}`}
+          {...rest}
+        >
           {children}
           {includeIcons && icons}
         </li>
@@ -42,7 +57,10 @@ const Ingredient = ({
     strong(props: React.HTMLProps<HTMLElement>) {
       const { children, ...rest } = props;
       return (
-        <strong className={`font-bold ${status === 'active' ? twColors[index] : ""}`} {...rest}>
+        <strong
+          className={`font-bold ${status === 'active' ? twColors[index] : ''}`}
+          {...rest}
+        >
           {children}
         </strong>
       );
@@ -54,13 +72,15 @@ const Ingredient = ({
   const markdownComponentsWithCooked = createMarkdownComponents(true, true);
 
   const content =
-    status === "active" && cooked ? (
+    status === 'active' && cooked ? (
       <Markdown
         components={markdownComponentsWithCooked}
       >{`- **${ingredient}**`}</Markdown>
-    ) : status === "active" ? (
-      <Markdown components={markdownComponents}>{`- **${ingredient}**`}</Markdown>
-    ) : status === "complete" ? (
+    ) : status === 'active' ? (
+      <Markdown
+        components={markdownComponents}
+      >{`- **${ingredient}**`}</Markdown>
+    ) : status === 'complete' ? (
       <Markdown
         components={markdownComponentsWithoutIcons}
         remarkPlugins={[remarkGfm]}

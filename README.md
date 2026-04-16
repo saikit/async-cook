@@ -18,9 +18,17 @@ Re-imagining the traditional cookbook for the modern home cook
 
 ## Future features
 
+### Consumer facing
+
 - Recipes for multiple cooks (partner mode)
 - Recipe Templates, using a single template to create a variety of dishes **half done**
 - Linking ingredients on the ingredients list with the ingredients written in the instructions (tagging) **done**
   - Add substitute ingredients if it significantly changes the steps
 - Customize ingredient ratios or select available equipment before START (ingredient calculators) **half done**
 - A "my kitchen" and "my pantry" dashboard (aggregate of ingredients and equipment used overall)
+
+### Recipe Developers
+
+- Manage and create new recipes from the site
+- Can assist with filling out content by uploading documents
+- Notes section to save all unpublished text

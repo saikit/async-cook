@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const API_BASE = 'http://localhost/api';
+const API_BASE = 'http://localhost:8000/api';
 const RECIPES_DIR = path.join(process.cwd(), 'recipes');
 
 async function generateRecipeMarkdowns() {
@@ -20,11 +20,13 @@ async function generateRecipeMarkdowns() {
     for (const recipe of recipes) {
       try {
         console.log(`\nProcessing: ${recipe.slug}`);
-        
+
         // Fetch detailed recipe data
         const detailRes = await fetch(`${API_BASE}/recipes/${recipe.slug}`);
         if (!detailRes.ok) {
-          console.warn(`  ⚠ Failed to fetch ${recipe.slug}: ${detailRes.status}`);
+          console.warn(
+            `  ⚠ Failed to fetch ${recipe.slug}: ${detailRes.status}`,
+          );
           continue;
         }
         const detailJson = await detailRes.json();
@@ -61,7 +63,7 @@ function buildMarkdown(recipe) {
     if (!recipe.intro.endsWith('\n')) md += '\n';
   }
   if (recipe.reference) {
-    md += '<' + recipe.reference.trimEnd() +'>';
+    md += '<' + recipe.reference.trimEnd() + '>';
     if (!recipe.reference.endsWith('\n')) md += '\n';
   }
   if (recipe.intro || recipe.reference) md += '\n';
@@ -72,28 +74,32 @@ function buildMarkdown(recipe) {
     const ingredientGroups = {};
     const instructionsByStep = {};
 
-    recipe.steps.forEach(step => {
-      const stepNum = step.ingredients?.description?.[0]?.step || 
-                     step.instructions?.[0]?.step || 
-                     Object.keys(instructionsByStep).length + 1;
+    recipe.steps.forEach((step) => {
+      const stepNum =
+        step.ingredients?.step || Object.keys(instructionsByStep).length + 1;
 
       // Group ingredients
-      if (step.ingredients?.description?.length > 0) {
+      if (step.ingredients?.ingredients?.length > 0) {
         const groupName = step.ingredients.text || null;
         const key = groupName || `_ungrouped_${stepNum}`;
-        ingredientGroups[key] = step.ingredients.description;
+        ingredientGroups[key] = {
+          ingredients: step.ingredients.ingredients,
+          optional: step.ingredients.optional,
+        };
       }
 
       // Collect instructions
-      if (step.instructions?.length > 0) {
-        step.instructions.forEach((instr, idx) => {
-          const instrStepNum = instr.step || stepNum;
-          if (!instructionsByStep[instrStepNum]) {
-            instructionsByStep[instrStepNum] = [];
+      if (step.instructions?.instructions?.length > 0) {
+        step.instructions.instructions.forEach((instr, idx) => {
+          if (!instructionsByStep[stepNum]) {
+            instructionsByStep[stepNum] = [];
           }
-          instructionsByStep[instrStepNum].push({
+          instructionsByStep[stepNum].push({
             ...instr,
-            order: idx
+            title: step.instructions.title,
+            optional: step.instructions.optional || instr.optional,
+            background: step.instructions.background,
+            order: idx,
           });
         });
       }
@@ -102,40 +108,46 @@ function buildMarkdown(recipe) {
     // Write Ingredients section
     if (Object.keys(ingredientGroups).length > 0) {
       md += '## Ingredients\n\n';
-      for (const [groupName, ingredients] of Object.entries(ingredientGroups)) {
+      for (const [groupName, groupData] of Object.entries(ingredientGroups)) {
         if (groupName !== null && !groupName.startsWith('_ungrouped_')) {
           md += `### For the ${groupName}\n\n`;
         }
 
-        ingredients.forEach(ing => {
-          if(!ing.cooked) {
+        groupData.ingredients.forEach((ing) => {
+          if (!ing.cooked) {
             let ingLine = '- ';
-            
+
             // Add quantity and unit
             if (ing.quantity !== null && ing.quantity !== undefined) {
               ingLine += `**${ing.quantity}`;
-              if (ing.unit) ingLine += ing.unit;
+              if (ing.unit) ingLine += `${ing.unit}`;
               ingLine += '** ';
             }
-            
+
             // Add ingredient name
             ingLine += ing.name;
-            if(ing.optional) {
-              ingLine += ' *(optional)*';
+
+            // Add variable indicator
+            if (ing.variable) {
+              ingLine += ' *(to taste)*';
             }
 
-          // Add context (recommendation, alert, explanation)
-          if (ing.context && ing.context.length > 0) {
-            const contextStr = ing.context
-              .map(c => `${capitalize(c.category)}: ${c.note}`)
-              .join(' ');
-            ingLine += ` (${contextStr})`;
-          }
+            // Add context (recommendation, alert, explanation)
+            if (ing.context && ing.context.length > 0) {
+              const contextStr = ing.context
+                .map((c) => `${capitalize(c.category)}: ${c.note}`)
+                .join(' ');
+              ingLine += ` (${contextStr})`;
+            }
 
-          md += ingLine + '\n';
-        }
+            md += ingLine + '\n';
+          }
         });
-        
+
+        // Add optional indicator for ingredient group if applicable
+        if (groupData.optional) {
+          md += '<!--(optional group)-->\n';
+        }
 
         md += '<!---->\n';
       }
@@ -150,26 +162,30 @@ function buildMarkdown(recipe) {
         .map(Number)
         .sort((a, b) => a - b);
 
-      sortedSteps.forEach(stepNum => {
+      sortedSteps.forEach((stepNum) => {
         const instructions = instructionsByStep[stepNum];
+        let stepHeaderWritten = false;
+
         instructions.forEach((instr, idx) => {
-          if(idx === 0)
-            md += `## Step ${stepNum}${instr.title ? ` — ${instr.title}` : ''}${instr.optional ? ' *(optional)*' : ''}\n\n`;
-          
+          if (!stepHeaderWritten) {
+            const titleStr = instr.title ? ` — ${instr.title}` : '';
+            const optionalStr = instr.optional ? ' *(optional)*' : '';
+            md += `## Step ${stepNum}${titleStr}${optionalStr}\n\n`;
+            stepHeaderWritten = true;
+          }
+
           if (instr.background) {
             md += `Background: *${instr.background}*\n\n`;
           }
 
           let contextStr = '';
           if (instr.context && instr.context.length > 0) {
-            instr.context.forEach(ctx => {
+            instr.context.forEach((ctx) => {
               contextStr += ` (${capitalize(ctx.category)}: ${ctx.note})`;
             });
           }
-          
-          md += `${instr.text}${contextStr}\n\n`;
 
-          
+          md += `${instr.text}${contextStr}\n\n`;
         });
       });
     }

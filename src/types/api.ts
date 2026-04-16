@@ -1,62 +1,80 @@
 export type RecipeType = {
-  steps: Array<StepType>,
-  title: string,
-  intro?: string,
-  reference?: string,
+  steps: Array<StepType>;
+  title: string;
+  intro?: string;
+  reference?: string;
   optional_ingredients?: Array<{
-    name: string
-  }>,
-  tags: Array<{
-    'equipment': EquipmentType
-  }>
-}
+    name: string;
+    id: number;
+  }>;
+  equipment: Array<EquipmentType>;
+};
 
 export type EquipmentType = {
-  name: string,
-  description: string
-}
+  id: number;
+  name: string;
+  description: string;
+};
 
 export type StepType = {
-  ingredients: IngredientGroupType,
-  instructions: InstructionGroupType,
-}
+  ingredients: IngredientGroupType;
+  instructions: InstructionGroupType;
+};
 
 export type InstructionGroupType = {
-  title: string,
-  background?: string,
-  instructions: Array<InstructionType>
-  optional?: string,
-}
+  title: string;
+  background?: string;
+  instructions: Array<InstructionType>;
+  optional?: number;
+};
 
 export type InstructionType = {
-  text: string,
-  optional?: string,
-  context?: Array<RecipeNoteIconType>
-}
+  text: string;
+  optional?: number;
+  context?: Array<RecipeNoteIconType>;
+};
 
 export type IngredientGroupType = {
-  text?: string,
-  step: number,
+  text?: string;
+  step: number;
   calculator?: {
-    text: string,
-    calculator_ingredients: Array<IngredientType>
-  },
-  ingredients: Array<IngredientType>,
-  optional?: string,
-  status?: "ready" | "active" | "complete";
-}
+    text: string;
+    calculator_ingredients: Array<IngredientType>;
+  };
+  ingredients: Array<IngredientType>;
+  optional?: number;
+  status?: 'ready' | 'active' | 'complete';
+};
 
 export type IngredientType = {
-  name: string,
-  quantity?: number,
-  unit?: string,
-  variable?: number,
-  context?: Array<RecipeNoteIconType>,
-  cooked?: boolean,
-  fdc_id?: number
-}
+  name: string;
+  quantity?: number;
+  unit?: string;
+  variable?: number;
+  context?: Array<RecipeNoteIconType>;
+  cooked?: boolean;
+  fdc_id?: number;
+};
 
 export type RecipeNoteIconType = {
-  category: string,
-  note: string,
-}
+  id: number;
+  category: string;
+  note: string;
+};
+
+export type RecipesListType = {
+  id: number;
+  title: string;
+  slug: string;
+  tags: Array<{ equipment: { name: string; icon: string } }>;
+};
+
+export type foodDataType = Array<{
+  description: string;
+  foodNutrients: Array<{
+    name: string;
+    amount: number;
+    unitName: string;
+    number: number;
+  }>;
+}>;

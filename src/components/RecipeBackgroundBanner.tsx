@@ -1,35 +1,39 @@
-import { useContext, useState, useEffect } from "react"
-import RecipeContext from "../context/RecipeProvider"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useContext, useState, useEffect } from 'react';
+import RecipeContext from '../context/RecipeProvider';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 function RecipeBackgroundBanner() {
-    const context = useContext(RecipeContext)
-    const { stepNumber, filteredInstructions } = context
-    const [isVisible, setIsVisible] = useState(true)
+  const context = useContext(RecipeContext);
+  const { stepNumber, filteredInstructions } = context;
+  const [isVisible, setIsVisible] = useState(true);
 
-    useEffect(() => {
-      setIsVisible(true)
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 3000)
+  useEffect(() => {
+    setIsVisible(true);
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
 
-      return () => clearTimeout(timer);
-    }, [stepNumber]);
+    return () => clearTimeout(timer);
+  }, [stepNumber]);
 
-    const background = stepNumber > 0 && filteredInstructions[stepNumber - 1].background ? filteredInstructions[stepNumber - 1].background : null
+  const background =
+    stepNumber > 0 && filteredInstructions[stepNumber - 1].background
+      ? filteredInstructions[stepNumber - 1].background
+      : null;
 
-    if(!background || !isVisible)
-        return null
+  if (!background || !isVisible) return null;
 
   const content = (
     <Alert className=" w-80 fixed top-5 left-1/2 transform -translate-x-1/2">
-      <AlertTitle><div className="text-xl">Heads up!</div></AlertTitle>
+      <AlertTitle>
+        <div className="text-xl">Heads up!</div>
+      </AlertTitle>
       <AlertDescription>
-      <p>{background}</p>
+        <p>{background}</p>
       </AlertDescription>
     </Alert>
-  )
+  );
 
-  return content
+  return content;
 }
-export default RecipeBackgroundBanner
+export default RecipeBackgroundBanner;

@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 
 import {
   Table,
@@ -17,61 +17,80 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { ScrollArea } from '@/components/ui/scrollarea'
-import FoodDataContext from "@/context/FoodDataProvider"
-import { useContext } from "react"
-import type { foodDataType } from "@/context/FoodDataProvider"
-import { Link } from "react-router"
-import ActionButton from "./ActionButton"
-import RecipeContext from "@/context/RecipeProvider"
-
+} from '@/components/ui/table';
+import { ScrollArea } from '@/components/ui/scrollarea';
+import FoodDataContext from '@/context/FoodDataProvider';
+import { useContext } from 'react';
+import type { foodDataType } from '@/types/api';
+import { Link } from 'react-router';
+import ActionButton from './ActionButton';
+import RecipeContext from '@/context/RecipeProvider';
 
 function NutritionalInformation() {
-    const { foodData } = useContext(FoodDataContext) as { foodData : foodDataType};
-    const { fdc_ids, stepNumber } = useContext(RecipeContext)
+  const { foodData } = useContext(FoodDataContext) as {
+    foodData: foodDataType;
+  };
+  const { fdc_ids, stepNumber } = useContext(RecipeContext);
 
-    if(!fdc_ids || fdc_ids?.length < 1 || stepNumber > 0)
-    return <></>
+  if (!fdc_ids || fdc_ids?.length < 1 || stepNumber > 0) return <></>;
 
-    const content = (
-        <Dialog>
-            <DialogTrigger asChild>
-            <ActionButton>
-                <>View nutritional information</>
-            </ActionButton>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle className='text-xl mb-2 font-bold uppercase'>Nutritional Information</DialogTitle>
-                <DialogDescription className="text-left">
-                Source: <Link to="https://fdc.nal.usda.gov/" target="_blank" className="text-blue-500 underline">FoodData Central</Link>, U.S. Department of Agriculture
-                </DialogDescription>
-            </DialogHeader>
-            <ScrollArea className="h-96">
-                {foodData.map((item) => (
-                <Table className="mb-2" key={item.description}>
-                    <TableHeader>
-                    <TableRow>
-                        <TableHead className="whitespace-normal"><b>{item.description} (100g)</b></TableHead>
+  const content = (
+    <Dialog>
+      <DialogTrigger asChild>
+        <ActionButton>
+          <>View nutritional information</>
+        </ActionButton>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="text-xl mb-2 font-bold uppercase">
+            Nutritional Information
+          </DialogTitle>
+          <DialogDescription className="text-left">
+            Source:{' '}
+            <Link
+              to="https://fdc.nal.usda.gov/"
+              target="_blank"
+              className="text-blue-500 underline"
+            >
+              FoodData Central
+            </Link>
+            , U.S. Department of Agriculture
+          </DialogDescription>
+        </DialogHeader>
+        <ScrollArea className="h-96">
+          {foodData.map((item) => (
+            <Table className="mb-2" key={item.description}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="whitespace-normal">
+                    <b>{item.description} (100g)</b>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {item.foodNutrients
+                  .sort((a, b) => a.number - b.number)
+                  .map((nutrient, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        {nutrient.name}:{' '}
+                        <b>
+                          {nutrient.amount}
+                          {nutrient.unitName.toLowerCase()}
+                        </b>
+                      </TableCell>
                     </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                    {item.foodNutrients.sort((a, b) => a.number - b.number).map((nutrient, index) => (
-                        <TableRow key={index}>
-                        <TableCell>{nutrient.name}: <b>{nutrient.amount}{nutrient.unitName.toLowerCase()}</b></TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-                ))}
-            </ScrollArea>
-            <DialogFooter>
-            </DialogFooter>
-            </DialogContent>
-        </Dialog>
-    )
-    return content;
+                  ))}
+              </TableBody>
+            </Table>
+          ))}
+        </ScrollArea>
+        <DialogFooter></DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+  return content;
 }
 
 export default NutritionalInformation;
