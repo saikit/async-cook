@@ -1,27 +1,20 @@
-import path from "path"
-import tailwindcss from "@tailwindcss/vite"
-import { defineConfig } from 'vite'
-import { reactRouter } from "@react-router/dev/vite";
+import path from 'path';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
+import { reactRouter } from '@react-router/dev/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    reactRouter(),
-    tailwindcss(),
-  ],
+  plugins: [reactRouter(), tailwindcss()],
   base: '/',
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     watch: {
-      ignored: [
-        '**/recipes/**',
-        '**/scripts/**',
-        '**/tests/**'
-      ]
-    }
-  }
-})
+      ignored: ['**/recipes/**', '**/scripts/**', '**/tests/**'],
+    },
+  },
+});

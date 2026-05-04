@@ -1,13 +1,16 @@
 {
-  "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.app.json" }
   ],
+  "include": [".react-router/types/**/*"],
   "compilerOptions": {
+    "composite": true,
+    "emitDeclarationOnly": true,
+    "ignoreDeprecations": "6.0",
+    "rootDirs": [".", "./.react-router/types"],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

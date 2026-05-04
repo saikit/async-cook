@@ -1,13 +1,18 @@
 export type RecipeType = {
+  id: number;
+  slug: string;
+  user_id: number;
   steps: Array<StepType>;
   title: string;
   intro?: string;
   reference?: string;
+  category_id: string;
   optional_ingredients?: Array<{
     name: string;
     id: number;
   }>;
   equipment: Array<EquipmentType>;
+  published: boolean;
 };
 
 export type EquipmentType = {
@@ -67,6 +72,7 @@ export type RecipesListType = {
   title: string;
   slug: string;
   tags: Array<{ equipment: { name: string; icon: string } }>;
+  published: boolean;
 };
 
 export type foodDataType = Array<{

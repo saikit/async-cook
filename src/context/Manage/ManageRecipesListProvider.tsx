@@ -1,28 +1,33 @@
-import { createContext, useEffect, useCallback, ReactElement } from 'react';
+import {
+  createContext,
+  useEffect,
+  useCallback,
+  ReactElement,
+  useContext,
+} from 'react';
 import { useState } from 'react';
 import type { RecipesListType } from '@/types/api';
+import { getHeaders } from '@/hooks/getHeaders';
 
 type RecipesListContextType = {
   recipesList: RecipesListType[];
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
-const RecipesListContext = createContext<RecipesListContextType>({
+const ManageRecipesListContext = createContext<RecipesListContextType>({
   recipesList: [],
 });
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const RecipesListProvider = ({ children }: ChildrenType) => {
+export const ManageRecipesListProvider = ({ children }: ChildrenType) => {
   const [recipesList, setRecipesList] = useState([] as RecipesListType[]);
   const fetchJSONDataFrom = useCallback(
     async (path: string) => {
       try {
         const response = await fetch(path, {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
+          headers: getHeaders(),
+          credentials: 'include',
         });
         if (!response.ok) {
           console.error(
@@ -49,15 +54,22 @@ export const RecipesListProvider = ({ children }: ChildrenType) => {
   );
 
   useEffect(() => {
-    const path = `${API_URL}/recipes`;
+    const path = `${API_URL}/manage/recipes`;
     if (recipesList.length === 0) fetchJSONDataFrom(path);
   }, [fetchJSONDataFrom, recipesList.length]);
 
   return (
-    <RecipesListContext.Provider value={{ recipesList }}>
+    <ManageRecipesListContext.Provider value={{ recipesList }}>
       <>{children}</>
-    </RecipesListContext.Provider>
+    </ManageRecipesListContext.Provider>
   );
 };
 
-export default RecipesListContext;
+export const useManageRecipeList = () => {
+  const context = useContext(ManageRecipesListContext);
+  if (!context)
+    throw new Error(
+      'useManageRecipeList must be used within a ManageRecipesListProvider',
+    );
+  return context;
+};

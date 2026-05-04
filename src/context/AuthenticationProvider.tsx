@@ -1,12 +1,10 @@
-import { createContext, useState, ReactElement } from 'react';
-import { setItem } from '@/utils/sessionStorage';
-import { usePersistedState } from '@/hooks/usePersistedState';
+import { createContext, ReactElement, useCallback } from 'react';
+import { getHeaders } from '@/hooks/getHeaders';
+import { useContext } from 'react';
 
-type AuthContextType = {
-  token: string | null;
-  user: string | null;
-  logoutUser: (token: string | null) => Promise<unknown>;
-  loginWithSSO: (code: string, provider: string) => Promise<unknown>;
+export type AuthContextType = {
+  loginWithSSO: (code: string, provider?: string) => Promise<unknown>;
+  logoutUser: () => Promise<unknown>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,60 +15,66 @@ export const AuthenticationProvider = ({
 }: {
   children?: ReactElement | ReactElement[];
 }) => {
-  const [user, setUser] = useState<string | null>(null);
-  const [token] = usePersistedState('token', '');
+  const loginWithSSO = useCallback(
+    async (code: string, provider?: string): Promise<unknown> => {
+      try {
+        await fetch(`${URL}/sanctum/csrf-cookie`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+        const response = await fetch(
+          API_URL + '/login/' + provider + '/callback?code=' + code,
+          {
+            headers: getHeaders(),
+            credentials: 'include',
+          },
+        );
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || 'OAuth authentication failed');
+        }
+        return data;
+      } catch (error) {
+        console.error('Error during SSO login:', error);
+        throw error;
+      }
+    },
+    [],
+  );
 
-  const logoutUser = async (token: string | null) => {
+  const logoutUser = useCallback(async () => {
     try {
       const response = await fetch(API_URL + '/logout', {
         method: 'POST',
-        body: JSON.stringify({
-          token: token,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+        headers: getHeaders(),
+        credentials: 'include',
       });
       if (!response.ok) {
         if (response.status === 401) {
           throw new Error('Unauthorized');
         }
+        throw new Error('Logout failed');
       }
       const data = await response.json();
-      setItem('token', null);
-      setUser(null);
+
       return data;
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
-
-  const loginWithSSO = async (code: string, provider?: string) => {
-    try {
-      const response = await fetch(
-        API_URL + '/login/' + provider + '/callback?code=' + code,
-        {},
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'OAuth authentication failed');
-      }
-      console.log(data);
-      setItem('token', data.access_token);
-      setUser(data.user.name || 'GitHub User');
-      return data;
-    } catch (error) {
-      console.error('Error during SSO login:', error);
-      throw error;
-    }
-  };
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, logoutUser, loginWithSSO }}>
+    <AuthContext.Provider value={{ loginWithSSO, logoutUser }}>
       <>{children}</>
     </AuthContext.Provider>
   );
 };
 
-export default AuthContext;
+export const useAuthentication = () => {
+  const context = useContext(AuthContext);
+  if (!context)
+    throw new Error(
+      'useAuthentication must be used within a AuthenticationProvider',
+    );
+  return context;
+};
