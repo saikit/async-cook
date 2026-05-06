@@ -1,10 +1,11 @@
 import { Link } from 'react-router';
-import { useManageRecipeList } from '@/context/Manage/ManageRecipesListProvider';
+import { useManage } from '@/context/Manage/ManageProvider';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 function ManageRecipes() {
-  const { recipesList } = useManageRecipeList();
+  const { manageView } = useManage();
+  const { recipes } = manageView;
 
   return (
     <>
@@ -12,7 +13,7 @@ function ManageRecipes() {
       <div className="p-4">
         <h1 className="text-2xl mb-4">Manage Recipes Page</h1>
         <ol className="list-decimal pl-4 text-gray-900">
-          {recipesList?.map((recipe) => (
+          {recipes?.map((recipe) => (
             <li className="mb-2" key={recipe.slug}>
               <Link
                 className="text-gray-900 mr-2 underline"

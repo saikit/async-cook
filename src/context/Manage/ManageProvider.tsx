@@ -9,19 +9,29 @@ import { useState } from 'react';
 import type { RecipesListType } from '@/types/api';
 import { getHeaders } from '@/hooks/getHeaders';
 
-type RecipesListContextType = {
-  recipesList: RecipesListType[];
+export type ManageContextType = {
+  manageView: {
+    categories: Array<{
+      id: number;
+      category: string;
+    }>;
+    equipment: Array<{
+      id: number;
+      name: string;
+    }>;
+    recipes: RecipesListType[];
+  };
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
-const ManageRecipesListContext = createContext<RecipesListContextType>({
-  recipesList: [],
+const ManageContext = createContext<ManageContextType>({
+  manageView: [],
 });
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const ManageRecipesListProvider = ({ children }: ChildrenType) => {
-  const [recipesList, setRecipesList] = useState([] as RecipesListType[]);
+export const ManageProvider = ({ children }: ChildrenType) => {
+  const [manageView, setManageView] = useState([] as RecipesListType[]);
   const fetchJSONDataFrom = useCallback(
     async (path: string) => {
       try {
@@ -35,41 +45,38 @@ export const ManageRecipesListProvider = ({ children }: ChildrenType) => {
             response.status,
             response.statusText,
           );
-          setRecipesList([]);
+          setManageView([]);
         } else {
           const data = await response.json();
-          // Validate that data.data exists and is an array
-          if (data && Array.isArray(data.data)) {
-            setRecipesList(data.data);
+          if (data) {
+            setManageView(data);
           } else {
             console.error('Invalid API response structure:', data);
-            setRecipesList([]);
+            setManageView([]);
           }
         }
       } catch (error) {
         console.error('Error fetching recipe data:', error);
       }
     },
-    [setRecipesList],
+    [setManageView],
   );
 
   useEffect(() => {
-    const path = `${API_URL}/manage/recipes`;
-    if (recipesList.length === 0) fetchJSONDataFrom(path);
-  }, [fetchJSONDataFrom, recipesList.length]);
+    const path = `${API_URL}/manage`;
+    fetchJSONDataFrom(path);
+  }, [fetchJSONDataFrom]);
 
   return (
-    <ManageRecipesListContext.Provider value={{ recipesList }}>
+    <ManageContext.Provider value={{ manageView }}>
       <>{children}</>
-    </ManageRecipesListContext.Provider>
+    </ManageContext.Provider>
   );
 };
 
-export const useManageRecipeList = () => {
-  const context = useContext(ManageRecipesListContext);
+export const useManage = () => {
+  const context = useContext(ManageContext);
   if (!context)
-    throw new Error(
-      'useManageRecipeList must be used within a ManageRecipesListProvider',
-    );
+    throw new Error('useManage must be used within a ManageProvider');
   return context;
 };

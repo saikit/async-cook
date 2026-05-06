@@ -1,4 +1,4 @@
-import { ManageRecipesListProvider } from '@/context/Manage/ManageRecipesListProvider.tsx';
+import { ManageProvider } from '@/context/Manage/ManageProvider';
 import { Outlet, type ClientLoaderFunctionArgs } from 'react-router';
 import ManageHeader from '@/components/manage/ManageHeader';
 import ManageBackgroundBanner from '@/components/manage/ManageBackgroundBanner.tsx';
@@ -20,9 +20,9 @@ export default function Manage() {
       <NotificationProvider>
         <ManageBackgroundBanner />
         <ManageHeader />
-        <ManageRecipesListProvider>
+        <ManageProvider>
           <Outlet />
-        </ManageRecipesListProvider>
+        </ManageProvider>
       </NotificationProvider>
     </AuthenticationProvider>
   );

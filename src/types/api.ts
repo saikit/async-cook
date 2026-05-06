@@ -1,7 +1,6 @@
 export type RecipeType = {
   id: number;
   slug: string;
-  user_id: number;
   steps: Array<StepType>;
   title: string;
   intro?: string;
@@ -12,7 +11,7 @@ export type RecipeType = {
     id: number;
   }>;
   equipment: Array<EquipmentType>;
-  published: boolean;
+  published: number;
 };
 
 export type EquipmentType = {

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useNavigate, useRouteLoaderData } from 'react-router';
 import { useAuthentication } from '@/context/AuthenticationProvider';
-import type { Route } from '@/layouts/+types/Manage';
+import type { Route } from '@/app/+types/manage';
 import type { UserType } from '@/middleware/auth';
 
 function ManageHeader() {

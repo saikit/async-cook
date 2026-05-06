@@ -1,10 +1,22 @@
 import type { Route } from './+types/create';
-import { Form } from 'react-router';
 import ManageFooter from '@/components/manage/ManageFooter';
 const API_URL = import.meta.env.VITE_API_URL;
 import { getHeaders } from '@/hooks/getHeaders';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
+import ManageForm from '@/components/manage/form/ManageForm';
+import InputCategory from '@/components/manage/form/InputCategory';
+import InputEquipment from '@/components/manage/form/InputEquipment';
+import InputIntro from '@/components/manage/form/InputIntro';
+import InputReference from '@/components/manage/form/InputReference';
+import InputTitle from '@/components/manage/form/InputTitle';
+import z from 'zod';
+import { recipeFormSchema } from '@/types/form';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSubmit } from 'react-router';
+
+type FormData = z.input<typeof recipeFormSchema>;
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const formData = await request.formData();
@@ -27,6 +39,22 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 function CreateRecipe({ actionData }: Route.ComponentProps) {
   const navigate = useNavigate();
+
+  const hookForm = useForm<FormData>({
+    resolver: zodResolver(recipeFormSchema),
+    defaultValues: {
+      title: '',
+      category: 'None',
+      intro: '',
+      reference: '',
+      equipment: [],
+    },
+  });
+  const submit = useSubmit();
+  const onSubmit = (data: FormData) => {
+    submit(data);
+  };
+
   useEffect(() => {
     if (actionData) {
       navigate(`/manage/update/${actionData.data.slug}`, { replace: true });
@@ -34,18 +62,13 @@ function CreateRecipe({ actionData }: Route.ComponentProps) {
   }, [actionData, navigate]);
   return (
     <>
-      <Form
-        className="flex justify-center p-4 h-[calc(100vh-136px))]"
-        id="form"
-      >
-        <textarea
-          className="text-4xl font-bold text-center w-100"
-          name="title"
-          rows={3}
-          placeholder="Recipe title"
-          required
-        ></textarea>
-      </Form>
+      <ManageForm hookForm={hookForm} onSubmit={onSubmit}>
+        <InputTitle hookForm={hookForm} />
+        <InputCategory hookForm={hookForm} />
+        <InputIntro hookForm={hookForm} />
+        <InputReference hookForm={hookForm} />
+        <InputEquipment hookForm={hookForm} />
+      </ManageForm>
       <ManageFooter buttonName="Create Recipe" />
     </>
   );
