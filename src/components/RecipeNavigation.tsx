@@ -1,7 +1,7 @@
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useContext, MouseEvent } from 'react';
-import RecipesListContext from '@/context/RecipesListProvider';
+import { useRecipeList } from '@/context/RecipesListProvider';
 import RecipeContext from '@/context/RecipeProvider';
 import { NavLink } from 'react-router';
 import { useLocation } from 'react-router';
@@ -16,7 +16,7 @@ import {
 
 function RecipeNavigation() {
   const [open, setOpen] = useState(false);
-  const { recipesList } = useContext(RecipesListContext);
+  const { recipesList } = useRecipeList();
   const { setStepNumber, recipe } = useContext(RecipeContext);
   const location = useLocation();
 
@@ -48,19 +48,37 @@ function RecipeNavigation() {
             <SheetDescription></SheetDescription>
             <nav>
               <ul className="text-gray-900 text-center">
-                {recipesList?.map((recipe) => (
-                  <li className="underline mb-1" key={recipe.slug}>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive ? 'text-gray-900' : 'text-gray-600'
-                      }
-                      to={`/recipe/${recipe.slug}`}
-                      onClick={(e) => handleClick(e, `/recipe/${recipe.slug}`)}
-                    >
-                      {recipe.title}
-                    </NavLink>
-                  </li>
-                ))}
+                {Object.entries(recipesList).map(
+                  ([category, recipes], index) => (
+                    <section key={category}>
+                      {category !== 'None' && (
+                        <h4 className="text-lg font-semibold text-slate-600 mb-2">
+                          {category}
+                        </h4>
+                      )}
+                      {recipes?.map((recipe) => (
+                        <>
+                          <li className="underline mb-1" key={recipe.slug}>
+                            <NavLink
+                              className={({ isActive }) =>
+                                isActive ? 'text-gray-900' : 'text-gray-600'
+                              }
+                              to={`/recipe/${recipe.slug}`}
+                              onClick={(e) =>
+                                handleClick(e, `/recipe/${recipe.slug}`)
+                              }
+                            >
+                              {recipe.title}
+                            </NavLink>
+                          </li>
+                        </>
+                      ))}
+                      {index < Object.keys(recipesList).length - 1 && (
+                        <hr className="my-4" />
+                      )}
+                    </section>
+                  ),
+                )}
               </ul>
             </nav>
           </SheetHeader>

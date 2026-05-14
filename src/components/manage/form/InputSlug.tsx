@@ -1,21 +1,8 @@
-import { Field, FieldLabel, FieldError } from '@/components/ui/field';
-import { Controller } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
+import { useFormContext } from 'react-hook-form';
 
-function InputSlug({ hookForm }) {
-  const content = (
-    <Controller
-      name="slug"
-      control={hookForm.control}
-      render={({ field, fieldState }) => (
-        <Field>
-          <FieldLabel>Slug</FieldLabel>
-          <Input {...field} />
-          {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-        </Field>
-      )}
-    />
-  );
+function InputSlug() {
+  const { register } = useFormContext();
+  const content = <input {...register('slug')} className="w-full mb-4" />;
   return content;
 }
 

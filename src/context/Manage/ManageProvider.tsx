@@ -21,6 +21,7 @@ export type ManageContextType = {
     }>;
     recipes: RecipesListType[];
   };
+  refetch: () => Promise<void>;
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
@@ -62,13 +63,17 @@ export const ManageProvider = ({ children }: ChildrenType) => {
     [setManageView],
   );
 
-  useEffect(() => {
+  const refetch = useCallback(async () => {
     const path = `${API_URL}/manage`;
-    fetchJSONDataFrom(path);
+    await fetchJSONDataFrom(path);
   }, [fetchJSONDataFrom]);
 
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
   return (
-    <ManageContext.Provider value={{ manageView }}>
+    <ManageContext.Provider value={{ manageView, refetch }}>
       <>{children}</>
     </ManageContext.Provider>
   );

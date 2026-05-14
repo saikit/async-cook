@@ -5,7 +5,7 @@ export type RecipeType = {
   title: string;
   intro?: string;
   reference?: string;
-  category_id: string;
+  category: string;
   optional_ingredients?: Array<{
     name: string;
     id: number;
@@ -21,6 +21,9 @@ export type EquipmentType = {
 };
 
 export type StepType = {
+  ingredient_groups: IngredientGroupType;
+  instruction_groups: InstructionGroupType;
+  step: number;
   ingredients: IngredientGroupType;
   instructions: InstructionGroupType;
 };
@@ -38,6 +41,12 @@ export type InstructionType = {
   context?: Array<RecipeNoteIconType>;
 };
 
+export type CategoryType = {
+  id: number;
+  category: string;
+  cat_order: number;
+};
+
 export type IngredientGroupType = {
   text?: string;
   step: number;
@@ -51,6 +60,7 @@ export type IngredientGroupType = {
 };
 
 export type IngredientType = {
+  id: number;
   name: string;
   quantity?: number;
   unit?: string;
@@ -63,16 +73,11 @@ export type IngredientType = {
 export type RecipeNoteIconType = {
   id: number;
   category: string;
+  lucide_icon: string;
   note: string;
 };
 
-export type RecipesListType = {
-  id: number;
-  title: string;
-  slug: string;
-  tags: Array<{ equipment: { name: string; icon: string } }>;
-  published: boolean;
-};
+export type RecipesListType = Record<string, RecipeType[]>;
 
 export type foodDataType = Array<{
   description: string;

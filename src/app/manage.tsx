@@ -1,40 +1,29 @@
-import { Link } from 'react-router';
-import { useManage } from '@/context/Manage/ManageProvider';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import ManageEquipment from '@/components/manage/ManageEquipment';
+import ManageCategory from '@/components/manage/ManageCategory';
+import ManageRecipes from '@/components/manage/ManageRecipes';
+import CreateCategory from '@/components/manage/CreateCategory';
+import CreateEquipment from '@/components/manage/CreateEquipment';
 
-function ManageRecipes() {
-  const { manageView } = useManage();
-  const { recipes } = manageView;
-
+function ManageDashboard() {
   return (
     <>
       <title>The Async Cook - Manage recipes</title>
       <div className="p-4">
-        <h1 className="text-2xl mb-4">Manage Recipes Page</h1>
-        <ol className="list-decimal pl-4 text-gray-900">
-          {recipes?.map((recipe) => (
-            <li className="mb-2" key={recipe.slug}>
-              <Link
-                className="text-gray-900 mr-2 underline"
-                to={`/manage/update/${recipe.slug}`}
-              >
-                {recipe.title}
-              </Link>{' '}
-              {recipe.published ? (
-                <Badge>Published</Badge>
-              ) : (
-                <Badge variant="secondary">Unpublished</Badge>
-              )}
-            </li>
-          ))}
-        </ol>
-        <Link to="/manage/create">
-          <Button className="mt-4">Create New Recipe</Button>
-        </Link>
+        <h1 className="text-2xl mb-4">Manage Recipes</h1>
+        <ManageRecipes />
+      </div>
+      <div className="p-4">
+        <h1 className="text-2xl mb-4">Equipment</h1>
+        <ManageEquipment />
+        <CreateEquipment />
+      </div>
+      <div className="p-4">
+        <h1 className="text-2xl mb-4">Categories</h1>
+        <ManageCategory />
+        <CreateCategory />
       </div>
     </>
   );
 }
 
-export default ManageRecipes;
+export default ManageDashboard;

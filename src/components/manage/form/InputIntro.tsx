@@ -1,22 +1,12 @@
-import { Field, FieldLabel, FieldError } from '@/components/ui/field';
-import { Controller } from 'react-hook-form';
-import { Textarea } from '@/components/ui/textarea';
+import { useFormContext } from 'react-hook-form';
 
-function InputIntro({ hookForm }) {
+function InputIntro() {
+  const { register } = useFormContext();
   const content = (
-    <Controller
-      name="intro"
-      control={hookForm.control}
-      render={({ field, fieldState }) => (
-        <Field>
-          <FieldLabel>Description</FieldLabel>
-          <Textarea
-            {...field}
-            placeholder="Enter recipe description"
-          ></Textarea>
-          {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-        </Field>
-      )}
+    <textarea
+      placeholder="Add recipe description"
+      {...register('intro')}
+      className="w-full h-min mb-4"
     />
   );
   return content;

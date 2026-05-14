@@ -13,14 +13,16 @@ import InputTitle from '@/components/manage/form/InputTitle';
 import z from 'zod';
 import { recipeFormSchema } from '@/types/form';
 import { useForm } from 'react-hook-form';
+import { useRouteLoaderData } from 'react-router';
+import type { UserType } from '@/types/api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSubmit } from 'react-router';
+import { toast } from 'sonner';
 
 type FormData = z.input<typeof recipeFormSchema>;
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData.entries());
+  const data = await request.json();
   const res = await fetch(`${API_URL}/recipe/`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -39,6 +41,9 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 function CreateRecipe({ actionData }: Route.ComponentProps) {
   const navigate = useNavigate();
+  const data =
+    useRouteLoaderData<Route.ComponentProps['loaderData']>('manage-layout');
+  const user = data?.user as UserType | undefined;
 
   const hookForm = useForm<FormData>({
     resolver: zodResolver(recipeFormSchema),
@@ -48,26 +53,39 @@ function CreateRecipe({ actionData }: Route.ComponentProps) {
       intro: '',
       reference: '',
       equipment: [],
+      user_id: user?.id || 0,
     },
   });
   const submit = useSubmit();
   const onSubmit = (data: FormData) => {
-    submit(data);
+    console.log(data);
+    submit(data, { method: 'POST', encType: 'application/json' });
   };
 
   useEffect(() => {
-    if (actionData) {
+    if (actionData && actionData.errors) {
+      console.error(actionData.errors);
+    }
+    if (actionData && actionData.success !== false && actionData.data?.slug) {
       navigate(`/manage/update/${actionData.data.slug}`, { replace: true });
+      toast(actionData.message);
     }
   }, [actionData, navigate]);
   return (
     <>
       <ManageForm hookForm={hookForm} onSubmit={onSubmit}>
-        <InputTitle hookForm={hookForm} />
-        <InputCategory hookForm={hookForm} />
-        <InputIntro hookForm={hookForm} />
-        <InputReference hookForm={hookForm} />
-        <InputEquipment hookForm={hookForm} />
+        <div className="lg:grid lg:grid-cols-3 lg:gap-4">
+          <div className="lg:col-span-2">
+            <input {...hookForm.register('user_id')} type="hidden" />
+            <InputTitle />
+            <InputIntro />
+            <InputReference />
+            <InputCategory />
+          </div>
+          <div>
+            <InputEquipment />
+          </div>
+        </div>
       </ManageForm>
       <ManageFooter buttonName="Create Recipe" />
     </>

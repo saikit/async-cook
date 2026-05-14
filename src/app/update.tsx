@@ -3,7 +3,6 @@ import type { Route } from './+types/update';
 import { getHeaders } from '@/hooks/getHeaders';
 import { useEffect } from 'react';
 import ManageFooter from '@/components/manage/ManageFooter';
-import { useNotification } from '@/context/NotificationProvider';
 import { redirect } from 'react-router';
 import type { RecipeType } from '@/types/api';
 import ManageForm from '@/components/manage/form/ManageForm';
@@ -19,6 +18,14 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useSubmit } from 'react-router';
+import InputStep from '@/components/manage/form/InputStep';
+import InputIngredient from '@/components/manage/form/InputIngredient';
+import InputInstructionGroup from '@/components/manage/form/InputInstructionGroup';
+import InputIngredientGroup from '@/components/manage/form/InputIngredientGroup';
+import InputInstruction from '@/components/manage/form/InputInstruction';
+import InputOptionalIngredients from '@/components/manage/form/InputOptionalIngredients';
+import { toast } from 'sonner';
+import CreateStep from '@/components/manage/CreateStep';
 
 type FormData = z.input<typeof updateRecipeFormSchema>;
 
@@ -46,10 +53,9 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 }
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData.entries());
-  const id = formData.get('id');
-  const res = await fetch(`${API_URL}/recipe/${id}/recipe`, {
+  const data = await request.json();
+  const id = data.id;
+  const res = await fetch(`${API_URL}/manage/recipe/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
     headers: getHeaders(),
@@ -66,13 +72,12 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 }
 
 function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
-  const { recipe }: UpdateFormType = loaderData.data;
+  const { recipe }: UpdateFormType = loaderData;
   const { slug } = recipe;
-  const { notify } = useNotification();
   const navigate = useNavigate();
   useEffect(() => {
     if (actionData) {
-      notify(actionData.message);
+      toast(actionData.message);
       if (
         actionData.success !== false &&
         actionData.data?.slug &&
@@ -81,7 +86,7 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
         navigate(`/manage/update/${actionData.data.slug}`, { replace: true });
       }
     }
-  }, [actionData, notify, navigate, slug]);
+  }, [actionData, navigate, slug]);
 
   const hookForm = useForm<FormData>({
     resolver: zodResolver(updateRecipeFormSchema),
@@ -94,28 +99,84 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
       intro: '',
       reference: '',
       published: 0,
+      optional_ingredients: [],
       equipment: [],
+      steps: [
+        {
+          ingredient_groups: {
+            text: '',
+            ingredients: [
+              {
+                quantity: null,
+                cooked: false,
+                ing_order: 0,
+                unit: '',
+                name: '',
+                fdc_id: null,
+              },
+            ],
+          },
+          instruction_groups: {
+            title: '',
+            instructions: [
+              {
+                text: '',
+                int_order: 0,
+              },
+            ],
+          },
+        },
+      ],
     },
     values: recipe,
   });
   const submit = useSubmit();
   const onSubmit = (data: FormData) => {
-    submit(data);
+    submit(data, { method: 'PUT', encType: 'application/json' });
   };
+
+  if (!recipe) return <>Loading...</>;
 
   return (
     <>
       <ManageForm hookForm={hookForm} onSubmit={onSubmit}>
-        <input {...hookForm.register('id')} type="hidden" />
-        <input {...hookForm.register('user_id')} type="hidden" />
-        <InputTitle hookForm={hookForm} />
-        <InputCategory hookForm={hookForm} />
-        <InputSlug hookForm={hookForm} />
-        <InputIntro hookForm={hookForm} />
-        <InputReference hookForm={hookForm} />
-        <InputPublished hookForm={hookForm} />
-        <InputEquipment hookForm={hookForm} />
+        <div className="lg:grid lg:grid-cols-3 lg:gap-4">
+          <div className="lg:col-span-2">
+            <input {...hookForm.register('id')} type="hidden" />
+            <input {...hookForm.register('user_id')} type="hidden" />
+            <InputTitle />
+            <InputIntro />
+            <InputReference />
+          </div>
+          <div>
+            <InputCategory />
+            <InputSlug />
+            <InputPublished />
+            <InputEquipment />
+            {recipe.optional_ingredients?.length > 0 && (
+              <InputOptionalIngredients />
+            )}
+          </div>
+        </div>
+        <div className="lg:grid lg:grid-cols-3 lg:gap-4">
+          {recipe.steps.map((step, index) => {
+            return (
+              <InputStep key={index} step={step}>
+                <InputIngredientGroup index={index}>
+                  <>
+                    <InputIngredient index={index} />
+                    <hr className="my-4" />
+                  </>
+                </InputIngredientGroup>
+                <InputInstructionGroup index={index}>
+                  <InputInstruction index={index} />
+                </InputInstructionGroup>
+              </InputStep>
+            );
+          })}
+        </div>
       </ManageForm>
+      <CreateStep recipe={recipe} />
       <ManageFooter buttonName="Update Recipe" />
     </>
   );

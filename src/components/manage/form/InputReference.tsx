@@ -1,42 +1,34 @@
-import { Field, FieldLabel, FieldError } from '@/components/ui/field';
-import { Controller } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
 import { Link } from 'react-router';
-import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-function InputReference({ hookForm }) {
-  const [showReference, setShowReference] = useState<string | undefined>(
-    undefined,
-  );
+function InputReference() {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext();
+  const watchReference = watch('reference');
   const content = (
-    <Controller
-      name="reference"
-      control={hookForm.control}
-      render={({ field, fieldState }) => (
-        <Field>
-          <FieldLabel>Reference</FieldLabel>
-          <Input
-            {...field}
-            value={field.value || ''}
-            onChange={(e) => {
-              field.onChange(e);
-              setShowReference(e.target.value);
-            }}
-            placeholder="Enter valid url"
-          />
-          {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          {showReference && !fieldState.invalid && (
-            <Link
-              className="text-blue-700 underline"
-              target="_blank"
-              to={showReference}
-            >
-              <small>Preview URL</small>
-            </Link>
-          )}
-        </Field>
-      )}
-    />
+    <div className="grid grid-cols-4 gap-2">
+      <div className="col-span-3">
+        <input
+          {...register('reference')}
+          className="w-full"
+          placeholder="Add a valid reference url"
+        />
+      </div>
+      <div className="col-span-1">
+        {!errors.reference && (
+          <Link
+            className="text-blue-700 underline"
+            target="_blank"
+            to={watchReference}
+          >
+            <small>Preview URL</small>
+          </Link>
+        )}
+      </div>
+    </div>
   );
   return content;
 }
