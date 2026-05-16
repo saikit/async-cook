@@ -1,15 +1,16 @@
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm, FieldValues, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { manageEquipmentSchema } from '@/types/form';
 import { getHeaders } from '@/hooks/getHeaders';
 import { Button } from '../ui/button';
 import { useManage } from '@/context/Manage/ManageProvider';
-import { EquipmentType } from '@/types/api';
 import { toast } from 'sonner';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function EquipmentForm({ equip }: { equip: EquipmentType }) {
+function ManageEquipment() {
+  const { manageView, refetch } = useManage();
+
   const submitHandler = async function (request: FieldValues) {
     const res = await fetch(`${API_URL}/tag/equipment`, {
       method: 'PUT',
@@ -23,68 +24,70 @@ function EquipmentForm({ equip }: { equip: EquipmentType }) {
       return;
     }
 
+    await refetch();
     const data = await res.json();
     if (data.message) return toast(data.message);
   };
 
-  const hookForm = useForm({
-    resolver: zodResolver(manageEquipmentSchema),
-    values: {
-      equipment: [
-        {
-          id: equip.id,
-          name: equip.name,
-          description: equip.description,
-        },
-      ],
-    },
-  });
-
-  const { register, handleSubmit } = hookForm;
-
-  return (
-    <form
-      className="mb-4 p-4 border rounded bg-card text-card-foreground shadow-sm"
-      onSubmit={handleSubmit(submitHandler)}
-    >
-      <div className="grid gap-3">
-        <fieldset>
-          <label className="text-xs font-bold uppercase text-muted-foreground">
-            Name
-          </label>
-          <input
-            className="w-full border rounded p-2 mt-1"
-            {...register(`equipment.0.name`)}
-          />
-        </fieldset>
-        <fieldset>
-          <label className="text-xs font-bold uppercase text-muted-foreground">
-            Description
-          </label>
-          <textarea
-            rows="3"
-            className="w-full border rounded p-2 mt-1"
-            {...register(`equipment.0.description`)}
-          />
-        </fieldset>
-        <Button type="submit" size="sm" className="w-fit ml-auto">
-          Update Equipment
-        </Button>
-      </div>
-    </form>
-  );
-}
-
-function ManageEquipment() {
-  const { manageView } = useManage();
   const { equipment } = manageView;
 
+  if (!equipment) {
+    return;
+  }
+
+  const hookForm = useForm({
+    resolver: zodResolver(manageEquipmentSchema),
+    values: { equipment: equipment },
+  });
+
+  const { register, handleSubmit, control } = hookForm;
+  const { fields, append } = useFieldArray({
+    control: control,
+    name: `equipment`,
+  });
+
   return (
-    <div className="lg:grid lg:grid-cols-4 lg:gap-4">
-      {equipment?.map((equip) => (
-        <EquipmentForm key={equip.id} equip={equip} />
-      ))}
-    </div>
+    <form onSubmit={handleSubmit(submitHandler)} className="mb-4">
+      <div className="lg:grid lg:grid-cols-3 lg:gap-4">
+        {fields.map((field, index) => (
+          <div
+            className="border rounded bg-card text-card-foreground shadow-sm p-4 grid gap-3"
+            key={field.id}
+          >
+            <fieldset>
+              <label className="text-xs font-bold uppercase text-muted-foreground">
+                Name
+              </label>
+              <input
+                className="w-full border rounded p-2 mt-1"
+                {...register(`equipment.${index}.name`)}
+              />
+            </fieldset>
+            <fieldset>
+              <label className="text-xs font-bold uppercase text-muted-foreground">
+                Description
+              </label>
+              <textarea
+                rows="3"
+                className="w-full border rounded p-2 mt-1"
+                {...register(`equipment.${index}.description`)}
+              />
+            </fieldset>
+          </div>
+        ))}
+      </div>
+      <fieldset className="contents">
+        <Button type="submit">Update Equipment</Button>
+        <Button
+          type="button"
+          onClick={() => {
+            append();
+          }}
+        >
+          Add Equipment
+        </Button>
+      </fieldset>
+    </form>
   );
 }
 

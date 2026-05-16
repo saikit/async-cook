@@ -19,20 +19,31 @@ export type ManageContextType = {
       id: number;
       name: string;
     }>;
+    icons: Array<{
+      id: number;
+      category: string;
+      note: string;
+    }>;
     recipes: RecipesListType[];
   };
   refetch: () => Promise<void>;
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
-const ManageContext = createContext<ManageContextType>({
-  manageView: [],
-});
+const ManageContext = createContext<ManageContextType | undefined>(undefined);
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const ManageProvider = ({ children }: ChildrenType) => {
-  const [manageView, setManageView] = useState([] as RecipesListType[]);
+  const [manageView, setManageView] = useState<ManageContextType['manageView']>(
+    {
+      categories: [],
+      equipment: [],
+      icons: [],
+      recipes: [],
+    },
+  );
+
   const fetchJSONDataFrom = useCallback(
     async (path: string) => {
       try {
@@ -46,14 +57,12 @@ export const ManageProvider = ({ children }: ChildrenType) => {
             response.status,
             response.statusText,
           );
-          setManageView([]);
         } else {
           const data = await response.json();
           if (data) {
             setManageView(data);
           } else {
             console.error('Invalid API response structure:', data);
-            setManageView([]);
           }
         }
       } catch (error) {

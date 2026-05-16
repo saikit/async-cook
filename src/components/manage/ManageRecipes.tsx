@@ -2,7 +2,6 @@ import { Link } from 'react-router';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import type { RecipeType } from '@/types/api';
 
 function ManageRecipes() {
   const { manageView } = useManage();
@@ -20,7 +19,7 @@ function ManageRecipes() {
           </tr>
         </thead>
         <tbody>
-          {recipes?.map((recipe: RecipeType) => (
+          {recipes?.map((recipe) => (
             <tr className="mb-2" key={recipe.slug}>
               <td>
                 <Link

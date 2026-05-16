@@ -3,15 +3,20 @@ import { useFormContext } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import { IngredientType } from '@/types/api';
 import { Button } from '@/components/ui/button';
+import { UpdateFormType } from '@/app/update';
+import { Trash2 } from 'lucide-react';
+import ManageContext from '../ManageContext';
 
 function InputInstruction({ index }: { index: number }) {
-  const { register, watch, control, getValues } = useFormContext();
-  const routeLoaderData = useRouteLoaderData('update') as any;
+  const { register, control, getValues } = useFormContext();
+  const routeLoaderData = useRouteLoaderData('update') as UpdateFormType;
   const { recipe } = routeLoaderData || {};
   const { fields, append } = useFieldArray({
     control: control,
-    name: `steps.${index}.instruction_groups.instructions`,
+    name: `steps.${index}.instructions.instructions`,
   });
+
+  const instructions = getValues(`steps.${index}.instructions.instructions`);
 
   if (!recipe) return null;
   const content = (
@@ -22,47 +27,72 @@ function InputInstruction({ index }: { index: number }) {
             <label>Instruction</label>
             <textarea
               {...register(
-                `steps.${index}.instruction_groups.instructions.${intIndex}.text`,
+                `steps.${index}.instructions.instructions.${intIndex}.text`,
               )}
               className="border rounded w-full h-min"
               placeholder="Enter instruction"
             />
           </fieldset>
-          {recipe.optional_ingredients?.length > 0 && (
-            <select
-              {...register(
-                `steps.${index}.instruction_groups.instructions.${intIndex}.optional`,
+          <fieldset>
+            <label>Notes</label>
+            <ManageContext
+              context={getValues(
+                `steps.${index}.instructions.instructions.${intIndex}.context`,
               )}
-              defaultValue={watch(
-                `steps.${index}.instruction_groups.instructions.${intIndex}.optional`,
+              instruction_id={getValues(
+                `steps.${index}.instructions.instructions.${intIndex}.id`,
               )}
-            >
-              {recipe.optional_ingredients.map((ingredient: IngredientType) => (
-                <option key={ingredient.id} value={ingredient.id}>
-                  {ingredient.name}
-                </option>
-              ))}
-            </select>
+            />
+          </fieldset>
+          {(recipe.optional_ingredients?.length ?? 0) > 0 && (
+            <fieldset>
+              <label>Optional</label>
+              <select
+                {...register(
+                  `steps.${index}.instructions.instructions.${intIndex}.optional`,
+                  {
+                    setValueAs: (v) =>
+                      v === '' || v === null ? null : Number(v),
+                  },
+                )}
+                className="border rounded w-full"
+              >
+                <option value="">None</option>
+                {recipe.optional_ingredients?.map(
+                  (ingredient: IngredientType) => (
+                    <option key={ingredient.id} value={ingredient.id}>
+                      {ingredient.name}
+                    </option>
+                  ),
+                )}
+              </select>
+            </fieldset>
           )}
           <fieldset>
             <label>Order</label>
             <input
               {...register(
-                `steps.${index}.instruction_groups.instructions.${intIndex}.int_order`,
+                `steps.${index}.instructions.instructions.${intIndex}.int_order`,
               )}
               className="border rounded w-full"
             />
           </fieldset>
+          {instructions?.length > 1 && (
+            <fieldset>
+              <label>Delete</label>
+              <Trash2 />
+            </fieldset>
+          )}
         </div>
       ))}
       <Button
         type="button"
         onClick={() => {
           const group_id = getValues(
-            'steps.0.instruction_groups.instructions.0.group_id',
+            `steps.${index}.instructions.instructions.0.group_id`,
           );
           const instructions = getValues(
-            `steps.${index}.instruction_groups.instructions`,
+            `steps.${index}.instructions.instructions`,
           );
           const lastIntOrder =
             instructions?.length > 0

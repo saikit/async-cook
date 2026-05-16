@@ -39,6 +39,8 @@ function CreateStep({ recipe }: { recipe: RecipeType }) {
     const step = await res.json();
     if (step.message) {
       toast(step.message);
+      setMaxStep((prev) => prev + 1);
+      hookForm.setValue('step', maxStep + 1);
       navigate(`/manage/update/${recipe.slug}`, {
         replace: true,
         preventScrollReset: true,

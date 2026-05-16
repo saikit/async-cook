@@ -3,16 +3,21 @@ import { useFormContext } from 'react-hook-form';
 import { IngredientType } from '@/types/api';
 import { useFieldArray } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
+import type { UpdateFormType } from '@/app/update';
+import { Trash2 } from 'lucide-react';
+import ManageContext from '../ManageContext';
 
 function InputIngredient({ index }: { index: number }) {
-  const { register, control, watch, getValues } = useFormContext();
-  const routeLoaderData = useRouteLoaderData('update') as any;
+  const { register, control, getValues } = useFormContext();
+  const routeLoaderData = useRouteLoaderData('update') as UpdateFormType;
   const { recipe } = routeLoaderData || {};
 
   const { fields, append } = useFieldArray({
     control: control,
-    name: `steps.${index}.ingredient_groups.ingredients`,
+    name: `steps.${index}.ingredients.ingredients`,
   });
+
+  const ingredients = getValues(`steps.${index}.ingredients.ingredients`);
 
   if (!recipe) return null;
   const content = (
@@ -26,34 +31,34 @@ function InputIngredient({ index }: { index: number }) {
             <label>Quantity</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.quantity`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.quantity`,
               )}
-              className="border rounded"
+              className="border rounded w-full"
             />
           </fieldset>
           <fieldset>
             <label>Unit</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.unit`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.unit`,
               )}
-              className="border rounded"
+              className="border rounded w-full"
             />
           </fieldset>
-          <fieldset className="col-span-2">
+          <fieldset className="col-span-2 sm:col-span-4">
             <label>Name</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.name`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.name`,
               )}
-              className="border rounded"
+              className="border rounded w-full"
             />
           </fieldset>
           <fieldset>
             <label>Cooked</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.cooked`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.cooked`,
               )}
               type="checkbox"
             />
@@ -62,23 +67,26 @@ function InputIngredient({ index }: { index: number }) {
             <label>FDC Id</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.fdc_id`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.fdc_id`,
               )}
-              className="border rounded"
+              className="border rounded w-full"
             />
           </fieldset>
-          {recipe.optional_ingredients?.length > 0 && (
+          {(recipe.optional_ingredients?.length ?? 0) > 0 && (
             <fieldset>
               <label>Optional</label>
               <select
                 {...register(
-                  `steps.${index}.ingredient_groups.ingredients.${ingIndex}.optional`,
+                  `steps.${index}.ingredients.ingredients.${ingIndex}.optional`,
+                  {
+                    setValueAs: (v) =>
+                      v === '' || v === null ? null : Number(v),
+                  },
                 )}
-                defaultValue={watch(
-                  `steps.${index}.ingredient_groups.ingredients.${ingIndex}.optional`,
-                )}
+                className="border rounded w-full"
               >
-                {recipe.optional_ingredients.map(
+                <option value="">None</option>
+                {recipe.optional_ingredients?.map(
                   (ingredient: IngredientType) => (
                     <option key={ingredient.id} value={ingredient.id}>
                       {ingredient.name}
@@ -89,24 +97,43 @@ function InputIngredient({ index }: { index: number }) {
             </fieldset>
           )}
           <fieldset>
+            <label>Notes</label>
+            <ManageContext
+              index={index}
+              ingIndex={ingIndex}
+              context={getValues(
+                `steps.${index}.ingredients.ingredients.${ingIndex}.context`,
+              )}
+              ingredient_id={getValues(
+                `steps.${index}.ingredients.ingredients.${ingIndex}.id`,
+              )}
+            />
+          </fieldset>
+          <fieldset>
             <label>Order</label>
             <input
               {...register(
-                `steps.${index}.ingredient_groups.ingredients.${ingIndex}.ing_order`,
+                `steps.${index}.ingredients.ingredients.${ingIndex}.ing_order`,
               )}
-              className="border rounded"
+              className="border rounded w-full"
             />
           </fieldset>
+          {ingredients?.length > 1 && (
+            <fieldset>
+              <label>Delete</label>
+              <Trash2 />
+            </fieldset>
+          )}
         </div>
       ))}
       <Button
         type="button"
         onClick={() => {
           const group_id = getValues(
-            `steps.${index}.ingredient_groups.ingredients.0.group_id`,
+            `steps.${index}.ingredients.ingredients.0.group_id`,
           );
           const ingredients = getValues(
-            `steps.${index}.ingredient_groups.ingredients`,
+            `steps.${index}.ingredients.ingredients`,
           );
           const lastIngOrder =
             ingredients?.length > 0

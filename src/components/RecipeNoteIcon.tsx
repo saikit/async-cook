@@ -1,5 +1,5 @@
 import type { RecipeNoteIconType } from '@/types/api';
-import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react';
+import ContextIcons from './ContextIcons';
 import {
   Popover,
   PopoverContent,
@@ -7,28 +7,13 @@ import {
 } from '@/components/ui/popover';
 
 function RecipeNoteIcon({ note }: { note: RecipeNoteIconType }) {
-  let Icon: LucideIcon;
-  switch (note.category) {
-    case 'alert':
-      Icon = CircleAlert;
-      break;
-    case 'explanation':
-      Icon = CircleHelp;
-      break;
-    case 'recommendation':
-      Icon = ChefHat;
-      break;
-    default:
-      Icon = CircleHelp;
-  }
-
   return (
     <Popover>
       <PopoverTrigger
         className="align-top ml-1 print:hidden"
-        title={note.category}
+        title={note.icon.category}
       >
-        <Icon size={24} color="#57534d" />
+        <ContextIcons category={note.icon.category} />
       </PopoverTrigger>
       <PopoverContent>
         <p>{note.note}</p>

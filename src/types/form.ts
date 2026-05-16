@@ -37,15 +37,17 @@ export const updateRecipeFormSchema = recipeFormSchema.extend({
   steps: z.array(
     z.object({
       step: z.number(),
-      ingredient_groups: z.object({
+      ingredients: z.object({
         id: z.number().optional(),
         text: z.string().nullable(),
         optional: z.number().nullish(),
+        step_id: z.number(),
         ingredients: z.array(
           z.object({
             id: z.number().optional(),
             name: z.string(),
             quantity: z.coerce.number().nullable(),
+            optional: z.number().nullish(),
             unit: z.string().nullable(),
             ing_order: z.coerce.number(),
             cooked: z.boolean(),
@@ -54,10 +56,11 @@ export const updateRecipeFormSchema = recipeFormSchema.extend({
           }),
         ),
       }),
-      instruction_groups: z.object({
+      instructions: z.object({
         id: z.number().optional(),
         title: z.string(),
         background: z.string().nullable(),
+        step_id: z.number(),
         instructions: z.array(
           z.object({
             id: z.number().optional(),
@@ -96,6 +99,18 @@ export const manageCategoriesSchema = z.object({
         .string()
         .min(1, { message: 'Category is required.' })
         .max(25, { message: 'Category must be less than 25 characters.' }),
+    }),
+  ),
+});
+
+export const manageContextSchema = z.object({
+  context: z.array(
+    z.object({
+      id: z.number().optional(),
+      category_id: z.coerce.number(),
+      note: z.string().min(1, { message: 'Note is required.' }),
+      instruction_id: z.number().nullish(),
+      ingredient_id: z.number().nullish(),
     }),
   ),
 });

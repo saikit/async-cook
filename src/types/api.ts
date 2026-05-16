@@ -6,6 +6,9 @@ export type RecipeType = {
   intro?: string;
   reference?: string;
   category: string;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
   optional_ingredients?: Array<{
     name: string;
     id: number;
@@ -72,8 +75,12 @@ export type IngredientType = {
 
 export type RecipeNoteIconType = {
   id: number;
-  category: string;
-  lucide_icon: string;
+  category_id: number;
+  instruction_id?: number;
+  ingredient_id?: number;
+  icon: {
+    category: string;
+  };
   note: string;
 };
 

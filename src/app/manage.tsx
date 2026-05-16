@@ -1,8 +1,6 @@
 import ManageEquipment from '@/components/manage/ManageEquipment';
 import ManageCategory from '@/components/manage/ManageCategory';
 import ManageRecipes from '@/components/manage/ManageRecipes';
-import CreateCategory from '@/components/manage/CreateCategory';
-import CreateEquipment from '@/components/manage/CreateEquipment';
 
 function ManageDashboard() {
   return (
@@ -15,12 +13,10 @@ function ManageDashboard() {
       <div className="p-4">
         <h1 className="text-2xl mb-4">Equipment</h1>
         <ManageEquipment />
-        <CreateEquipment />
       </div>
       <div className="p-4">
         <h1 className="text-2xl mb-4">Categories</h1>
         <ManageCategory />
-        <CreateCategory />
       </div>
     </>
   );

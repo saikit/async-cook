@@ -29,13 +29,8 @@ import CreateStep from '@/components/manage/CreateStep';
 
 type FormData = z.input<typeof updateRecipeFormSchema>;
 
-type UpdateFormType = {
+export type UpdateFormType = {
   recipe: RecipeType;
-  equipment: RecipeType['equipment'];
-  categories: Array<{
-    id: number;
-    category: string;
-  }>;
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -49,6 +44,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (res.status === 403) throw redirect('/not-found');
   }
   const recipe = await res.json();
+  console.log(recipe);
   return recipe;
 }
 
@@ -103,8 +99,8 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
       equipment: [],
       steps: [
         {
-          ingredient_groups: {
-            text: '',
+          ingredients: {
+            text: null,
             ingredients: [
               {
                 quantity: null,
@@ -116,7 +112,7 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
               },
             ],
           },
-          instruction_groups: {
+          instructions: {
             title: '',
             instructions: [
               {
@@ -153,7 +149,7 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
             <InputSlug />
             <InputPublished />
             <InputEquipment />
-            {recipe.optional_ingredients?.length > 0 && (
+            {(recipe.optional_ingredients?.length ?? 0) > 0 && (
               <InputOptionalIngredients />
             )}
           </div>
@@ -161,17 +157,19 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
         <div className="lg:grid lg:grid-cols-3 lg:gap-4">
           {recipe.steps.map((step, index) => {
             return (
-              <InputStep key={index} step={step}>
-                <InputIngredientGroup index={index}>
-                  <>
-                    <InputIngredient index={index} />
-                    <hr className="my-4" />
-                  </>
-                </InputIngredientGroup>
-                <InputInstructionGroup index={index}>
-                  <InputInstruction index={index} />
-                </InputInstructionGroup>
-              </InputStep>
+              <>
+                <InputStep key={index} step={step}>
+                  <InputIngredientGroup index={index}>
+                    <>
+                      <InputIngredient index={index} />
+                      <hr className="my-4" />
+                    </>
+                  </InputIngredientGroup>
+                  <InputInstructionGroup index={index}>
+                    <InputInstruction index={index} />
+                  </InputInstructionGroup>
+                </InputStep>
+              </>
             );
           })}
         </div>

@@ -19,6 +19,7 @@ function RecipeIngredientsList() {
   const content = (
     <div className="my-2" aria-label="Ingredient List">
       {sortedIngredients.map((ingredientGroup, index) => {
+        console.log(ingredientGroup);
         const Title = () => {
           const CalculatorIcon = () => {
             if (
@@ -35,7 +36,7 @@ function RecipeIngredientsList() {
                 />
               );
           };
-          if ('text' in ingredientGroup && ingredientGroup.text !== '')
+          if ('text' in ingredientGroup && ingredientGroup.text !== null)
             return (
               <h3 className="text-xl text-slate-500 mb-1">
                 <em>For the {ingredientGroup.text}</em>
