@@ -36,7 +36,7 @@ function RecipeNavigation() {
       </title>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button className=" rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex justify-center print:hidden">
+          <Button className="rounded-full h-7 w-7 fixed top-2 left-2 bg-slate-200 opacity-80 transform flex z-2 justify-center print:hidden">
             <Menu className="" size={18} color="black" />
           </Button>
         </SheetTrigger>

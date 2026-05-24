@@ -34,14 +34,6 @@ const nutrients = [
   '324', // Vitamin D
 ];
 
-const params = new URLSearchParams({
-  api_key: API_KEY,
-  format: 'abridged',
-  nutrients: nutrients.join(','),
-  sortBy: 'description',
-  sortOrder: 'asc',
-});
-
 const FoodDataContext = createContext<FoodDataContextType>({
   foodData: [],
 } as FoodDataContextType);
@@ -61,6 +53,18 @@ export const FoodDataProvider = ({ children }: ChildrenType) => {
           Accept: 'application/json',
         },
       });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          console.error('Rate limit exceeded. Please try again in an hour.');
+        } else {
+          console.error(
+            `Food API error: ${response.status} ${response.statusText}`,
+          );
+        }
+        return;
+      }
+
       const data = await response.json();
       setFoodData(data);
     } catch (error) {
@@ -74,11 +78,24 @@ export const FoodDataProvider = ({ children }: ChildrenType) => {
     if (!isComplete) {
       return;
     } else {
-      if (fdc_ids === undefined || fdc_ids.length === 0) {
+      // Filter out any invalid, null, or non-numeric IDs to prevent malformed URLs
+      const validIds = fdc_ids?.filter((id) => id && !isNaN(Number(id)));
+
+      if (!validIds || validIds.length === 0) {
+        setFoodData([]); // Clear data if no valid IDs exist for this recipe
         return;
       } else {
-        params.set('fdcIds', fdc_ids.join(','));
-        const path = `https://api.nal.usda.gov/fdc/v1/foods/?${params.toString()}`;
+        // Construct params locally to avoid shared state pollution
+        const searchParams = new URLSearchParams({
+          api_key: API_KEY || '',
+          format: 'abridged',
+          nutrients: nutrients.join(','),
+          sortBy: 'description',
+          sortOrder: 'asc',
+          fdcIds: validIds.join(','),
+        });
+
+        const path = `https://api.nal.usda.gov/fdc/v1/foods?${searchParams.toString()}`;
         fetchJSONDataFrom(path);
       }
     }

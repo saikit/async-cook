@@ -7,17 +7,19 @@ This is a reimagined version of a Cantonese zongzi. This version highlights the 
 
 ### For the rice and mung beans
 
-- **150g** split mung beans (Recommendation: Traditionally, glutinous rice is used, but any rice will work.)
-- **150g** rice (Alert: Replace with liquid from soaking dried shiitake mushrooms if using.)
-- **435g** water (Recommendation: You may adjust water amount based on preferred texture.)
+- **150g** split mung beans (: Traditionally, glutinous rice is used, but any rice will work.)
+- **150g** rice (: Replace with liquid from soaking dried shiitake mushrooms if using.)
+- **435g** water (: You may adjust water amount based on preferred texture.)
 - **15g** soy sauce *(optional)*
 <!---->
-- **80g** mushrooms (Recommendation: Dried shiitake mushrooms are traditional, but any dried or fresh mushrooms will work.)
+- **80g** mushrooms (: Dried shiitake mushrooms are traditional, but any dried or fresh mushrooms will work.)
+<!--(optional group)-->
 <!---->
-- **80g** Chinese sausage (Recommendation: Other cured or preserved meats such as bacon works as well.)
+- **80g** Chinese sausage (: Other cured or preserved meats such as bacon works as well.)
+<!--(optional group)-->
 <!---->
 <!---->
-- **15g** lard or butter *(optional)* (Recommendation: Any flavored oils and fats will work.)
+- **15g** lard or butter *(optional)* (: Any flavored oils and fats will work.)
 <!---->
 ## Instructions
 

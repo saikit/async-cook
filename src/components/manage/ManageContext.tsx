@@ -7,12 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-import {
-  useForm,
-  FieldValues,
-  useFieldArray,
-  useFormContext,
-} from 'react-hook-form';
+import { useForm, FieldValues, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { manageContextSchema } from '@/types/form';
 import { getHeaders } from '@/hooks/getHeaders';
@@ -69,7 +64,9 @@ function ManageContext({
         context?.length > 0
           ? context.map((item) => ({
               ...item,
-              category_id: item.category_id ?? item.icon?.id,
+              category_id:
+                item.category_id ??
+                (item.icon as unknown as RecipeNoteIconType)?.id,
             }))
           : [
               {
@@ -159,7 +156,7 @@ function ManageContext({
                   Note
                 </label>
                 <textarea
-                  rows="3"
+                  rows={3}
                   className="w-full border rounded p-2 mt-1"
                   {...register(`context.${contextIndex}.note`)}
                 />

@@ -5,6 +5,7 @@ import { getHeaders } from '@/hooks/getHeaders';
 import { Button } from '../ui/button';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { toast } from 'sonner';
+import { EquipmentType } from '@/types/api';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -31,13 +32,15 @@ function ManageEquipment() {
 
   const { equipment } = manageView;
 
-  if (!equipment) {
-    return;
-  }
-
   const hookForm = useForm({
     resolver: zodResolver(manageEquipmentSchema),
-    values: { equipment: equipment },
+    values: {
+      equipment: equipment.map((e) => ({
+        id: e.id,
+        name: e.name,
+        description: (e as EquipmentType).description ?? '',
+      })),
+    },
   });
 
   const { register, handleSubmit, control } = hookForm;
@@ -68,7 +71,7 @@ function ManageEquipment() {
                 Description
               </label>
               <textarea
-                rows="3"
+                rows={3}
                 className="w-full border rounded p-2 mt-1"
                 {...register(`equipment.${index}.description`)}
               />
@@ -81,7 +84,7 @@ function ManageEquipment() {
         <Button
           type="button"
           onClick={() => {
-            append();
+            append({ name: '', description: '' });
           }}
         >
           Add Equipment

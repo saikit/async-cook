@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "typecheck": "react-router typegen && tsc",
-    "update:schema": "node scripts/update-schema.js"
+    "update:schema": "node scripts/update-schema.js",
+    "print:recipes": "node scripts/fetch-and-write.js"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.11.0",

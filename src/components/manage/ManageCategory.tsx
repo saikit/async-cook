@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { toast } from 'sonner';
 import { useFieldArray } from 'react-hook-form';
+import { CategoryType } from '@/types/api';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -34,7 +35,13 @@ function ManageCategory() {
 
   const hookForm = useForm({
     resolver: zodResolver(manageCategoriesSchema),
-    values: { category: categories },
+    values: {
+      category: categories.map((cat) => ({
+        id: cat.id,
+        category: cat.category,
+        cat_order: (cat as CategoryType).cat_order ?? 0,
+      })),
+    },
   });
 
   const { register, handleSubmit, control } = hookForm;
@@ -68,7 +75,7 @@ function ManageCategory() {
             fields.length > 0
               ? Number(fields[fields.length - 1].cat_order || 0)
               : 0;
-          append({ cat_order: lastCatOrder + 1 });
+          append({ category: '', cat_order: lastCatOrder + 1 });
         }}
       >
         Add Category

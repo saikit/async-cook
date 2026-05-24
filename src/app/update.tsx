@@ -84,51 +84,102 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
     }
   }, [actionData, navigate, slug]);
 
+  const normalizeRecipeForForm = (recipe: RecipeType): FormData => ({
+    id: recipe.id ?? 0,
+    user_id: recipe.user_id ?? 0,
+    title: recipe.title ?? '',
+    category: recipe.category ?? 'None',
+    slug: recipe.slug ?? '',
+    intro: recipe.intro ?? '',
+    reference: recipe.reference ?? '',
+    published: recipe.published ?? 0,
+    optional_ingredients: recipe.optional_ingredients ?? [],
+    equipment: recipe.equipment ?? [],
+    steps:
+      recipe.steps?.length > 0
+        ? recipe.steps.map((step) => ({
+            ...step,
+            ingredients: {
+              id: step.ingredients?.id,
+              text: step.ingredients?.text ?? null,
+              optional: step.ingredients?.optional ?? null,
+              step_id: step.ingredients?.step_id ?? 0,
+              ingredients: step.ingredients?.ingredients?.map((ingredient) => ({
+                id: ingredient.id,
+                quantity: ingredient.quantity ?? null,
+                cooked: ingredient.cooked ?? false,
+                ing_order: ingredient.ing_order ?? 0,
+                unit: ingredient.unit ?? '',
+                name: ingredient.name ?? '',
+                fdc_id: ingredient.fdc_id ?? null,
+                group_id: ingredient.group_id,
+                optional: ingredient.optional ?? null,
+              })) ?? [
+                {
+                  quantity: null,
+                  cooked: false,
+                  ing_order: 0,
+                  unit: '',
+                  name: '',
+                  fdc_id: null,
+                },
+              ],
+            },
+            instructions: {
+              id: step.instructions?.id,
+              title: step.instructions?.title ?? '',
+              optional: step.instructions?.optional ?? null,
+              step_id: step.instructions?.step_id ?? 0,
+              instructions: step.instructions?.instructions?.map(
+                (instruction) => ({
+                  id: instruction.id,
+                  text: instruction.text ?? '',
+                  int_order: instruction.int_order ?? 0,
+                  group_id: instruction.group_id,
+                }),
+              ) ?? [
+                {
+                  text: '',
+                  int_order: 0,
+                },
+              ],
+            },
+          }))
+        : [
+            {
+              ingredients: {
+                text: null,
+                ingredients: [
+                  {
+                    quantity: null,
+                    cooked: false,
+                    ing_order: 0,
+                    unit: '',
+                    name: '',
+                    fdc_id: null,
+                  },
+                ],
+              },
+              instructions: {
+                title: '',
+                instructions: [
+                  {
+                    text: '',
+                    int_order: 0,
+                  },
+                ],
+              },
+            },
+          ],
+  });
+
   const hookForm = useForm<FormData>({
     resolver: zodResolver(updateRecipeFormSchema),
-    defaultValues: {
-      id: 0,
-      user_id: 0,
-      title: '',
-      category: 'None',
-      slug: '',
-      intro: '',
-      reference: '',
-      published: 0,
-      optional_ingredients: [],
-      equipment: [],
-      steps: [
-        {
-          ingredients: {
-            text: null,
-            ingredients: [
-              {
-                quantity: null,
-                cooked: false,
-                ing_order: 0,
-                unit: '',
-                name: '',
-                fdc_id: null,
-              },
-            ],
-          },
-          instructions: {
-            title: '',
-            instructions: [
-              {
-                text: '',
-                int_order: 0,
-              },
-            ],
-          },
-        },
-      ],
-    },
-    values: recipe,
+    values: normalizeRecipeForForm(recipe),
   });
   const submit = useSubmit();
   const onSubmit = (data: FormData) => {
-    submit(data, { method: 'PUT', encType: 'application/json' });
+    submit(data as any, { method: 'PUT', encType: 'application/json' });
   };
 
   if (!recipe) return <>Loading...</>;

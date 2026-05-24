@@ -1,9 +1,17 @@
-import { ReactElement } from 'react';
-import { FormProvider } from 'react-hook-form';
+import { ReactNode } from 'react';
+import { FormProvider, UseFormReturn, FieldValues } from 'react-hook-form';
 
-type ChildrenType = { children?: ReactElement | ReactElement[] };
+interface ManageFormProps<TFieldValues extends FieldValues = FieldValues> {
+  hookForm: UseFormReturn<TFieldValues>;
+  onSubmit: (data: TFieldValues) => void;
+  children: ReactNode;
+}
 
-function ManageForm({ hookForm, onSubmit, children }) {
+function ManageForm<TFieldValues extends FieldValues = FieldValues>({
+  hookForm,
+  onSubmit,
+  children,
+}: ManageFormProps<TFieldValues>) {
   const content = (
     <FormProvider {...hookForm}>
       <form

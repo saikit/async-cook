@@ -3,10 +3,11 @@ import RecipeContext from '../context/RecipeProvider';
 import { Button } from '@/components/ui/button';
 
 function RecipeFooter() {
-  const { stepNumber, setStepNumber, maxStep } = useContext(RecipeContext);
+  const { stepNumber, setStepNumber, maxStep, setExpandImg } =
+    useContext(RecipeContext);
 
   const content = (
-    <footer className=" p-4 w-full sticky bottom-0 bg-slate-200 print:hidden">
+    <footer className="z-2 p-4 w-full sticky bottom-0 bg-slate-200 print:hidden">
       <div className="flex justify-center gap-2">
         {stepNumber === 0 ? (
           <Button
@@ -26,7 +27,10 @@ function RecipeFooter() {
             </Button>
             <Button
               className={`border ${stepNumber === maxStep ? 'bg-green-500' : 'slate-800'}`}
-              onClick={() => setStepNumber(0)}
+              onClick={() => {
+                setStepNumber(0);
+                setExpandImg(false);
+              }}
             >
               {stepNumber === maxStep ? 'Done!' : 'Restart'}
             </Button>

@@ -9,12 +9,14 @@ export type RecipeType = {
   user_id: number;
   created_at: string;
   updated_at: string;
+  cover_url: string;
   optional_ingredients?: Array<{
     name: string;
     id: number;
   }>;
   equipment: Array<EquipmentType>;
   published: number;
+  fdc_ids: Array<number>;
 };
 
 export type EquipmentType = {
@@ -24,6 +26,7 @@ export type EquipmentType = {
 };
 
 export type StepType = {
+  id: number;
   ingredient_groups: IngredientGroupType;
   instruction_groups: InstructionGroupType;
   step: number;
@@ -36,12 +39,18 @@ export type InstructionGroupType = {
   background?: string;
   instructions: Array<InstructionType>;
   optional?: number;
+  step_id: number;
+  id?: number;
 };
 
 export type InstructionType = {
   text: string;
   optional?: number;
   context?: Array<RecipeNoteIconType>;
+  image_url?: string;
+  int_order: number;
+  group_id?: number;
+  id?: number;
 };
 
 export type CategoryType = {
@@ -51,8 +60,9 @@ export type CategoryType = {
 };
 
 export type IngredientGroupType = {
+  id?: number;
   text?: string;
-  step: number;
+  step_id: number;
   calculator?: {
     text: string;
     calculator_ingredients: Array<IngredientType>;
@@ -63,7 +73,7 @@ export type IngredientGroupType = {
 };
 
 export type IngredientType = {
-  id: number;
+  id?: number;
   name: string;
   quantity?: number;
   unit?: string;
@@ -71,6 +81,10 @@ export type IngredientType = {
   context?: Array<RecipeNoteIconType>;
   cooked?: boolean;
   fdc_id?: number;
+  ing_order: number;
+  optional?: number;
+  group_id?: number;
+  image_url?: string;
 };
 
 export type RecipeNoteIconType = {

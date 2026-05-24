@@ -19,7 +19,6 @@ function RecipeIngredientsList() {
   const content = (
     <div className="my-2" aria-label="Ingredient List">
       {sortedIngredients.map((ingredientGroup, index) => {
-        console.log(ingredientGroup);
         const Title = () => {
           const CalculatorIcon = () => {
             if (

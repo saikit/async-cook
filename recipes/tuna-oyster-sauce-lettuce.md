@@ -5,18 +5,18 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 
 ## Ingredients
 
-- **200g** lettuce (Recommendation: Any leafy green will work for this dish.)
-- **1** scallion
+- **200g** lettuce (: Any leafy green will work for this dish.)
 - **3** cloves garlic
+- **1** scallion
 <!---->
 ### For the sauce
 
 - **20g** oyster sauce
-- **10ml** soy sauce (Recommendation: If using seasoned soy sauce, reduce or omit the sugar.)
 - **2g** sugar
+- **10ml** soy sauce (: If using seasoned soy sauce, reduce or omit the sugar.)
 - **2ml** dark soy sauce
 - a sprinkle of MSG *(optional)*
-- **1** 5oz can of chunk light tuna, undrained (Recommendation: For larger cuts of tuna, chop into smaller pieces.)
+- **1** 5oz can of chunk light tuna, undrained (: For larger cuts of tuna, chop into smaller pieces.)
 <!---->
 ### For the cornstarch slurry
 
@@ -35,11 +35,11 @@ Based on Lucas Sin's recipe of the same name, I added can of tuna in order to ma
 
 ## Step 1 — Cut lettuce & aromatics
 
-Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (Recommendation: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.)
+Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to rounds. Peel and mince **garlic cloves**. (: If serving with rice, wash and cook rice first. Keep rice warm until ready to serve.)
 
 ## Step 2 — Make the sauce
 
-Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well.
+Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well. 
 
 ## Step 3 — Make the cornstarch slurry
 
@@ -47,13 +47,15 @@ Combine **cornstarch** and **water** in a separate bowl. Mix well.
 
 ## Step 4 — Boil water
 
-In a pot, bring the **water** to a boil and add **salt**. (Recommendation: Water for blanching should be very salty.)
+In a pot, bring the **water** to a boil and add **salt**. (: Water for blanching should be very salty.)
 
 ## Step 5 — Cook sauce
 
 Background: *Water is boiling.*
 
 In a pan, heat up **neutral oil** over **high heat** until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.
+
+Background: *Water is boiling.*
 
 Add **combined sauce** to pan. Cook for **20 seconds** then **set flame to low** and add and mix **cornstarch slurry**. Cook until sauce is to desired thickness.
 

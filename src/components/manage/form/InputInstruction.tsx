@@ -1,11 +1,11 @@
 import { useRouteLoaderData } from 'react-router';
 import { useFormContext } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
-import { IngredientType } from '@/types/api';
 import { Button } from '@/components/ui/button';
 import { UpdateFormType } from '@/app/update';
 import { Trash2 } from 'lucide-react';
 import ManageContext from '../ManageContext';
+import SelectOptional from './SelectOptional';
 
 function InputInstruction({ index }: { index: number }) {
   const { register, control, getValues } = useFormContext();
@@ -23,7 +23,7 @@ function InputInstruction({ index }: { index: number }) {
     <>
       {fields.map((field, intIndex) => (
         <div key={field.id}>
-          <fieldset>
+          <fieldset className="mb-4">
             <label>Instruction</label>
             <textarea
               {...register(
@@ -33,7 +33,7 @@ function InputInstruction({ index }: { index: number }) {
               placeholder="Enter instruction"
             />
           </fieldset>
-          <fieldset>
+          <fieldset className="mb-4">
             <label>Notes</label>
             <ManageContext
               context={getValues(
@@ -45,30 +45,14 @@ function InputInstruction({ index }: { index: number }) {
             />
           </fieldset>
           {(recipe.optional_ingredients?.length ?? 0) > 0 && (
-            <fieldset>
+            <fieldset className="mb-4">
               <label>Optional</label>
-              <select
-                {...register(
-                  `steps.${index}.instructions.instructions.${intIndex}.optional`,
-                  {
-                    setValueAs: (v) =>
-                      v === '' || v === null ? null : Number(v),
-                  },
-                )}
-                className="border rounded w-full"
-              >
-                <option value="">None</option>
-                {recipe.optional_ingredients?.map(
-                  (ingredient: IngredientType) => (
-                    <option key={ingredient.id} value={ingredient.id}>
-                      {ingredient.name}
-                    </option>
-                  ),
-                )}
-              </select>
+              <SelectOptional
+                values={`steps.${index}.instructions.instructions.${intIndex}.optional`}
+              />
             </fieldset>
           )}
-          <fieldset>
+          <fieldset className="mb-4">
             <label>Order</label>
             <input
               {...register(
@@ -78,7 +62,7 @@ function InputInstruction({ index }: { index: number }) {
             />
           </fieldset>
           {instructions?.length > 1 && (
-            <fieldset>
+            <fieldset className="mb-4">
               <label>Delete</label>
               <Trash2 />
             </fieldset>

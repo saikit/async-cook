@@ -37,12 +37,12 @@ function RecipeOptionalInput() {
     <Drawer>
       <DrawerTrigger asChild>
         <ActionButton>
-          <>Select optional ingredients</>
+          <>Add additional ingredients</>
         </ActionButton>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Select optional ingredients</DrawerTitle>
+          <DrawerTitle>Add additional ingredients</DrawerTitle>
         </DrawerHeader>
         <DrawerDescription asChild>
           <div className="px-4">

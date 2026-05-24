@@ -10,6 +10,8 @@ import RecipeInstructionsList from '../components/RecipeInstructionsList';
 import FoodDataContext from '../context/FoodDataProvider';
 import RecipeEquipmentTag from '../components/RecipeEquipmentTag';
 import { Separator } from '@radix-ui/react-separator';
+import RecipeTitle from '@/components/RecipeTitle';
+import RecipeCoverImage from '@/components/RecipeCoverImage';
 
 function Recipe() {
   const { stepNumber, recipe } = useContext(RecipeContext);
@@ -30,12 +32,13 @@ function Recipe() {
     return <LoadingIcon />;
   }
 
-  const { title, intro, reference, equipment } = recipe;
+  const { intro, reference, equipment } = recipe;
 
   return (
     <>
-      <header className="px-4 pt-4">
-        <h1 className="text-4xl font-bold text-center m-4">{title}</h1>
+      <RecipeCoverImage />
+      <header className="p-4 z-1 relative bg-white">
+        <RecipeTitle />
 
         {stepNumber === 0 && (
           <p className="my-4">
@@ -62,7 +65,7 @@ function Recipe() {
           </div>
         )}
       </header>
-      <main className="px-4 pb-4">
+      <main className="px-4 pb-4 z-1 relative bg-white">
         <h2 className="text-3xl mb-4">Ingredients</h2>
         {stepNumber > 0 ? (
           <ScrollArea className="h-[30vh]" ref={viewportRef}>

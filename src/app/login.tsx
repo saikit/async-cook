@@ -1,27 +1,48 @@
 import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router';
-import { useAuthentication } from '@/context/AuthenticationProvider';
-function Login() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const { loginWithSSO } = useAuthentication();
+import { redirect } from 'react-router';
+import { getHeaders } from '@/hooks/getHeaders';
+import type { Route } from './+types/login';
 
-  useEffect(() => {
-    const code = searchParams.get('code');
-    const provider = searchParams.get('provider') || 'github';
+const API_URL = import.meta.env.VITE_API_URL;
+const APP_URL = import.meta.env.VITE_URL;
 
-    if (code) {
-      loginWithSSO(code, provider)
-        .then(() => {
-          navigate('/manage');
-        })
-        .catch((error) => {
-          console.error('SSO login failed:', error);
-        });
+export async function clientLoader({ request }: Route.ClientLoaderArgs) {
+  const url = new URL(request.url);
+  const code = url.searchParams.get('code');
+  const provider = url.searchParams.get('provider') || 'github';
+
+  if (code) {
+    try {
+      // Ensure CSRF protection is initialized for the session
+      await fetch(`${APP_URL}/sanctum/csrf-cookie`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      const response = await fetch(
+        `${API_URL}/login/${provider}/callback?code=${code}`,
+        {
+          headers: getHeaders(),
+          credentials: 'include',
+        },
+      );
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'OAuth authentication failed');
+      }
+
+      // Success: redirect to the management dashboard
+      return redirect('/manage');
+    } catch (error) {
+      console.error('SSO login failed:', error);
     }
-  }, [searchParams, loginWithSSO, navigate]);
+  }
 
+  return null;
+}
+
+function Login() {
   const onGitHubClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const redirectUri = import.meta.env.VITE_OAUTH_REDIRECT_URI;

@@ -6,7 +6,7 @@ import {
   useContext,
 } from 'react';
 import { useState } from 'react';
-import type { RecipesListType } from '@/types/api';
+import type { RecipeType } from '@/types/api';
 import { getHeaders } from '@/hooks/getHeaders';
 
 export type ManageContextType = {
@@ -24,7 +24,7 @@ export type ManageContextType = {
       category: string;
       note: string;
     }>;
-    recipes: RecipesListType[];
+    recipes: RecipeType[];
   };
   refetch: () => Promise<void>;
 };

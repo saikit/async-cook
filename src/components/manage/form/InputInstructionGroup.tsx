@@ -7,32 +7,24 @@ function InputInstructionGroup({
   index: number;
   children: React.ReactNode;
 }) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   const content = (
     <>
-      <fieldset>
+      <fieldset className="mb-4">
         <label>Title</label>
         <input
           {...register(`steps.${index}.instructions.title`)}
           className="border rounded w-full"
         />
       </fieldset>
-      <fieldset>
+      <fieldset className="mb-4">
         <label>Background</label>
         <input
           {...register(`steps.${index}.instructions.background`)}
           className="border rounded w-full"
           placeholder="Background alerts"
         />
-        {errors.steps?.[index]?.instructions?.background && (
-          <p className="text-red-500 text-xs">
-            {errors.steps[index].instructions.background.message}
-          </p>
-        )}
       </fieldset>
       <>{children}</>
     </>

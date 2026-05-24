@@ -2,6 +2,7 @@ import type { InstructionGroupType } from '@/types/api';
 import RecipeNoteIcon from './RecipeNoteIcon';
 import Markdown from 'react-markdown';
 import InstructionHighlights from './InstructionHighlight';
+import RecipeImageIcon from './RecipeImageIcon';
 
 function Instruction({
   instructionGroup,
@@ -36,6 +37,7 @@ function Instruction({
                   <li className="mb-2" {...rest}>
                     {children}
                     {icons}
+                    <RecipeImageIcon instruction={instruction} />
                   </li>
                 );
               },

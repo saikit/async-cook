@@ -30,6 +30,10 @@ type RecipeContextType = {
   fdc_ids: number[];
   searchWords: Array<string[]>;
   isComplete?: boolean;
+  recipeImage: string | undefined;
+  setRecipeImage: React.Dispatch<React.SetStateAction<string | undefined>>;
+  expandImg: boolean;
+  setExpandImg: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
@@ -51,6 +55,8 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
   const [recipe, setRecipe] = useState<RecipeType>();
   const [optional, setOptional] = useState<OptionalType>({});
   const [maxStep, setMaxStep] = useState<number>(0);
+  const [recipeImage, setRecipeImage] = useState<string>();
+  const [expandImg, setExpandImg] = useState<boolean>(false);
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const { slug, step } = useParams<routerParams>();
   const navigate = useNavigate();
@@ -65,6 +71,7 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
           },
         });
         if (!response.ok) {
+          console.error(`Recipe fetch failed with status: ${response.status}`);
           if (response.status === 404) {
             navigate('/not-found');
           }
@@ -92,18 +99,17 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
 
   const { steps = [] } = recipe ?? { steps: [] };
 
+  useEffect(() => {
+    if (stepNumber === 0 && recipe?.cover_url) {
+      setRecipeImage(recipe.cover_url);
+    } else {
+      setRecipeImage('');
+    }
+  }, [recipe, stepNumber]);
+
   const fdc_ids: number[] = useMemo(() => {
-    const ids: number[] = [];
-    steps.forEach((step) => {
-      const { ingredients }: { ingredients: IngredientGroupType } = step;
-      ingredients.ingredients.forEach((item) => {
-        if ('fdc_id' in item && item.fdc_id) {
-          ids.push(item.fdc_id);
-        }
-      });
-    });
-    return ids;
-  }, [steps]);
+    return recipe?.fdc_ids ?? [];
+  }, [recipe]);
 
   const filteredIngredients: Array<IngredientGroupType> = useMemo(() => {
     const result: Array<IngredientGroupType> = [];
@@ -111,7 +117,7 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
       const { ingredients }: { ingredients: IngredientGroupType } = step;
       const filtered: IngredientGroupType = {
         ...ingredients,
-        step: result.length + 1,
+        step_id: result.length + 1,
         ingredients: ingredients.ingredients.filter(
           (ingredient: IngredientType) => {
             return (
@@ -196,6 +202,7 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
         instructionGroup;
       const filtered: InstructionGroupType = {
         ...instructions,
+        step_id: step.id,
         title: instructionGroup.title,
         background: instructionGroup.background,
         instructions: Array.isArray(instructions)
@@ -227,6 +234,8 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
       value={{
         stepNumber,
         setStepNumber,
+        recipeImage,
+        setRecipeImage,
         recipe,
         maxStep,
         sortedIngredients,
@@ -236,6 +245,8 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
         optional,
         fdc_ids,
         isComplete,
+        expandImg,
+        setExpandImg,
       }}
     >
       <>{children}</>

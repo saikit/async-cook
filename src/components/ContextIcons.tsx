@@ -1,4 +1,11 @@
-import { LucideIcon, ChefHat, CircleAlert, CircleHelp } from 'lucide-react';
+import {
+  LucideIcon,
+  ChefHat,
+  CircleAlert,
+  CircleHelp,
+  Play,
+  Image,
+} from 'lucide-react';
 
 function ContextIcons({ category }: { category: string }) {
   let Icon: LucideIcon;
@@ -11,6 +18,12 @@ function ContextIcons({ category }: { category: string }) {
       break;
     case 'recommendation':
       Icon = ChefHat;
+      break;
+    case 'video':
+      Icon = Play;
+      break;
+    case 'image':
+      Icon = Image;
       break;
     default:
       Icon = CircleHelp;

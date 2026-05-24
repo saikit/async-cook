@@ -33,7 +33,7 @@ function ManageRecipes() {
               <td className="hidden lg:table-cell">
                 {recipe.equipment.map((equip) => {
                   return (
-                    <Badge classname="mr-2" key={equip.id}>
+                    <Badge className="mr-2" key={equip.id}>
                       {equip.name}
                     </Badge>
                   );

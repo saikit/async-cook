@@ -4,11 +4,13 @@ import { getHeaders } from '@/hooks/getHeaders';
 export type UserType = {
   name: string;
   email: string;
-} | null;
+  is_admin: boolean;
+  id: number;
+};
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const userContext = createContext<UserType>(null);
+export const userContext = createContext<UserType>();
 
 export const authMiddleware: MiddlewareFunction = async ({ context }, next) => {
   const response = await fetch(API_URL + '/user', {

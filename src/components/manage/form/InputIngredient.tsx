@@ -1,11 +1,11 @@
 import { useRouteLoaderData } from 'react-router';
 import { useFormContext } from 'react-hook-form';
-import { IngredientType } from '@/types/api';
 import { useFieldArray } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import type { UpdateFormType } from '@/app/update';
 import { Trash2 } from 'lucide-react';
 import ManageContext from '../ManageContext';
+import SelectOptional from './SelectOptional';
 
 function InputIngredient({ index }: { index: number }) {
   const { register, control, getValues } = useFormContext();
@@ -75,32 +75,14 @@ function InputIngredient({ index }: { index: number }) {
           {(recipe.optional_ingredients?.length ?? 0) > 0 && (
             <fieldset>
               <label>Optional</label>
-              <select
-                {...register(
-                  `steps.${index}.ingredients.ingredients.${ingIndex}.optional`,
-                  {
-                    setValueAs: (v) =>
-                      v === '' || v === null ? null : Number(v),
-                  },
-                )}
-                className="border rounded w-full"
-              >
-                <option value="">None</option>
-                {recipe.optional_ingredients?.map(
-                  (ingredient: IngredientType) => (
-                    <option key={ingredient.id} value={ingredient.id}>
-                      {ingredient.name}
-                    </option>
-                  ),
-                )}
-              </select>
+              <SelectOptional
+                values={`steps.${index}.ingredients.ingredients.${ingIndex}.optional`}
+              />
             </fieldset>
           )}
           <fieldset>
             <label>Notes</label>
             <ManageContext
-              index={index}
-              ingIndex={ingIndex}
               context={getValues(
                 `steps.${index}.ingredients.ingredients.${ingIndex}.context`,
               )}

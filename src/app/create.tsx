@@ -14,7 +14,7 @@ import z from 'zod';
 import { recipeFormSchema } from '@/types/form';
 import { useForm } from 'react-hook-form';
 import { useRouteLoaderData } from 'react-router';
-import type { UserType } from '@/types/api';
+import type { UserType } from '@/middleware/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSubmit } from 'react-router';
 import { toast } from 'sonner';
@@ -41,8 +41,9 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 function CreateRecipe({ actionData }: Route.ComponentProps) {
   const navigate = useNavigate();
-  const data =
-    useRouteLoaderData<Route.ComponentProps['loaderData']>('manage-layout');
+  const data = useRouteLoaderData('manage-layout') as {
+    user?: UserType;
+  } | null;
   const user = data?.user as UserType | undefined;
 
   const hookForm = useForm<FormData>({
@@ -58,8 +59,7 @@ function CreateRecipe({ actionData }: Route.ComponentProps) {
   });
   const submit = useSubmit();
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    submit(data, { method: 'POST', encType: 'application/json' });
+    submit(data as any, { method: 'POST', encType: 'application/json' });
   };
 
   useEffect(() => {
