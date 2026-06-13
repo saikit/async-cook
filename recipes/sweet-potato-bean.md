@@ -6,12 +6,12 @@ Combining two long cooking ingredients to form a base of a high protein and high
 
 ### For the beans
 
-- **225g** dried pinto beans (: Any larger long-cooking bean will work.)
+- **225g** dried pinto beans (🧑‍🍳: Any larger long-cooking bean will work.)
 - **894ml** water
 - **5g** salt
 - **1g** baking soda *(optional)*
 <!---->
-- **1** sweet potato (: Freeze sweet potatoes for 3 or more hours before cooking to improve its texture.)
+- **1** sweet potato (🧑‍🍳: Freeze sweet potatoes for 3 or more hours before cooking to improve its texture.)
 <!---->
 - **1** avocado
 <!--(optional group)-->
@@ -19,7 +19,7 @@ Combining two long cooking ingredients to form a base of a high protein and high
 - extra virgin olive oil
 - red wine vinegar
 - black pepper
-- Tajín seasoning *(optional)* (: Any vinegar-based hot sauce or seasoning will also work.)
+- Tajín seasoning *(optional)* (🧑‍🍳: Any vinegar-based hot sauce or seasoning will also work.)
 <!---->
 <!--(optional group)-->
 <!---->

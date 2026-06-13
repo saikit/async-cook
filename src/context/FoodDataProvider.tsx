@@ -8,6 +8,7 @@ import {
 } from 'react';
 import RecipeContext from './RecipeProvider';
 import type { foodDataType } from '@/types/api';
+import { apiClient } from '@/lib/apiClient';
 
 const API_KEY = import.meta.env.VITE_DATA_GOV_KEY;
 type FoodDataContextType = {
@@ -43,32 +44,18 @@ type ChildrenType = { children?: ReactElement | ReactElement[] };
 export const FoodDataProvider = ({ children }: ChildrenType) => {
   const [foodData, setFoodData] = useState<foodDataType>([]);
   const [foodDataIsComplete, setFoodDataIsComplete] = useState<boolean>(false);
-  const { fdc_ids, isComplete } = useContext(RecipeContext);
+  const { recipe: { fdc_ids } = {}, isComplete } = useContext(RecipeContext);
 
   const fetchJSONDataFrom = useCallback(async (path: string) => {
     try {
-      const response = await fetch(path, {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        if (response.status === 429) {
-          console.error('Rate limit exceeded. Please try again in an hour.');
-        } else {
-          console.error(
-            `Food API error: ${response.status} ${response.statusText}`,
-          );
-        }
-        return;
-      }
-
-      const data = await response.json();
+      const data = await apiClient<foodDataType>(path);
       setFoodData(data);
     } catch (error) {
-      console.error('Error fetching food data:', error);
+      if ((error as any).status === 429) {
+        console.error('Rate limit exceeded. Please try again in an hour.');
+      } else {
+        console.error('Error fetching food data:', error);
+      }
     } finally {
       setFoodDataIsComplete(true);
     }

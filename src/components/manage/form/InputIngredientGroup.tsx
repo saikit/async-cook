@@ -13,12 +13,18 @@ function InputIngredientGroup({
   const content = (
     <>
       <div className="mb-4 grid grid-cols-3 gap-2">
-        <input
-          {...register(`steps.${index}.ingredients.text`)}
-          placeholder="For the..."
-          className="border rounded"
-        />
-        <SelectOptional values={`steps.${index}.ingredients.optional`} />
+        <fieldset className="col-span-2">
+          <label className="text-sm">Ingredient group title</label>
+          <input
+            {...register(`steps.${index}.ingredients.text`)}
+            placeholder="For the..."
+            className="border rounded w-full"
+          />
+        </fieldset>
+        <fieldset className="col-span-1">
+          <label className="text-sm">Optional</label>
+          <SelectOptional values={`steps.${index}.ingredients.optional`} />
+        </fieldset>
       </div>
       <>{children}</>
     </>

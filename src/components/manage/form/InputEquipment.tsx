@@ -1,3 +1,4 @@
+import RecipeEquipmentTag from '@/components/RecipeEquipmentTag';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { EquipmentType } from '@/types/api';
 import { useFormContext } from 'react-hook-form';
@@ -14,9 +15,12 @@ function InputEquipment() {
     }) || [];
 
   const content = (
-    <fieldset>
-      {equipment?.map((equip) => (
-        <div key={`equipment-${equip.id}`} className="flex items-center gap-2">
+    <fieldset className="mb-4 sm:flex sm:flex-wrap gap-2">
+      {equipment?.map((equip, index) => (
+        <div
+          key={`equipment-${equip.id}`}
+          className="flex items-center gap-2 mb-2"
+        >
           <input
             {...register('equipment')}
             type="checkbox"
@@ -29,7 +33,9 @@ function InputEquipment() {
               )
             }
           />
-          <label htmlFor={`equipment-${equip.id}`}>{equip.name}</label>
+          <label htmlFor={`equipment-${equip.id}`}>
+            <RecipeEquipmentTag equip={equip} index={index} />
+          </label>
         </div>
       ))}
     </fieldset>

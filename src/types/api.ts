@@ -9,7 +9,8 @@ export type RecipeType = {
   user_id: number;
   created_at: string;
   updated_at: string;
-  cover_url: string;
+  cover_img_id: number;
+  cover_img: MediaType;
   optional_ingredients?: Array<{
     name: string;
     id: number;
@@ -17,6 +18,7 @@ export type RecipeType = {
   equipment: Array<EquipmentType>;
   published: number;
   fdc_ids: Array<number>;
+  media: Array<MediaType>;
 };
 
 export type EquipmentType = {
@@ -47,7 +49,7 @@ export type InstructionType = {
   text: string;
   optional?: number;
   context?: Array<RecipeNoteIconType>;
-  image_url?: string;
+  media: MediaType;
   int_order: number;
   group_id?: number;
   id?: number;
@@ -63,6 +65,7 @@ export type IngredientGroupType = {
   id?: number;
   text?: string;
   step_id: number;
+  step: number;
   calculator?: {
     text: string;
     calculator_ingredients: Array<IngredientType>;
@@ -85,6 +88,7 @@ export type IngredientType = {
   optional?: number;
   group_id?: number;
   image_url?: string;
+  media: MediaType;
 };
 
 export type RecipeNoteIconType = {
@@ -109,3 +113,13 @@ export type foodDataType = Array<{
     number: number;
   }>;
 }>;
+
+export type MediaType = {
+  id: number;
+  uuid: string;
+  url_thumbnail: string;
+  url: string;
+  mime_type: string;
+  name: string;
+  collection_name: string;
+};

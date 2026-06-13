@@ -5,6 +5,8 @@ import {
   CircleHelp,
   Play,
   Image,
+  Images,
+  GalleryHorizontal,
 } from 'lucide-react';
 
 function ContextIcons({ category }: { category: string }) {
@@ -24,6 +26,12 @@ function ContextIcons({ category }: { category: string }) {
       break;
     case 'image':
       Icon = Image;
+      break;
+    case 'images':
+      Icon = Images;
+      break;
+    case 'gallery':
+      Icon = GalleryHorizontal;
       break;
     default:
       Icon = CircleHelp;

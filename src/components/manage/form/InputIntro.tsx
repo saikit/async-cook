@@ -7,6 +7,7 @@ function InputIntro() {
       placeholder="Add recipe description"
       {...register('intro')}
       className="w-full h-min mb-4"
+      rows={4}
     />
   );
   return content;

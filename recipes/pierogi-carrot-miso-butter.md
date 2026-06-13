@@ -10,7 +10,7 @@ Cooking frozen pierogi in a dashi broth while steaming carrots in the microwave 
 <!---->
 ### For the dumplings
 
-- **150g** frozen pierogi (: other stuffed pastas such as ravioli would also work)
+- **150g** frozen pierogi (🧑‍🍳: other stuffed pastas such as ravioli would also work)
 - **150g** water or dashi
 <!---->
 - **15g** miso paste
@@ -22,7 +22,7 @@ Cooking frozen pierogi in a dashi broth while steaming carrots in the microwave 
 
 Cut carrots to similar shape as the dumplings
 
-## Step 2 — Prepare mushrooms *(optional)*
+## Step 2 — Prepare mushrooms
 
 Chop mushrooms
 

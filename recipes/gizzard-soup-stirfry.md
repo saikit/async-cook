@@ -47,7 +47,7 @@ Combine **gochujang**, **soy sauce**, **mirin**, and **sugar** in a bowl and set
 
 ## Step 5 — Prep bok choy
 
-Wash **bok choy** and cut into bite sized pieces. (: Separate the leaves and the stem. Stem can be cut further to smaller pieces)
+Wash **bok choy** and cut into bite sized pieces. (🧑‍🍳: Separate the leaves and the stem. Stem can be cut further to smaller pieces)
 
 ## Step 6 — Prepare garlic & ginger
 

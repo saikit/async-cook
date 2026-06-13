@@ -8,11 +8,11 @@ A dish inspired by the Middle Eastern dish mujadara that is ready as soon as the
 ### For the rice and lentils
 
 - **150g** brown or green lentils
-- **150g** rice (: Basmati is traditionally used, but any type of rice will work)
+- **150g** rice (🧑‍🍳: Basmati is traditionally used, but any type of rice will work)
 - **448g** water
 - **2g** salt
 <!---->
-- **2** onions (: Because the recipe involves making crispy onions and caramelized onions simultaneously, feel free to skip one of them)
+- **2** onions (⚠️: Because the recipe involves making crispy onions and caramelized onions simultaneously, feel free to skip one of them)
 - **1** scallion *(optional)*
 <!---->
 - extra virgin olive oil
@@ -39,7 +39,7 @@ Slice **scallions** if using
 
 Background: *Two pans are active*
 
-Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**. (: Add just enough water to cook through the onions before it evaporates)
+Place **sliced onions** and **diced onions** in separate pans. Add **olive oil** in each pan and season with **salt**. Add **water** and cover with a lid. Steam each at high heat for **7-10 minutes**. (❓: Add just enough water to cook through the onions before it evaporates)
 
 Background: *Two pans are active*
 

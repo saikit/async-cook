@@ -5,8 +5,8 @@ import { useFormContext } from 'react-hook-form';
 function SelectOptional({ values }) {
   const { register } = useFormContext();
   const routeLoaderData = useRouteLoaderData('update') as UpdateFormType;
-  const { recipe } = routeLoaderData;
-  if (recipe.optional_ingredients?.length === 0) return false;
+  const { recipe } = routeLoaderData || {};
+  if (!recipe || recipe.optional_ingredients?.length === 0) return null;
 
   const content = (
     <select

@@ -2,7 +2,12 @@ import { useFormContext } from 'react-hook-form';
 
 function InputSlug() {
   const { register } = useFormContext();
-  const content = <input {...register('slug')} className="w-full mb-4" />;
+  const content = (
+    <fieldset className="mb-4">
+      <label>Slug</label>
+      <input {...register('slug')} className="w-full border required:" />
+    </fieldset>
+  );
   return content;
 }
 

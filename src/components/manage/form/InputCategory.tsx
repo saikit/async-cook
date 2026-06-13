@@ -6,13 +6,16 @@ function InputCategory() {
   const { manageView } = useManage();
   const { categories } = manageView;
   const content = (
-    <select {...register('category')} className="w-full mb-4">
-      {categories?.map((category) => (
-        <option key={category.id} value={category.category}>
-          {category.category}
-        </option>
-      ))}
-    </select>
+    <div className="mb-4 flex gap-2">
+      <label>Category</label>
+      <select {...register('category')} className="w-full border rounded">
+        {categories?.map((category) => (
+          <option key={category.id} value={category.category}>
+            {category.category}
+          </option>
+        ))}
+      </select>
+    </div>
   );
   return content;
 }

@@ -1,5 +1,5 @@
 import { createContext, ReactElement, useCallback } from 'react';
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import { useContext } from 'react';
 
 export type AuthContextType = {
@@ -9,6 +9,7 @@ export type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const API_URL = import.meta.env.VITE_API_URL;
+const APP_URL = import.meta.env.VITE_URL;
 
 export const AuthenticationProvider = ({
   children,
@@ -18,22 +19,16 @@ export const AuthenticationProvider = ({
   const loginWithSSO = useCallback(
     async (code: string, provider?: string): Promise<unknown> => {
       try {
-        await fetch(`${URL}/sanctum/csrf-cookie`, {
+        await fetch(`${APP_URL}/sanctum/csrf-cookie`, {
           method: 'GET',
           credentials: 'include',
         });
-        const response = await fetch(
+        return await apiClient(
           API_URL + '/login/' + provider + '/callback?code=' + code,
           {
-            headers: getHeaders(),
-            credentials: 'include',
+            includeAuth: true,
           },
         );
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.message || 'OAuth authentication failed');
-        }
-        return data;
       } catch (error) {
         console.error('Error during SSO login:', error);
         throw error;
@@ -44,22 +39,16 @@ export const AuthenticationProvider = ({
 
   const logoutUser = useCallback(async () => {
     try {
-      const response = await fetch(API_URL + '/logout', {
+      return await apiClient(API_URL + '/logout', {
         method: 'POST',
-        headers: getHeaders(),
-        credentials: 'include',
+        includeAuth: true,
       });
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Unauthorized');
-        }
-        throw new Error('Logout failed');
-      }
-      const data = await response.json();
-
-      return data;
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Logout failed:', error);
+      if ((error as any).status === 401) {
+        throw new Error('Unauthorized');
+      }
+      throw error;
     }
   }, []);
 

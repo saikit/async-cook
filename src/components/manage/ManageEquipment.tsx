@@ -1,7 +1,7 @@
 import { useForm, FieldValues, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { manageEquipmentSchema } from '@/types/form';
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import { Button } from '../ui/button';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { toast } from 'sonner';
@@ -12,22 +12,18 @@ const API_URL = import.meta.env.VITE_API_URL;
 function ManageEquipment() {
   const { manageView, refetch } = useManage();
 
-  const submitHandler = async function (request: FieldValues) {
-    const res = await fetch(`${API_URL}/tag/equipment`, {
-      method: 'PUT',
-      body: JSON.stringify(request),
-      headers: getHeaders(),
-      credentials: 'include',
-    });
-
-    if (!res.ok) {
+  const submitHandler = async function (formData: FieldValues) {
+    try {
+      const data = await apiClient<any>(`${API_URL}/tag/equipment`, {
+        method: 'PUT',
+        body: JSON.stringify(formData),
+        includeAuth: true,
+      });
+      await refetch();
+      if (data.message) return toast(data.message);
+    } catch (error) {
       toast('Failed to update equipment.');
-      return;
     }
-
-    await refetch();
-    const data = await res.json();
-    if (data.message) return toast(data.message);
   };
 
   const { equipment } = manageView;
@@ -54,7 +50,7 @@ function ManageEquipment() {
       <div className="lg:grid lg:grid-cols-3 lg:gap-4">
         {fields.map((field, index) => (
           <div
-            className="border rounded bg-card text-card-foreground shadow-sm p-4 grid gap-3"
+            className="border rounded bg-card text-card-foreground shadow-sm p-4 grid gap-3 mb-4"
             key={field.id}
           >
             <fieldset>
@@ -80,7 +76,9 @@ function ManageEquipment() {
         ))}
       </div>
       <fieldset className="contents">
-        <Button type="submit">Update Equipment</Button>
+        <Button type="submit" className="mr-2">
+          Update Equipment
+        </Button>
         <Button
           type="button"
           onClick={() => {

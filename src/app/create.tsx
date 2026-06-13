@@ -1,7 +1,7 @@
 import type { Route } from './+types/create';
 import ManageFooter from '@/components/manage/ManageFooter';
 const API_URL = import.meta.env.VITE_API_URL;
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import ManageForm from '@/components/manage/form/ManageForm';
@@ -18,25 +18,28 @@ import type { UserType } from '@/middleware/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSubmit } from 'react-router';
 import { toast } from 'sonner';
+import type { RecipeType } from '@/types/api';
 
 type FormData = z.input<typeof recipeFormSchema>;
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
-  const data = await request.json();
-  const res = await fetch(`${API_URL}/recipe/`, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: getHeaders(),
-    credentials: 'include',
-  });
+export async function clientAction({
+  request: routeRequest,
+}: Route.ClientActionArgs) {
+  try {
+    const data = await routeRequest.json();
+    const recipe = await apiClient<RecipeType>(`${API_URL}/recipe/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      includeAuth: true,
+    });
 
-  if (!res.ok) {
-    return { success: false, message: 'Failed to create recipe.' };
+    return recipe;
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as Error).message || 'Failed to create recipe.',
+    };
   }
-
-  const recipe = await res.json();
-
-  return recipe;
 }
 
 function CreateRecipe({ actionData }: Route.ComponentProps) {
@@ -59,7 +62,7 @@ function CreateRecipe({ actionData }: Route.ComponentProps) {
   });
   const submit = useSubmit();
   const onSubmit = (data: FormData) => {
-    submit(data as any, { method: 'POST', encType: 'application/json' });
+    submit(data as RecipeType, { method: 'POST', encType: 'application/json' });
   };
 
   useEffect(() => {

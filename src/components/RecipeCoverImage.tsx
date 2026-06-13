@@ -1,4 +1,3 @@
-const APP_URL = import.meta.env.VITE_URL;
 import { Maximize2, Minimize2, LucideIcon } from 'lucide-react';
 import { useContext, useEffect } from 'react';
 import RecipeContext from '@/context/RecipeProvider';
@@ -25,9 +24,7 @@ function RecipeCoverImage() {
         onClick={() => setExpandImg((prev) => !prev)}
         className={`${expandImg ? 'h-[50vh]' : 'h-16'} w-full transition-all duration-300 ease-in-out z-1 relative bg-cover bg-center overflow-hidden`}
         style={{
-          backgroundImage: !isVideo
-            ? `url(${APP_URL}/storage/${recipeImage})`
-            : undefined,
+          backgroundImage: !isVideo ? `url(${recipeImage})` : undefined,
         }}
       >
         <Icon
@@ -42,10 +39,7 @@ function RecipeCoverImage() {
             muted
             className="h-full w-full absolute object-cover -z-1 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
           >
-            <source
-              src={`${APP_URL}/storage/${recipeImage}`}
-              type="video/mp4"
-            />
+            <source src={recipeImage} type="video/mp4" />
           </video>
         )}
       </div>

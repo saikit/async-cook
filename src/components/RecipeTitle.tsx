@@ -19,7 +19,7 @@ function RecipeTitle() {
   const content = (
     <h1 className="text-4xl font-bold text-center">
       {title}
-      <small className="text-xl text-slate-500 font-semibold">
+      <small className="text-xl text-slate-500 font-semibold block">
         {optionalTitle}
       </small>
     </h1>

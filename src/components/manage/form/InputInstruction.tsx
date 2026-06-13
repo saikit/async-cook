@@ -6,6 +6,8 @@ import { UpdateFormType } from '@/app/update';
 import { Trash2 } from 'lucide-react';
 import ManageContext from '../ManageContext';
 import SelectOptional from './SelectOptional';
+import SelectMedia from './SelectMedia';
+import DeleteItemIcon from './DeleteItemIcon';
 
 function InputInstruction({ index }: { index: number }) {
   const { register, control, getValues } = useFormContext();
@@ -22,7 +24,7 @@ function InputInstruction({ index }: { index: number }) {
   const content = (
     <>
       {fields.map((field, intIndex) => (
-        <div key={field.id}>
+        <div key={field.id} className="p-4 border rounded mb-4 relative">
           <fieldset className="mb-4">
             <label>Instruction</label>
             <textarea
@@ -33,8 +35,11 @@ function InputInstruction({ index }: { index: number }) {
               placeholder="Enter instruction"
             />
           </fieldset>
-          <fieldset className="mb-4">
-            <label>Notes</label>
+          <fieldset className="mb-4 flex justify-start">
+            <label>
+              {instructions[intIndex].context?.length > 0 ? 'Edit' : 'Add'}{' '}
+              Notes
+            </label>
             <ManageContext
               context={getValues(
                 `steps.${index}.instructions.instructions.${intIndex}.context`,
@@ -66,6 +71,31 @@ function InputInstruction({ index }: { index: number }) {
               <label>Delete</label>
               <Trash2 />
             </fieldset>
+          )}
+          {instructions[intIndex].media_id && (
+            <img
+              src={
+                recipe.media?.find(
+                  (media) => media.uuid === instructions[intIndex].media_id,
+                )?.url_thumbnail
+              }
+              alt=""
+            />
+          )}
+          {recipe.media?.length > 0 && (
+            <fieldset className="mb-4">
+              <SelectMedia
+                media={recipe.media}
+                name={`steps.${index}.instructions.instructions.${intIndex}.media_id`}
+              >
+                <label className="underline text-blue-700">Select Media</label>
+              </SelectMedia>
+            </fieldset>
+          )}
+          {instructions?.length > 1 && (
+            <DeleteItemIcon model="ingredient" id={instructions[intIndex].id}>
+              <Trash2 className="absolute top-4 right-4 text-red-500" />
+            </DeleteItemIcon>
           )}
         </div>
       ))}

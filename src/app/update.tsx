@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import type { Route } from './+types/update';
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import { useEffect } from 'react';
 import ManageFooter from '@/components/manage/ManageFooter';
 import { redirect } from 'react-router';
@@ -26,6 +26,11 @@ import InputInstruction from '@/components/manage/form/InputInstruction';
 import InputOptionalIngredients from '@/components/manage/form/InputOptionalIngredients';
 import { toast } from 'sonner';
 import CreateStep from '@/components/manage/CreateStep';
+import InputCoverImage from '@/components/manage/form/InputCoverImage';
+import { useState } from 'react';
+import { Maximize2, Minimize2, LucideIcon } from 'lucide-react';
+import type { UpdateFormType } from '@/app/update';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type FormData = z.input<typeof updateRecipeFormSchema>;
 
@@ -36,35 +41,37 @@ export type UpdateFormType = {
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
-  const res = await fetch(`${API_URL}/manage/recipe/${params.slug}`, {
-    headers: getHeaders(),
-    credentials: 'include',
-  });
-  if (!res.ok) {
-    if (res.status === 403) throw redirect('/not-found');
+  try {
+    const recipe = await apiClient<RecipeType>(
+      `${API_URL}/manage/recipe/${params.slug}`,
+      {
+        includeAuth: true,
+      },
+    );
+    return recipe;
+  } catch (error) {
+    if ((error as any).status === 403) throw redirect('/not-found');
+    throw error;
   }
-  const recipe = await res.json();
-  console.log(recipe);
-  return recipe;
 }
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
-  const data = await request.json();
-  const id = data.id;
-  const res = await fetch(`${API_URL}/manage/recipe/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-    headers: getHeaders(),
-    credentials: 'include',
-  });
-
-  if (!res.ok) {
-    return { success: false, message: 'Failed to update project.' };
+export async function clientAction({
+  request: routeRequest,
+}: Route.ClientActionArgs) {
+  try {
+    const data = await routeRequest.json();
+    const id = data.id;
+    return await apiClient<any>(`${API_URL}/manage/recipe/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      includeAuth: true,
+    });
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as Error).message || 'Failed to update project.',
+    };
   }
-
-  const recipe = await res.json();
-
-  return recipe;
 }
 
 function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
@@ -95,6 +102,7 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
     published: recipe.published ?? 0,
     optional_ingredients: recipe.optional_ingredients ?? [],
     equipment: recipe.equipment ?? [],
+    cover_img_id: recipe.cover_img?.uuid ?? '',
     steps:
       recipe.steps?.length > 0
         ? recipe.steps.map((step) => ({
@@ -114,6 +122,8 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
                 fdc_id: ingredient.fdc_id ?? null,
                 group_id: ingredient.group_id,
                 optional: ingredient.optional ?? null,
+                context: ingredient.context ?? [],
+                media_id: ingredient.media?.uuid ?? '',
               })) ?? [
                 {
                   quantity: null,
@@ -122,6 +132,9 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
                   unit: '',
                   name: '',
                   fdc_id: null,
+                  optional: null,
+                  context: [],
+                  media_id: '',
                 },
               ],
             },
@@ -136,11 +149,17 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
                   text: instruction.text ?? '',
                   int_order: instruction.int_order ?? 0,
                   group_id: instruction.group_id,
+                  optional: instruction.optional ?? null,
+                  context: instruction.context ?? [],
+                  media_id: instruction.media?.uuid ?? '',
                 }),
               ) ?? [
                 {
                   text: '',
                   int_order: 0,
+                  optional: null,
+                  context: [],
+                  media_id: '',
                 },
               ],
             },
@@ -157,6 +176,8 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
                     unit: '',
                     name: '',
                     fdc_id: null,
+                    optional: null,
+                    media_id: '',
                   },
                 ],
               },
@@ -166,6 +187,8 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
                   {
                     text: '',
                     int_order: 0,
+                    optional: null,
+                    media_id: '',
                   },
                 ],
               },
@@ -182,11 +205,46 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
     submit(data as any, { method: 'PUT', encType: 'application/json' });
   };
 
+  const [expandImg, setExpandImg] = useState(false);
+  let Icon: LucideIcon;
+  if (expandImg) Icon = Minimize2;
+  else Icon = Maximize2;
+  const recipeImage = recipe.cover_img?.url ?? '';
+  const isVideo = recipeImage.toLowerCase().endsWith('.mp4');
+
   if (!recipe) return <>Loading...</>;
 
   return (
     <>
+      {!recipe.cover_img ? (
+        <></>
+      ) : (
+        <div
+          onClick={() => setExpandImg((prev) => !prev)}
+          className={`${expandImg ? 'h-[50vh]' : 'h-16'} w-full transition-all duration-300 ease-in-out z-1 relative bg-cover bg-center overflow-hidden`}
+          style={{
+            backgroundImage: !isVideo ? `url(${recipeImage})` : undefined,
+          }}
+        >
+          <Icon
+            className="top-2 right-2 absolute m-auto opacity-80 shadow-black z-10"
+            color="white"
+          />
+          {isVideo && (
+            <video
+              key={recipeImage}
+              loop
+              autoPlay
+              muted
+              className="h-full w-full absolute object-cover -z-1 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
+            >
+              <source src={recipeImage} type="video/mp4" />
+            </video>
+          )}
+        </div>
+      )}
       <ManageForm hookForm={hookForm} onSubmit={onSubmit}>
+        <InputCoverImage media={recipe.media} />
         <div className="lg:grid lg:grid-cols-3 lg:gap-4">
           <div className="lg:col-span-2">
             <input {...hookForm.register('id')} type="hidden" />
@@ -200,11 +258,10 @@ function UpdateRecipe({ loaderData, actionData }: Route.ComponentProps) {
             <InputSlug />
             <InputPublished />
             <InputEquipment />
-            {(recipe.optional_ingredients?.length ?? 0) > 0 && (
-              <InputOptionalIngredients />
-            )}
+            <InputOptionalIngredients />
           </div>
         </div>
+        <hr className="my-4" />
         <div className="lg:grid lg:grid-cols-3 lg:gap-4">
           {recipe.steps.map((step, index) => {
             return (

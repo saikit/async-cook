@@ -16,9 +16,9 @@ export async function clientLoader({ context }: ClientLoaderFunctionArgs) {
 export default function Manage() {
   return (
     <AuthenticationProvider>
-      <Toaster />
-      <ManageHeader />
       <ManageProvider>
+        <Toaster />
+        <ManageHeader />
         <Outlet />
       </ManageProvider>
     </AuthenticationProvider>

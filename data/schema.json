@@ -31,28 +31,90 @@
           "description": "string"
         },
         "published": {
+          "type": "boolean",
+          "description": "boolean"
+        },
+        "user_id": {
           "type": "number",
           "description": "number"
+        },
+        "cover_img_id": {
+          "type": "string",
+          "description": "string"
+        },
+        "cover_img": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "number"
+            },
+            "uuid": {
+              "type": "string",
+              "description": "string"
+            },
+            "collection_name": {
+              "type": "string",
+              "description": "string"
+            },
+            "name": {
+              "type": "string",
+              "description": "string"
+            },
+            "url": {
+              "type": "string",
+              "description": "string"
+            },
+            "url_thumbnail": {
+              "type": "string",
+              "description": "string"
+            },
+            "mime_type": {
+              "type": "string",
+              "description": "string"
+            },
+            "model_id": {
+              "type": "number",
+              "description": "number"
+            },
+            "size": {
+              "type": "string",
+              "description": "string"
+            }
+          },
+          "description": "object"
         },
         "created_at": {
           "type": "null",
           "description": "null (optional)"
         },
         "updated_at": {
-          "type": "null",
-          "description": "null (optional)"
+          "type": "string",
+          "description": "string"
         },
         "steps": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
+              "step": {
+                "type": "number",
+                "description": "number"
+              },
               "ingredients": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "number",
+                    "description": "number"
+                  },
                   "text": {
                     "type": "string",
                     "description": "string"
+                  },
+                  "step_id": {
+                    "type": "number",
+                    "description": "number"
                   },
                   "calculator": {
                     "type": "null",
@@ -63,6 +125,10 @@
                     "items": {
                       "type": "object",
                       "properties": {
+                        "id": {
+                          "type": "number",
+                          "description": "number"
+                        },
                         "quantity": {
                           "type": "number",
                           "description": "number"
@@ -80,6 +146,21 @@
                           "description": "number"
                         },
                         "context": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "array"
+                        },
+                        "ing_order": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "group_id": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "media": {
                           "type": "null",
                           "description": "null (optional)"
                         }
@@ -93,31 +174,89 @@
               "instructions": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "number",
+                    "description": "number"
+                  },
+                  "background": {
+                    "type": "null",
+                    "description": "null (optional)"
+                  },
                   "title": {
                     "type": "string",
                     "description": "string"
+                  },
+                  "step_id": {
+                    "type": "number",
+                    "description": "number"
                   },
                   "instructions": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
+                        "id": {
+                          "type": "number",
+                          "description": "number"
+                        },
                         "text": {
                           "type": "string",
                           "description": "string"
+                        },
+                        "int_order": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "group_id": {
+                          "type": "number",
+                          "description": "number"
+                        },
+                        "media": {
+                          "type": "null",
+                          "description": "null (optional)"
                         },
                         "context": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
-                              "category": {
-                                "type": "string",
-                                "description": "string"
+                              "id": {
+                                "type": "number",
+                                "description": "number"
+                              },
+                              "ingredient_id": {
+                                "type": "null",
+                                "description": "null (optional)"
+                              },
+                              "instruction_id": {
+                                "type": "number",
+                                "description": "number"
+                              },
+                              "category_id": {
+                                "type": "number",
+                                "description": "number"
                               },
                               "note": {
                                 "type": "string",
                                 "description": "string"
+                              },
+                              "icon": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number",
+                                    "description": "number"
+                                  },
+                                  "category": {
+                                    "type": "string",
+                                    "description": "string"
+                                  },
+                                  "emoji": {
+                                    "type": "string",
+                                    "description": "string"
+                                  }
+                                },
+                                "description": "object"
                               }
                             }
                           },
@@ -134,24 +273,22 @@
           },
           "description": "array"
         },
-        "tags": {
+        "equipment": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "equipment": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "string"
-                  },
-                  "description": {
-                    "type": "string",
-                    "description": "string"
-                  }
-                },
-                "description": "object"
+              "id": {
+                "type": "number",
+                "description": "number"
+              },
+              "name": {
+                "type": "string",
+                "description": "string"
+              },
+              "description": {
+                "type": "string",
+                "description": "string"
               }
             }
           },
@@ -162,7 +299,67 @@
           "items": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "number",
+                "description": "number"
+              },
               "name": {
+                "type": "string",
+                "description": "string"
+              },
+              "recipe_id": {
+                "type": "number",
+                "description": "number"
+              }
+            }
+          },
+          "description": "array"
+        },
+        "fdc_ids": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "array"
+        },
+        "media": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "number"
+              },
+              "uuid": {
+                "type": "string",
+                "description": "string"
+              },
+              "collection_name": {
+                "type": "string",
+                "description": "string"
+              },
+              "name": {
+                "type": "string",
+                "description": "string"
+              },
+              "url": {
+                "type": "string",
+                "description": "string"
+              },
+              "url_thumbnail": {
+                "type": "string",
+                "description": "string"
+              },
+              "mime_type": {
+                "type": "string",
+                "description": "string"
+              },
+              "model_id": {
+                "type": "number",
+                "description": "number"
+              },
+              "size": {
                 "type": "string",
                 "description": "string"
               }

@@ -30,7 +30,8 @@ function NutritionalInformation() {
   const { foodData } = useContext(FoodDataContext) as {
     foodData: foodDataType;
   };
-  const { fdc_ids, stepNumber } = useContext(RecipeContext);
+  const { recipe, stepNumber } = useContext(RecipeContext);
+  const { fdc_ids } = recipe ?? { fdc_ids: [] };
 
   if (!fdc_ids || fdc_ids?.length < 1 || stepNumber > 0) return <></>;
 

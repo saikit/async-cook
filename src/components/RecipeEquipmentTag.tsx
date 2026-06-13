@@ -17,7 +17,7 @@ function RecipeEquipmentTag({
   return (
     <Popover key={equip.name}>
       <PopoverTrigger
-        className="align-top mx-1 print:hidden"
+        className={`align-top print:hidden ${index !== undefined && index > 0 ? 'ml-2' : ''}`}
         title={equip.name}
       >
         <Badge className={twNeutralColors[index || 0]} variant="secondary">

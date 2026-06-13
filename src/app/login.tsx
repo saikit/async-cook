@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { redirect } from 'react-router';
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import type { Route } from './+types/login';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,18 +19,9 @@ export async function clientLoader({ request }: Route.ClientLoaderArgs) {
         credentials: 'include',
       });
 
-      const response = await fetch(
-        `${API_URL}/login/${provider}/callback?code=${code}`,
-        {
-          headers: getHeaders(),
-          credentials: 'include',
-        },
-      );
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'OAuth authentication failed');
-      }
+      await apiClient(`${API_URL}/login/${provider}/callback?code=${code}`, {
+        includeAuth: true,
+      });
 
       // Success: redirect to the management dashboard
       return redirect('/manage');

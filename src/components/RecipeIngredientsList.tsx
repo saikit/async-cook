@@ -7,7 +7,7 @@ import { usePersistedState } from '@/hooks/usePersistedState';
 export type quantityType = Record<string, Record<string, number>>;
 
 function RecipeIngredientsList() {
-  const { stepNumber, sortedIngredients, optional } = useContext(RecipeContext);
+  const { stepNumber, sortedIngredients } = useContext(RecipeContext);
   const [quantityState, setQuantityState] = usePersistedState(
     'quantityState',
     {},
@@ -19,6 +19,7 @@ function RecipeIngredientsList() {
   const content = (
     <div className="my-2" aria-label="Ingredient List">
       {sortedIngredients.map((ingredientGroup, index) => {
+        if (ingredientGroup.ingredients.length === 0) return null;
         const Title = () => {
           const CalculatorIcon = () => {
             if (
@@ -54,26 +55,18 @@ function RecipeIngredientsList() {
           >
             <Title />
             {ingredientGroup.ingredients.map((ingredient, key) => {
-              if (
-                (!('cooked' in ingredient) ||
-                  ('cooked' in ingredient &&
-                    stepNumber >= ingredientGroup.step)) &&
-                (!('optional' in ingredient) ||
-                  ('optional' in ingredient &&
-                    optional[ingredient.optional as number]))
-              ) {
-                return (
-                  <Ingredient
-                    status={ingredientGroup.status || 'ready'}
-                    key={`${key}-${ingredient.name}`}
-                    ingredients={ingredient}
-                    quantityState={quantityState}
-                    groupName={ingredientGroup.text || ''}
-                    index={key}
-                  />
-                );
-              }
+              return (
+                <Ingredient
+                  status={ingredientGroup.status || 'ready'}
+                  key={`${key}-${ingredient.name}`}
+                  ingredients={ingredient}
+                  quantityState={quantityState}
+                  groupName={ingredientGroup.text || ''}
+                  index={key}
+                />
+              );
             })}
+            {index < sortedIngredients.length - 1 && <hr className="my-4" />}
           </div>
         );
       })}

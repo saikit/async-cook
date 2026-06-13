@@ -6,8 +6,8 @@ import {
   useContext,
 } from 'react';
 import { useState } from 'react';
-import type { RecipeType } from '@/types/api';
-import { getHeaders } from '@/hooks/getHeaders';
+import type { RecipeType, MediaType } from '@/types/api';
+import { apiClient } from '@/lib/apiClient';
 
 export type ManageContextType = {
   manageView: {
@@ -25,6 +25,7 @@ export type ManageContextType = {
       note: string;
     }>;
     recipes: RecipeType[];
+    media: Array<MediaType>;
   };
   refetch: () => Promise<void>;
 };
@@ -41,29 +42,20 @@ export const ManageProvider = ({ children }: ChildrenType) => {
       equipment: [],
       icons: [],
       recipes: [],
+      media: [],
     },
   );
 
   const fetchJSONDataFrom = useCallback(
     async (path: string) => {
       try {
-        const response = await fetch(path, {
-          headers: getHeaders(),
-          credentials: 'include',
+        const data = await apiClient<ManageContextType['manageView']>(path, {
+          includeAuth: true,
         });
-        if (!response.ok) {
-          console.error(
-            'Error fetching recipe data:',
-            response.status,
-            response.statusText,
-          );
+        if (data) {
+          setManageView(data);
         } else {
-          const data = await response.json();
-          if (data) {
-            setManageView(data);
-          } else {
-            console.error('Invalid API response structure:', data);
-          }
+          console.error('Invalid API response structure:', data);
         }
       } catch (error) {
         console.error('Error fetching recipe data:', error);

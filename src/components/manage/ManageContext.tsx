@@ -10,7 +10,7 @@ import {
 import { useForm, FieldValues, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { manageContextSchema } from '@/types/form';
-import { getHeaders } from '@/hooks/getHeaders';
+import { apiClient } from '@/lib/apiClient';
 import { Button } from '../ui/button';
 import { toast } from 'sonner';
 import { useManage } from '@/context/Manage/ManageProvider';
@@ -34,23 +34,23 @@ function ManageContext({
 }) {
   const { revalidate } = useRevalidator();
 
-  const submitHandler = async function (request: FieldValues) {
-    const res = await fetch(`${API_URL}/recipe/context`, {
-      method: 'PUT',
-      body: JSON.stringify(request),
-      headers: getHeaders(),
-      credentials: 'include',
-    });
+  const submitHandler = async function (formData: FieldValues) {
+    try {
+      const data = await apiClient<RecipeNoteIconType>(
+        `${API_URL}/recipe/context`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(formData),
+          includeAuth: true,
+        },
+      );
 
-    if (!res.ok) {
+      revalidate();
+      setOpen(false);
+      if (data.message) return toast(data.message);
+    } catch (error) {
       toast('Failed to update context.');
-      return;
     }
-
-    revalidate();
-    setOpen(false);
-    const data = await res.json();
-    if (data.message) return toast(data.message);
   };
 
   const { manageView } = useManage();
@@ -64,9 +64,7 @@ function ManageContext({
         context?.length > 0
           ? context.map((item) => ({
               ...item,
-              category_id:
-                item.category_id ??
-                (item.icon as unknown as RecipeNoteIconType)?.id,
+              category_id: item.category_id ?? (item.icon as any)?.id,
             }))
           : [
               {
@@ -93,7 +91,7 @@ function ManageContext({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="flex gap-1 cursor-pointer">
+        <div className="flex gap-1 cursor-pointer ml-2">
           {context?.length > 0 ? (
             context.map((note, i) => (
               <ContextIcons key={i} category={note.icon.category} />

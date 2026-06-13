@@ -15,6 +15,7 @@ import {
   IngredientGroupType,
   IngredientType,
 } from '@/types/api';
+import { apiClient } from '@/lib/apiClient';
 
 type RecipeContextType = {
   stepNumber: number;
@@ -27,7 +28,6 @@ type RecipeContextType = {
   setOptional: React.Dispatch<
     React.SetStateAction<RecipeContextType['optional']>
   >;
-  fdc_ids: number[];
   searchWords: Array<string[]>;
   isComplete?: boolean;
   recipeImage: string | undefined;
@@ -58,29 +58,19 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
   const [recipeImage, setRecipeImage] = useState<string>();
   const [expandImg, setExpandImg] = useState<boolean>(false);
   const [isComplete, setIsComplete] = useState<boolean>(false);
-  const { slug, step } = useParams<routerParams>();
+  const { slug } = useParams<routerParams>();
   const navigate = useNavigate();
 
   const fetchJSONDataFrom = useCallback(
     async (path: string) => {
       try {
-        const response = await fetch(path, {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        });
-        if (!response.ok) {
-          console.error(`Recipe fetch failed with status: ${response.status}`);
-          if (response.status === 404) {
-            navigate('/not-found');
-          }
-        } else {
-          const data = await response.json();
-          setRecipe(data.data);
-        }
-      } catch (error) {
+        const data = await apiClient<{ data: RecipeType }>(path);
+        setRecipe(data.data);
+      } catch (error: unknown) {
         console.error('Error fetching recipe data:', error);
+        if (error instanceof Error && error.status === 404) {
+          navigate('/not-found');
+        }
       } finally {
         setIsComplete(true);
       }
@@ -100,42 +90,47 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
   const { steps = [] } = recipe ?? { steps: [] };
 
   useEffect(() => {
-    if (stepNumber === 0 && recipe?.cover_url) {
-      setRecipeImage(recipe.cover_url);
+    if (stepNumber === 0 && recipe?.cover_img) {
+      setRecipeImage(recipe.cover_img.url);
     } else {
       setRecipeImage('');
     }
   }, [recipe, stepNumber]);
 
-  const fdc_ids: number[] = useMemo(() => {
-    return recipe?.fdc_ids ?? [];
-  }, [recipe]);
-
   const filteredIngredients: Array<IngredientGroupType> = useMemo(() => {
     const result: Array<IngredientGroupType> = [];
+    let currentStep = 1;
+    let isIngredientEmpty = false;
     steps.forEach((step) => {
       const { ingredients }: { ingredients: IngredientGroupType } = step;
       const filtered: IngredientGroupType = {
         ...ingredients,
-        step_id: result.length + 1,
+        step: currentStep,
         ingredients: ingredients.ingredients.filter(
           (ingredient: IngredientType) => {
             return (
-              !('optional' in ingredient) ||
               (typeof ingredient.optional === 'number' &&
-                optional[ingredient.optional])
+                optional[ingredient.optional]) ||
+              (!('optional' in ingredient) &&
+                (!ingredient.cooked ||
+                  (ingredient.cooked && stepNumber >= currentStep)))
             );
           },
         ),
       };
+      isIngredientEmpty = filtered.ingredients.length === 0;
       if (
-        !('optional' in filtered) ||
-        (typeof filtered.optional === 'number' && optional[filtered.optional])
-      )
+        (!('optional' in filtered) ||
+          (typeof filtered.optional === 'number' &&
+            optional[filtered.optional])) &&
+        !isIngredientEmpty
+      ) {
         result.push(filtered);
+        currentStep += 1;
+      }
     });
     return result;
-  }, [steps, optional]);
+  }, [steps, optional, stepNumber]);
 
   const sortedIngredients: Array<IngredientGroupType> = useMemo(() => {
     const result: Array<IngredientGroupType> = [];
@@ -201,8 +196,7 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
       }: { instructions: InstructionGroupType['instructions'] } =
         instructionGroup;
       const filtered: InstructionGroupType = {
-        ...instructions,
-        step_id: step.id,
+        ...instructionGroup,
         title: instructionGroup.title,
         background: instructionGroup.background,
         instructions: Array.isArray(instructions)
@@ -225,10 +219,6 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
     setMaxStep(filteredInstructions.length);
   }, [filteredInstructions]);
 
-  useEffect(() => {
-    if (step && parseInt(step) <= maxStep) setStepNumber(parseInt(step));
-  }, [step, maxStep]);
-
   return (
     <RecipeContext.Provider
       value={{
@@ -243,7 +233,6 @@ export const RecipeProvider = ({ children }: ChildrenType) => {
         setOptional,
         searchWords,
         optional,
-        fdc_ids,
         isComplete,
         expandImg,
         setExpandImg,

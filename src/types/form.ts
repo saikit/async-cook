@@ -5,7 +5,7 @@ export const recipeFormSchema = z.object({
     .string()
     .min(1, { message: 'Title is required.' })
     .max(255, { message: 'Title must be less than 255 characters.' }),
-  intro: z.string(),
+  intro: z.string().nullish(),
   reference: z.url().optional().or(z.literal('').nullable()),
   category: z.string(),
   equipment: z.array(
@@ -39,19 +39,19 @@ export const updateRecipeFormSchema = recipeFormSchema.extend({
       step: z.number(),
       ingredients: z.object({
         id: z.number().optional(),
-        text: z.string().nullable(),
+        text: z.string().nullish(),
         optional: z.number().nullish(),
         step_id: z.number(),
         ingredients: z.array(
           z.object({
             id: z.number().optional(),
             name: z.string(),
-            quantity: z.coerce.number().nullish(),
+            quantity: z.number().nullish(),
             optional: z.number().nullish(),
-            unit: z.string().nullable(),
+            unit: z.string().nullish(),
             ing_order: z.coerce.number(),
             cooked: z.boolean(),
-            fdc_id: z.coerce.number().nullish(),
+            fdc_id: z.number().nullable(),
             group_id: z.number().optional(),
           }),
         ),
@@ -59,7 +59,7 @@ export const updateRecipeFormSchema = recipeFormSchema.extend({
       instructions: z.object({
         id: z.number().optional(),
         title: z.string(),
-        background: z.string().nullable(),
+        background: z.string().nullish(),
         step_id: z.number(),
         instructions: z.array(
           z.object({
@@ -111,6 +111,48 @@ export const manageContextSchema = z.object({
       note: z.string().min(1, { message: 'Note is required.' }),
       instruction_id: z.number().nullish(),
       ingredient_id: z.number().nullish(),
+    }),
+  ),
+});
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 5MB
+const ACCEPTED_FILE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'video/mp4',
+  'video/webm',
+];
+
+export const manageMediaSchema = z.object({
+  media: z.array(
+    z.object({
+      id: z.number().optional(),
+      model_id: z.coerce.number(),
+    }),
+  ),
+});
+
+export const uploadMediaSchema = z.object({
+  model_id: z.coerce.number(),
+  media: z
+    .any()
+    .refine((file) => file instanceof File, {
+      message: 'A file is required.',
+    })
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: `File size must be less than 5MB.`,
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: 'Only .jpg, .png, .webp, .mp4, and .webm files are accepted.',
+    }),
+});
+
+export const manageIconSchema = z.object({
+  icons: z.array(
+    z.object({
+      id: z.number().optional(),
+      category: z.string().min(1, { message: 'Category is required.' }),
     }),
   ),
 });
