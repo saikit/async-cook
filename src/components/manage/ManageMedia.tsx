@@ -5,6 +5,7 @@ import { apiClient } from '@/lib/apiClient';
 import { Button } from '../ui/button';
 import { useManage } from '@/context/Manage/ManageProvider';
 import { toast } from 'sonner';
+import { Trash2 } from 'lucide-react';
 import DeleteItemIcon from './form/DeleteItemIcon';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -14,7 +15,7 @@ function ManageMedia() {
 
   const submitHandler = async function (formData: FieldValues) {
     try {
-      const data = await apiClient<any>(`${API_URL}/media`, {
+      const data = await apiClient<{ message: string }>(`${API_URL}/media`, {
         method: 'PUT',
         body: JSON.stringify(formData),
         includeAuth: true,
@@ -55,33 +56,52 @@ function ManageMedia() {
       }}
       className="mb-4"
     >
-      {fields.map((field, index) => (
-        <div className="grid grid-cols-4 gap-4 mb-2" key={field.id}>
-          <img
-            src={media[index].url_thumbnail}
-            alt={media[index].name}
-            className="w-1/4"
-          />
-          <select
-            {...register(`media.${index}.model_id`)}
-            className="border rounded col-span-2"
-          >
-            {recipes.map((recipe) => (
-              <option key={recipe.id} value={recipe.id}>
-                {recipe.title}
-              </option>
-            ))}
-          </select>
-          <DeleteItemIcon model="media" id={media[index].id}>
-            <a>Delete</a>
-          </DeleteItemIcon>
-        </div>
-      ))}
-      <fieldset className="contents">
-        <Button type="submit" form="manage-media">
-          Update Media
-        </Button>
-      </fieldset>
+      <table className="w-full table-auto">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Recipe collection</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        {fields.map((field, index) => (
+          <tr>
+            <td className="pb-4">
+              <img
+                src={media[index].url_thumbnail}
+                alt={media[index].name}
+                className="w-50"
+              />
+            </td>
+            <td className="pb-4">
+              <select
+                {...register(`media.${index}.model_id`)}
+                className="border rounded w-full"
+              >
+                {recipes.map((recipe) => (
+                  <option key={recipe.id} value={recipe.id}>
+                    {recipe.title}
+                  </option>
+                ))}
+              </select>
+            </td>
+            <td className="align-middle pb-4">
+              <DeleteItemIcon model="media" id={media[index].id}>
+                <Trash2 />
+              </DeleteItemIcon>
+            </td>
+          </tr>
+        ))}
+        <tfoot className="contents">
+          <tr>
+            <td colSpan={3}>
+              <Button type="submit" form="manage-media">
+                Update Media
+              </Button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </form>
   );
 }

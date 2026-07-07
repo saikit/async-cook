@@ -1,5 +1,6 @@
 import type { IngredientGroupType, IngredientType } from '@/types/api';
 import RecipeNoteIcon from './RecipeNoteIcon';
+import RecipeFlavorBadge from './RecipeFlavorBadge';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { twColors } from '@/lib/constants';
@@ -17,7 +18,7 @@ const Ingredient = ({
   groupName: string;
   index: number;
 }) => {
-  const { name, unit, quantity, context, cooked } = ingredients;
+  const { name, unit, quantity, context, cooked, flavors } = ingredients;
   if (!name)
     return (
       <p>
@@ -28,6 +29,12 @@ const Ingredient = ({
   const icons =
     context &&
     context.map((note, key) => <RecipeNoteIcon note={note} key={key} />);
+
+  const badges =
+    flavors &&
+    flavors.map((flavor, index) => (
+      <RecipeFlavorBadge flavor={flavor} index={index} className="ml-2" />
+    ));
 
   const quantityValue =
     groupName in quantityState && typeof quantityState[groupName] === 'object'
@@ -50,6 +57,7 @@ const Ingredient = ({
           {...rest}
         >
           {children}
+          {includeIcons && badges}
           {includeIcons && icons}
         </li>
       );

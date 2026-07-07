@@ -24,7 +24,7 @@ function RecipeBackgroundBanner() {
   if (!background || !isVisible) return null;
 
   const content = (
-    <Alert className=" w-80 fixed top-5 left-1/2 transform -translate-x-1/2">
+    <Alert className=" w-80 fixed z-10 top-5 left-1/2 transform -translate-x-1/2">
       <AlertTitle>
         <div className="text-xl">Heads up!</div>
       </AlertTitle>

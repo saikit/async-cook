@@ -18,6 +18,7 @@ import { useContext } from 'react';
 import RecipeContext from '@/context/RecipeProvider';
 import { useCallback } from 'react';
 import { IngredientType } from '@/types/api';
+import Markdown from 'react-markdown';
 
 function RecipeIngredientCarousel() {
   const { sortedIngredients, stepNumber } = useContext(RecipeContext);
@@ -57,7 +58,14 @@ function RecipeIngredientCarousel() {
                       {ingredient.unit ? `${ingredient.unit} ` : ''}
                     </strong>
                   )}
-                  {ingredient.name}
+                  <Markdown
+                    components={{
+                      // Replaces the <p> tag wrapper entirely
+                      p: ({ children }) => <>{children}</>,
+                    }}
+                  >
+                    {ingredient.name}
+                  </Markdown>
                 </p>
               </CarouselItem>
             ))}

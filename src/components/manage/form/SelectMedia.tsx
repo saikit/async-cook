@@ -47,4 +47,6 @@ function SelectMedia({
   return content;
 }
 
+function MediaPopup() {}
+
 export default SelectMedia;

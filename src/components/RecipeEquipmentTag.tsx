@@ -6,18 +6,21 @@ import {
 import { Badge } from './ui/badge';
 import { EquipmentType } from '@/types/api';
 import { twNeutralColors } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 
 function RecipeEquipmentTag({
   equip,
   index,
+  className,
 }: {
   equip: EquipmentType;
   index?: number;
+  className?: string;
 }) {
   return (
     <Popover key={equip.name}>
       <PopoverTrigger
-        className={`align-top print:hidden ${index !== undefined && index > 0 ? 'ml-2' : ''}`}
+        className={cn('align-middle print:hidden', className)}
         title={equip.name}
       >
         <Badge className={twNeutralColors[index || 0]} variant="secondary">

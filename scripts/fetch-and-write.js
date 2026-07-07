@@ -135,7 +135,7 @@ function buildMarkdown(recipe) {
             // Add context (recommendation, alert, explanation)
             if (ing.context && ing.context.length > 0) {
               const contextStr = ing.context
-                .map((c) => `${capitalize(c.category)}: ${c.note}`)
+                .map((c) => `${c.icon.emoji}: ${c.note}`)
                 .join(' ');
               ingLine += ` (${contextStr})`;
             }
@@ -181,7 +181,7 @@ function buildMarkdown(recipe) {
           let contextStr = '';
           if (instr.context && instr.context.length > 0) {
             instr.context.forEach((ctx) => {
-              contextStr += ` (${capitalize(ctx.category)}: ${ctx.note})`;
+              contextStr += ` (${ctx.icon.emoji}: ${ctx.note})`;
             });
           }
 

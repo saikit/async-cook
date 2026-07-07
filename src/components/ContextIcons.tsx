@@ -3,6 +3,7 @@ import {
   ChefHat,
   CircleAlert,
   CircleHelp,
+  Clock,
   Play,
   Image,
   Images,
@@ -20,6 +21,9 @@ function ContextIcons({ category }: { category: string }) {
       break;
     case 'recommendation':
       Icon = ChefHat;
+      break;
+    case 'preparation':
+      Icon = Clock;
       break;
     case 'video':
       Icon = Play;

@@ -23,12 +23,14 @@ export const recipeFormSchema = z.object({
 export const updateRecipeFormSchema = recipeFormSchema.extend({
   id: z.number(),
   published: z.coerce.number().optional(),
+  cover_img_id: z.string().optional(),
   optional_ingredients: z.array(
     z.object({
       name: z.string(),
       id: z.number(),
     }),
   ),
+
   slug: z
     .string()
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Invalid slug format')

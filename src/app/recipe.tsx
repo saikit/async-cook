@@ -3,7 +3,6 @@ import RecipeContext from '../context/RecipeProvider';
 import RecipeOptionalInput from '../components/RecipeOptionalInput';
 import RecipeIngredientsList from '../components/RecipeIngredientsList';
 import { ScrollArea } from '../components/ui/scrollarea';
-import { Link } from 'react-router';
 import NutritionalInformation from '../components/NutritionalInformation';
 import LoadingIcon from '../components/LoadingIcon';
 import RecipeInstructionsList from '../components/RecipeInstructionsList';
@@ -55,7 +54,13 @@ function Recipe() {
             )}
             {equipment &&
               equipment.map((equip, index) => {
-                return <RecipeEquipmentTag equip={equip} index={index} />;
+                return (
+                  <RecipeEquipmentTag
+                    equip={equip}
+                    index={index}
+                    className={index > 0 ? 'ml-2' : ''}
+                  />
+                );
               })}
           </p>
         )}
@@ -73,6 +78,7 @@ function Recipe() {
         {stepNumber > 0 ? (
           <ScrollArea className="h-[30vh]" ref={viewportRef}>
             <RecipeIngredientsList />
+            <div className="pointer-events-none absolute inset-0 shadow-[inset_0_-40px_30px_-10px_rgba(255,255,255,0.7)]"></div>
           </ScrollArea>
         ) : (
           <RecipeIngredientsList />

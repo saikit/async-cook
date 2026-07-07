@@ -42,7 +42,7 @@ function NutritionalInformation() {
           <>View nutritional information</>
         </ActionButton>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle className="text-xl mb-2 font-bold uppercase">
             Nutritional Information

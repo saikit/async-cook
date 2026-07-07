@@ -42,6 +42,7 @@ export type InstructionGroupType = {
   instructions: Array<InstructionType>;
   optional?: number;
   step_id: number;
+  step: number;
   id?: number;
 };
 
@@ -89,6 +90,7 @@ export type IngredientType = {
   group_id?: number;
   image_url?: string;
   media: MediaType;
+  flavors: Array<FlavorType>;
 };
 
 export type RecipeNoteIconType = {
@@ -122,4 +124,10 @@ export type MediaType = {
   mime_type: string;
   name: string;
   collection_name: string;
+};
+
+export type FlavorType = {
+  id: number;
+  name: string;
+  color: number;
 };
