@@ -39,7 +39,7 @@ Wash and chop **lettuce** into bite sized pieces. Wash and chop **scallions** to
 
 ## Step 2 — Make the sauce
 
-Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well. 
+Combine **oyster sauce**, **soy sauce**, **dark soy sauce**, **canned tuna**, **sugar**, and **MSG** in a bowl. Mix well.
 
 ## Step 3 — Make the cornstarch slurry
 
@@ -51,11 +51,7 @@ In a pot, bring the **water** to a boil and add **salt**. (🧑‍🍳: Water fo
 
 ## Step 5 — Cook sauce
 
-Background: *Water is boiling.*
-
 In a pan, heat up **neutral oil** over **high heat** until slightly smoking. Add **minced garlic**, **chopped scallion**, and **red pepper flakes** and fry until aromatic.
-
-Background: *Water is boiling.*
 
 Add **combined sauce** to pan. Cook for **20 seconds** then **set flame to low** and add and mix **cornstarch slurry**. Cook until sauce is to desired thickness.
 

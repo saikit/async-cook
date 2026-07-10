@@ -14,7 +14,7 @@ Re-imagining the traditional cookbook for the modern home cook
 - For now, this is a tool for a solo cook with access to a standard kitchen and sourcing from American grocery stores. **done**
 - Must be fully usable on a tablet or mobile device **done**
 - Users can pick optional ingredients which be added to the steps **done**
-- Each step will contain important alerts and statuses **half done**
+- Each step will contain important alerts and statuses **done**
 
 ## Future features
 
@@ -29,6 +29,6 @@ Re-imagining the traditional cookbook for the modern home cook
 
 ### Recipe Developers
 
-- Manage and create new recipes from the site
+- Manage and create new recipes from the site **half done**
 - Can assist with filling out content by uploading documents
 - Notes section to save all unpublished text

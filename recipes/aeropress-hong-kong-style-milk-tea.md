@@ -11,6 +11,7 @@ Use an Aeropress and techniques from the coffee world to make Hong Kong's iconic
 <!---->
 - **60g** evaporated milk (🧑‍🍳: Alternative milks work but each will provide different mouthfeel, color, and sweetness to the tea)
 - **5g** condensed milk or sweetener *(optional)*
+- **100g** ice cubes (🧑‍🍳: Feel free reduce the amount of boiling water for a stronger drink)
 <!---->
 <!---->
 <!---->
@@ -22,7 +23,13 @@ Add **black tea** and **boiling water** to a pot. Bring tea to a boil then simme
 
 ## Step 2 — Prepare milk
 
+Background: *Tea is simmering on the stove*
+
 Add **evaporated milk** into serving cup. Add **sweetener** if using.
+
+Background: *Tea is simmering on the stove*
+
+Add **ice cubes** into serving container.
 
 ## Step 3 — Extract the tea and blend with milk
 
@@ -30,6 +37,8 @@ Setup Aeropress with a single paper filter. Pour entire **brewed tea**, includin
 
 Push the plunger through the chamber gently until all liquid is passed through.
 
-## Step 4 — Serve tea
+## Step 4 — Serve milk tea
 
 Stir **milk tea** and serve
+
+If iced, stir until ice is melted completely. Add more ice for a colder drink then serve.

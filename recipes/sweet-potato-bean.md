@@ -11,7 +11,7 @@ Combining two long cooking ingredients to form a base of a high protein and high
 - **5g** salt
 - **1g** baking soda *(optional)*
 <!---->
-- **1** sweet potato (🧑‍🍳: Freeze sweet potatoes for 3 or more hours before cooking to improve its texture.)
+- **1** sweet potato (🕑: Freezing sweeting potatoes for at least 6 hours before roasting would result in a more concentrated flavors and softer texture)
 <!---->
 - **1** avocado
 <!--(optional group)-->

@@ -11,13 +11,13 @@ Cooking chicken gizzards in a pressure cooker to help form a base for a Japanese
 <!---->
 - **250ml** dashi or chicken stock
 <!---->
+### For the stir fry sauce
+
 - **15g** gochujang
 - **15ml** mirin
 - **15ml** soy sauce
 - **3g** sugar
 <!---->
-### For the stir fry sauce
-
 - **200g** bok choy, any variety
 <!---->
 - **3** cloves of garlic

@@ -163,6 +163,13 @@
                         "media": {
                           "type": "null",
                           "description": "null (optional)"
+                        },
+                        "flavors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "array"
                         }
                       }
                     },
